@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    #parse("common/head.htm")
+    <link rel="stylesheet" href="$!{form.staticResourceDomain}/css/user/login.css">
+    <script src="$!{form.staticResourceDomain}/js/jquery-plugins/jquery.form.js"></script>
+    <script src="$!{form.staticResourceDomain}/js/jquery-plugins/jquery.validate.js"></script>
+    <script src="$!{form.staticResourceDomain}/js/user/login.js"></script>
+</head>
+<body>
+    <div class="wrap">
+        <div class="reg_wrap">
+            <div class="head">
+                <a href="/" class="reg_logo"></a>
+                <a href="/" class="welcome_txt"></a>
+            </div>
+            <div class="main">
+                <div class="ad_wrap">
+                    <img src="$!{form.staticResourceDomain}/images/register/ad_img.jpg" width="370" height="353" />
+                </div>
+                <div class="login_form">
+                    <form id="loginForm" method="post" onsubmit="return false" action="">
+                        <h3> <a href="/user/register">注册</a> 登录美丽说 </h3>
+                        <div class="login_list">
+                            <p class="login_box">
+                                <input class="login_txt" id="mlsUser" name="mlsUser" type="text" placeholder="邮箱/手机号/昵称" /> <span></span>
+                                <span class="user_icon"></span> </p>
+                            <div id="msgmlsUser" class="msg_error"><span></span>请输入您的用户名或注册邮箱</div>
+                        </div>
+                        <div class="login_list">
+                            <p class="login_box">
+                                <input class="login_txt" id="password" name="password" type="password" placeholder="密码" />
+                                <span class="msg_err"></span>
+                                <span class="pwd_icon"></span> </p>
+                        </div>
+                        <div class="login_list authcode none_f">
+                            <div class="login_box">
+                                <input class="login_txt" id="checkcode" name="checkcode" type="text" placeholder="请输入验证码" maxlength="4" />
+                                <span></span>
+                                <span class="code_icon"></span>
+                                <div class="checkImage" onselectstart="return false;">
+                                    <img width="90" height="36" src="http://i.meilishuo.net/css/images/register/blank.jpg" />
+                                    <span class="refresh"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="loginErrorMessage none_f"></div>
+                        <div class="login_btn_wrap">
+                            <input type="submit" class="login_btn" value="立即登录" />
+                        </div>
+                        <div class="remember">
+                            <input type="checkbox" name="savestate" id="savestate" checked="checked" />
+                            <label for="savestate">记住我</label>
+                        </div>
+                        <div class="forget_pwd">
+                            <a href="/user/findPwd" target="_blank">忘记密码？</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="atDiv" style="word-wrap: break-word; outline: medium none; position: absolute;overflow:auto;filter:alpha(opacity=0);moz-opacity:0;opacity:0;">
+        <span class="before">
+    </span>
+        <span class="flag">
+    </span>
+        <span class="after">
+    </span>
+    </div>
+</body>
+
+</html>

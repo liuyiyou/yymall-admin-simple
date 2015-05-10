@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--对完全限定名较长的类，可在这里对其起别名（一般取类名），供mapper文件使用 -->
+    <typeAliases>
+        <typeAlias type="cn.liuyiyou.yishop.entity.Operator" alias="operator" />
+        <typeAlias type="cn.liuyiyou.yishop.entity.SystemParameter" alias="systemParameter" />
+        <typeAlias type="cn.liuyiyou.yishop.entity.Meta" alias="meta" />
+
+        <typeAlias type="cn.liuyiyou.yishop.entity.Category" alias="category" />
+        <typeAlias type="cn.liuyiyou.yishop.entity.CategoryProperty" alias="categoryProperty" />
+        <typeAlias type="cn.liuyiyou.yishop.entity.CategoryPropertyValue" alias="categoryPropertyValue" />
+
+        <typeAlias type="cn.liuyiyou.yishop.entity.Brand" alias="brand" />
+
+        <typeAlias type="cn.liuyiyou.yishop.entity.Auth" alias="auth" />
+        <typeAlias type="cn.liuyiyou.yishop.entity.Menu" alias="menu" />
+        <typeAlias type="cn.liuyiyou.yishop.entity.Role" alias="role" />
+
+        <typeAlias type="cn.liuyiyou.yishop.entity.Channel" alias="channel" />
+        <typeAlias type="cn.liuyiyou.yishop.entity.Product" alias="product" />
+
+        <typeAlias type="cn.liuyiyou.yishop.entity.TempPic" alias="tempPic" />
+
+        <typeAlias type="cn.liuyiyou.yishop.entity.User" alias="user" />
+        <typeAlias type="cn.liuyiyou.yishop.entity.LoginInfo" alias="loginInfo" />
+        <typeAlias type="cn.liuyiyou.yishop.entity.LoginLog" alias="loginLog" />
+        <typeAlias type="cn.liuyiyou.yishop.entity.Account" alias="account" />
+        <typeAlias type="cn.liuyiyou.yishop.entity.DeliverAddress" alias="deliverAddress" />
+
+        <typeAlias type="cn.liuyiyou.yishop.entity.ValidateInfo" alias="validateInfo" />
+
+        <typeAlias type="cn.liuyiyou.yishop.entity.Favorite" alias="favorite" />
+        <typeAlias type="cn.liuyiyou.yishop.entity.Cart" alias="cart" />
+
+    </typeAliases>
+
+</configuration>

@@ -1,0 +1,34 @@
+<div class="header_top pr_f"> 
+    <div class="clear_f"></div> 
+   </div> 
+   <div class="clear_f"></div> 
+   <div class="header_top logo_wrap"> 
+    <a class="logo_new" href=""></a> 
+    <div class="ser_n"> 
+     <form class="searchBox" action="/search" method="get"> 
+      <div class="search-table"> 
+       <span class="cur" data-type="1">宝贝</span> 
+       <div class="list" style="display: none;"> 
+        <ul> 
+         <li><a data-type="1">宝贝</a></li> 
+         <li><a data-type="4">商家</a></li> 
+         <li><a data-type="3">杂志</a></li> 
+         <li><a data-type="2">用户</a></li> 
+        </ul> 
+       </div> 
+       <em class="arrow"></em> 
+      </div> 
+      <span class="ipt1"><em class="i_search"></em><input class="searchKey" name="searchKey" type="text" autocomplete="off" value="" placeholder="搜流行商品" data-placeholder="搜流行商品" /></span> 
+      <input class="search_type" type="hidden" value="1" name="searchType" /> 
+      <input class="filter" type="hidden" value="goods" name="filter" /> 
+      <input class="search_frm" type="hidden" value="searchsuggestion" name="frm" /> 
+      <input class="suggest_frm" type="hidden" value="" name="suggest_frm" /> 
+      <span class="ipt2"><input type="submit" class="fm_hd_btm_shbx_bttn" value="搜 索" /></span> 
+     </form> 
+     <div class="clear_f"></div> 
+     <ul class="searchType none_f"></ul> 
+     <script type="text/html" id="searchList">				<?$.each(prompt , function(index , data){?>					<li class="searchKeyItem" stype="goods"><?= data?></li>				<?});?>			</script> 
+    </div> 
+    <!-- <ul class="cart_info">			<li><a href="/cart" target="_blank"><span class="carts_num none_f"><span>undefined</span></span><em class="i_cart">&nbsp;</em> 查看购物车</a></li>			<li><a href="/order" target="_blank"><em class="i_order">&nbsp;</em>我的订单</a></li>		</ul> --> 
+   </div>
+ 
