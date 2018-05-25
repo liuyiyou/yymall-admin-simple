@@ -1,6 +1,11 @@
 package cn.liuyiyou.shop;
 
-import lombok.extern.java.Log;
+import com.alibaba.fastjson.serializer.SerializeConfig;
+import com.alibaba.fastjson.serializer.SimpleDateFormatSerializer;
+import com.alibaba.fastjson.serializer.ToStringSerializer;
+import com.alibaba.fastjson.support.config.FastJsonConfig;
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -11,17 +16,30 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.sql.DataSource;
+import java.math.BigInteger;
+import java.util.Date;
+import java.util.List;
 
 @SpringBootApplication
 @MapperScan(basePackages = "cn.liuyiyou.shop.mapper")
 @EnableTransactionManagement
-@Log
+@Slf4j
 @Configuration
-public class Application {
+@EnableSwagger2
+public class Application implements WebMvcConfigurer {
 
 
     @Autowired
@@ -34,10 +52,44 @@ public class Application {
 
 
     @Bean
+    public Docket createRestApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(apiInfo())
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("cn.liuyiyou.shop.controller"))
+                .paths(PathSelectors.any())
+                .build();
+    }
+
+    private ApiInfo apiInfo() {
+        return new ApiInfoBuilder()
+                .title("一优商城RESTful APIs")
+                .description("使用Swagger2创建")
+                .termsOfServiceUrl("http://localhost:9999/")
+                .version("1.0")
+                .build();
+    }
+
+    @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
 
+    static String dateFormat = "yyyy-MM-dd HH:mm:ss";
+
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        FastJsonHttpMessageConverter fastConverter =
+                new FastJsonHttpMessageConverter();
+        FastJsonConfig fastJsonConfig = new FastJsonConfig();
+        SerializeConfig serializeConfig = SerializeConfig.globalInstance;
+        serializeConfig.put(BigInteger.class, ToStringSerializer.instance);
+        serializeConfig.put(Long.class, ToStringSerializer.instance);
+        serializeConfig.put(Date.class, new SimpleDateFormatSerializer(dateFormat));
+        fastJsonConfig.setSerializeConfig(serializeConfig);
+        fastConverter.setFastJsonConfig(fastJsonConfig);
+        converters.add(fastConverter);
+    }
 
     /**
      * 该配置是在

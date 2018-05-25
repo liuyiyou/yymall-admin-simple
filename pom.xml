@@ -3,9 +3,9 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>cn.liuyiyou</groupId>
 	<artifactId>cn.liuyiyou.shop</artifactId>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>YiShop Maven Webapp</name>
+	<name>基于SpringBoot的网上商城</name>
 	<url>http://maven.apache.org</url>
 
 	<parent>
@@ -130,6 +130,29 @@
 			<!--<artifactId>rocketmq-common</artifactId>-->
 			<!--<version>4.2.0</version>-->
 		<!--</dependency>-->
+
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.6.1</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.6.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-spring-web</artifactId>
+			<version>2.6.1</version>
+		</dependency>
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>1.5.10</version>
+		</dependency>
 
 
 

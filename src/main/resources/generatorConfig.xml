@@ -15,11 +15,12 @@
         <!--mybatis generator代码生成工具时，遇到生成的代码重复-->
         <property name="mergeable" value="true"></property>
         <commentGenerator>
-            <property name="suppressAllComments" value="false"/>
+            <property name="suppressAllComments" value="true"/>
             <property name="suppressDate" value="true"/>
         </commentGenerator>
 
-        <jdbcConnection userId="${username}" password="${password}" driverClass="${driverClassName}" connectionURL="${url}"/>
+        <jdbcConnection userId="${username}" password="${password}" driverClass="${driverClassName}"
+                        connectionURL="${url}"/>
 
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
@@ -34,14 +35,16 @@
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
 
-        <javaClientGenerator targetPackage="cn.liuyiyou.shop.mapper" type="XMLMAPPER" targetProject="src/main/java">
+        <javaClientGenerator targetPackage="cn.liuyiyou.shop.mapper" type="ANNOTATEDMAPPER"
+                             targetProject="src/main/java">
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
-        <!--<table schema="prod" tableName="prod" domainObjectName="Prod" enableCountByExample="true" enableDeleteByExample="false"-->
-            <!--enableDeleteByPrimaryKey="false"   enableSelectByExample="true" enableUpdateByExample="false" />-->
+        <table schema="prod" tableName="prod" domainObjectName="Prod" enableCountByExample="true"
+               enableDeleteByExample="false"
+               enableDeleteByPrimaryKey="false" enableSelectByExample="true" enableUpdateByExample="false"/>
 
-        <table  tableName="base_banner" domainObjectName="Banner" enableCountByExample="true" enableDeleteByExample="false"
-               enableDeleteByPrimaryKey="false"   enableSelectByExample="true" enableUpdateByExample="false" />
+        <table tableName="prod" domainObjectName="Prod" enableCountByExample="true" enableDeleteByExample="false"
+               enableDeleteByPrimaryKey="false" enableSelectByExample="true" enableUpdateByExample="false"/>
     </context>
 </generatorConfiguration>

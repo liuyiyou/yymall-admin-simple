@@ -2,9 +2,17 @@ package cn.liuyiyou.shop.mapper;
 
 import cn.liuyiyou.shop.entity.Banner;
 import cn.liuyiyou.shop.entity.BannerExample;
-import org.springframework.stereotype.Repository;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.InsertProvider;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectProvider;
+import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.UpdateProvider;
+import org.apache.ibatis.type.JdbcType;
+import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BannerMapper {
@@ -14,6 +22,7 @@ public interface BannerMapper {
      *
      * @mbg.generated
      */
+    @SelectProvider(type=BannerSqlProvider.class, method="countByExample")
     long countByExample(BannerExample example);
 
     /**
@@ -22,6 +31,22 @@ public interface BannerMapper {
      *
      * @mbg.generated
      */
+    @Insert({
+        "insert into base_banner (banner_id, type, ",
+        "pic, redirect_url, ",
+        "weight, create_date, ",
+        "last_update, filter_channels, ",
+        "apply_crowd, start_time, ",
+        "end_time, pic_v2, ",
+        "width, height)",
+        "values (#{bannerId,jdbcType=SMALLINT}, #{type,jdbcType=TINYINT}, ",
+        "#{pic,jdbcType=VARCHAR}, #{redirectUrl,jdbcType=VARCHAR}, ",
+        "#{weight,jdbcType=SMALLINT}, #{createDate,jdbcType=TIMESTAMP}, ",
+        "#{lastUpdate,jdbcType=TIMESTAMP}, #{filterChannels,jdbcType=VARCHAR}, ",
+        "#{applyCrowd,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, ",
+        "#{endTime,jdbcType=TIMESTAMP}, #{picV2,jdbcType=VARCHAR}, ",
+        "#{width,jdbcType=INTEGER}, #{height,jdbcType=INTEGER})"
+    })
     int insert(Banner record);
 
     /**
@@ -30,6 +55,7 @@ public interface BannerMapper {
      *
      * @mbg.generated
      */
+    @InsertProvider(type=BannerSqlProvider.class, method="insertSelective")
     int insertSelective(Banner record);
 
     /**
@@ -38,6 +64,23 @@ public interface BannerMapper {
      *
      * @mbg.generated
      */
+    @SelectProvider(type=BannerSqlProvider.class, method="selectByExample")
+    @Results({
+        @Result(column="banner_id", property="bannerId", jdbcType=JdbcType.SMALLINT, id=true),
+        @Result(column="type", property="type", jdbcType=JdbcType.TINYINT),
+        @Result(column="pic", property="pic", jdbcType=JdbcType.VARCHAR),
+        @Result(column="redirect_url", property="redirectUrl", jdbcType=JdbcType.VARCHAR),
+        @Result(column="weight", property="weight", jdbcType=JdbcType.SMALLINT),
+        @Result(column="create_date", property="createDate", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="last_update", property="lastUpdate", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="filter_channels", property="filterChannels", jdbcType=JdbcType.VARCHAR),
+        @Result(column="apply_crowd", property="applyCrowd", jdbcType=JdbcType.INTEGER),
+        @Result(column="start_time", property="startTime", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="end_time", property="endTime", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="pic_v2", property="picV2", jdbcType=JdbcType.VARCHAR),
+        @Result(column="width", property="width", jdbcType=JdbcType.INTEGER),
+        @Result(column="height", property="height", jdbcType=JdbcType.INTEGER)
+    })
     List<Banner> selectByExample(BannerExample example);
 
     /**
@@ -46,6 +89,29 @@ public interface BannerMapper {
      *
      * @mbg.generated
      */
+    @Select({
+        "select",
+        "banner_id, type, pic, redirect_url, weight, create_date, last_update, filter_channels, ",
+        "apply_crowd, start_time, end_time, pic_v2, width, height",
+        "from base_banner",
+        "where banner_id = #{bannerId,jdbcType=SMALLINT}"
+    })
+    @Results({
+        @Result(column="banner_id", property="bannerId", jdbcType=JdbcType.SMALLINT, id=true),
+        @Result(column="type", property="type", jdbcType=JdbcType.TINYINT),
+        @Result(column="pic", property="pic", jdbcType=JdbcType.VARCHAR),
+        @Result(column="redirect_url", property="redirectUrl", jdbcType=JdbcType.VARCHAR),
+        @Result(column="weight", property="weight", jdbcType=JdbcType.SMALLINT),
+        @Result(column="create_date", property="createDate", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="last_update", property="lastUpdate", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="filter_channels", property="filterChannels", jdbcType=JdbcType.VARCHAR),
+        @Result(column="apply_crowd", property="applyCrowd", jdbcType=JdbcType.INTEGER),
+        @Result(column="start_time", property="startTime", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="end_time", property="endTime", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="pic_v2", property="picV2", jdbcType=JdbcType.VARCHAR),
+        @Result(column="width", property="width", jdbcType=JdbcType.INTEGER),
+        @Result(column="height", property="height", jdbcType=JdbcType.INTEGER)
+    })
     Banner selectByPrimaryKey(Short bannerId);
 
     /**
@@ -54,6 +120,7 @@ public interface BannerMapper {
      *
      * @mbg.generated
      */
+    @UpdateProvider(type=BannerSqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(Banner record);
 
     /**
@@ -62,5 +129,22 @@ public interface BannerMapper {
      *
      * @mbg.generated
      */
+    @Update({
+        "update base_banner",
+        "set type = #{type,jdbcType=TINYINT},",
+          "pic = #{pic,jdbcType=VARCHAR},",
+          "redirect_url = #{redirectUrl,jdbcType=VARCHAR},",
+          "weight = #{weight,jdbcType=SMALLINT},",
+          "create_date = #{createDate,jdbcType=TIMESTAMP},",
+          "last_update = #{lastUpdate,jdbcType=TIMESTAMP},",
+          "filter_channels = #{filterChannels,jdbcType=VARCHAR},",
+          "apply_crowd = #{applyCrowd,jdbcType=INTEGER},",
+          "start_time = #{startTime,jdbcType=TIMESTAMP},",
+          "end_time = #{endTime,jdbcType=TIMESTAMP},",
+          "pic_v2 = #{picV2,jdbcType=VARCHAR},",
+          "width = #{width,jdbcType=INTEGER},",
+          "height = #{height,jdbcType=INTEGER}",
+        "where banner_id = #{bannerId,jdbcType=SMALLINT}"
+    })
     int updateByPrimaryKey(Banner record);
 }

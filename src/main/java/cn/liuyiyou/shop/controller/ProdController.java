@@ -19,8 +19,8 @@ import static cn.liuyiyou.shop.resp.ResultGenerator.genSuccessResult;
  * @date: 2018/4/3
  */
 @RestController
-@RequestMapping("/prod/")
 @Slf4j
+@RequestMapping("/prod")
 public class ProdController {
 
     @Autowired
@@ -29,7 +29,7 @@ public class ProdController {
 
     @PostMapping("list")
     public Result list(@RequestBody ReqBody reqBody) {
-        return genSuccessResult(prodService.getProdsPage(reqBody.page,reqBody.pageSize));
+        return genSuccessResult(prodService.getProdsPage(reqBody.page, reqBody.pageSize));
     }
 
     @GetMapping("{id}")
