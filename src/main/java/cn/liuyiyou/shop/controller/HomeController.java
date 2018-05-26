@@ -24,12 +24,12 @@ public class HomeController {
     @Autowired
     private IHomeManager homeManager;
 
+
     @ApiOperation(value = "首页", notes = "包含品牌、商品")
-    @PostMapping("/")
+    @PostMapping("/index")
     public Result home(@RequestBody ReqBody reqBody) {
+        log.info(reqBody.toString());
         Result home = homeManager.getHomePage(reqBody.page, reqBody.pageSize);
         return home;
     }
-
-
 }

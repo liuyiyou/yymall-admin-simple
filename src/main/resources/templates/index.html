@@ -1,856 +1,1219 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title> 首页 - 洋老板商城</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+    <meta charset="UTF-8">
+    <meta name="description" content="醉品商城是中国专业的正宗品牌茶叶,茶具,花茶购物商城,经营铁观音,大红袍,红茶,绿茶,普洱茶,西湖龙井,武夷岩茶,黄山毛峰等国内外原产地品牌茶叶,欢迎选购">
+    <meta name="keyword" content="茶叶、茶具一站式网上购物商城:铁观音,金骏眉,红茶,绿茶,大红袍,普洱茶,茶具">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta name="renderer" content="webkit"/>
-    <link rel="icon" href="/static/images/favicon.87d671fdd9e0888c6dbfcc80206a255c.ico" type="image/x-icon"/>
-    <!--[if lt IE 10]>
-    <script src="/static/js/html5shiv.min.js"></script>
-    <![endif]-->
-    <script type="application/javascript" src="/static/js/detectmobilebrowser.79eec4733876d002d0d646732472e73f.js">
+    <meta name="renderer" content="ie-comp"/>
+    <meta name="renderer" content="ie-stand"/>
+    <title>一优茶选
+    </title>
+    <link rel="shortcut icon" href="https://www.zuipin.cn/web/images/icon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="https://www.zuipin.cn/web/fonts/iconfont.css?v=547">
+    <link rel="stylesheet" href="https://www.zuipin.cn/web/css/reset-pc.css?v=547">
+    <link rel="stylesheet" href="https://www.zuipin.cn/web/css/common.css?v=547">
+    <link rel="stylesheet" href="/web/css/web_index_index.3cc12225ab8342c04ec0a59781ea39d5.css">
+    <link rel="stylesheet" href="https://www.zuipin.cn/web/css/indexv2.css?v=547">
+
+    <script type="text/javascript">
+        var uri = ''.replace(/&amp;/g, '&');
+        ;
+        var hash = location.hash;
+        if (uri) {
+            if (hash) uri += hash;
+            history.replaceState(null, '首页', uri);
+        }
+
     </script>
-    <link href="/commons/commons/styles.f10fc1daa0469c98f9699ec670029e57.css?95d1a934e2b28c5e81f8" rel="stylesheet"/>
-    <link href="/index/styles.3eaf33848e7695d6e1a88fb2f6682919.css?95d1a934e2b28c5e81f8" rel="stylesheet"/>
+
 </head>
 <body>
-<!--[if lt IE 9]>
-<script src="/static/js/respond.min.js"></script>
-<script src="/static/js/html5.js"></script>
-<script src="/static/js/css3-mediaqueries.js">
-</script>
-<![endif]-->
 
-<nav class="topNav">
-    <div class="wrapper w">
-        <span class="tips">您好，欢迎您来到洋老板商城</span>
-        <span id="topNavUserInfo">
-             <a class="link-login" href="/user/login.html?isLogin=1">登录</a><a class="link-register"
-                                                                              href="/user/login.html?isRegister=1">快速注册</a>
-        </span>
-        <div class="rightBar">
-            <div class="item userCenterBtn" id="userCenterBtn">
-                <span class="txt">个人中心</span>
-                <ul class="userCenterBtnList">
-                    <li><a href="/user/my-order.html" target="_self">我的订单</a></li>
-                    <li><a href="/user/coupon-my.html" target="_self">优惠券</a></li>
-                    <li><a href="/busi/my-collection.html" target="_self">我的收藏</a></li>
-                    <li><a href="/busi/ship-address.html" target="_self">收货地址</a></li>
+<div id="container">
+    <!--header start-->
+    <div id="header">
+        <div class="zuipin-wrapper clearfix">
+            <div class="float-left join-zp">
+                <ul class="header-join clearfix">
+                    <li class="zp-index"><a href="/">醉品商城首页</a></li>
                 </ul>
             </div>
-            <a href="http://www.yanglaoban.com/supplier.html" class="item" target="_blank">招商入驻</a>
-            <div class="item qrCodeBtn" id="topNav_qrCodeBtn">
-                <span class="txt">手机版</span>
-                <div class="qrCodeWrapper">
-                    <div class="qrCodeContent">
-                        <div class="qrCode"></div>
-                        <p class="text">下载APP</p>
-                        <p class="text">得680新人礼包</p>
-                    </div>
-                </div>
+            <div class="float-right cart-info">
+                <dl>
+                    <dt class="cart-num">
+                        <a href="javascript:;">购物车</a>
+                    </dt>
+                    <dd class="cart-list">
+                        <div class="list_empty">
+                            <img src="https://img1.zuipin.cn/new_pc/logo/logo1.gif" alt="">
+                        </div>
+                    </dd>
+                </dl>
             </div>
-            <a href="http://www.yanglaoban.com/aboutUs.html" target="_blank" class="item">关于我们</a>
-
+            <div class="float-right enter-zp">
+                <ul class="header-sel clearfix">
+                    <li><a href="/login">登录</a></li>
+                    <li><a href="/regist">注册</a></li>
+                    <li><a id="myOrders" href="javascript:;">我的订单</a></li>
+                </ul>
+            </div>
         </div>
     </div>
-</nav>
-<header id="searchHead" class="searchHead ">
-    <div id="searchHeadWrap" class="searchHeadWrap w">
-        <a href="/" class="logo" title="洋老板商城"></a>
-
-        <div class="searchBox">
-            <div id="topSearchBox" class="topSearchBox">
-                <div id="topSearch" class="topSearch">
-                    <div class="wrap">
-                        <input id="topSearchInput" type="text" source="" placeholder="在千万海外商品中搜索" urllink=""
-                               actualkey="">
-                    </div>
-                    <span id="topSearchBtn" class="topSearchBtn">搜索</span>
+    <!--header end-->
+    <!--header-tap start-->
+    <div id="headerTap">
+        <div class="zuipin-wrapper clearfix">
+            <div class="logo float-left">
+                <a href="/">
+                    <img src="https://img1.zuipin.cn/new_pc/logo/logo1.gif" alt="醉品商城"> </a>
+            </div>
+            <div class="search-box float-left">
+                <form action="/list" id="list">
+                    <input type="text" name="keyword" value="" class="search-text">
+                </form>
+                <span class="search-btn" id="sub"></span>
+                <div class="clearfix" id="key-word">
+                    <a href="/list?catId=30" target="_blank" class="first_hot">绿茶</a>
+                    <a href="/list?catId=27" target="_blank">安溪铁观音</a>
+                    <a href="/list?catId=34" target="_blank">龙井</a>
+                    <a href="/list?catId=72" target="_blank">金骏眉</a>
+                    <a href="/list?catId=40" target="_blank">普洱茶</a>
                 </div>
-                <div class="searchhint">
-                    <ul id="searchhintlist" style="display: none;">
+            </div>
+        </div>
+    </div>
 
+    <!--header-tap end-->
+
+    <!--header-sel start-->
+    <!--header-sel end-->
+
+
+    <!--banner start-->
+    <div id="banner"></div>
+
+    <!--banner end-->
+
+
+    <!--fivePic end-->
+
+    <!-- special start -->
+    <div class="special-item" id="special">
+        <div class="zuipin-wrapper">
+            <div class="special-title clearfix">
+                <div class="special-logo">
+                    <img src="https://www.zuipin.cn/web/images/new-gift/special.png" alt="醉品特价">
+                </div>
+                <h2 class="special-head">醉品<span>特价</span></h2>
+                <div class="width-1"></div>
+                <p class="special-text">总有你想不到的低价</p>
+                <!-- countdown 输入结束时间-->
+                <input type="hidden" value="2018-05-31 00:00:00" id="time">
+                <div class="countdown clearfix">
+                    <span class="tip-text">距结束：</span>
+                    <span class="days"></span>
+                    <span class="time-date hours"></span>
+                    <span class="time-code">:</span>
+                    <span class="time-date minutes"></span>
+                    <span class="time-code">:</span>
+                    <span class="time-date seconds"></span>
+                </div>
+
+            </div>
+            <div class="special-content">
+                <div class="slide-item">
+                    <ul class="clearfix">
+                        <li>
+                            <a href="https://www.zuipin.cn/goods?id=8700148" target="_blank" class="special-good">
+                                <div class="special-img">
+                                    <img src="https://img4.zuipin.cn/online_img/proimg/2018-04-20 17:11:45_80683846969.jpg?x-oss-process=image/resize,m_lfit,h_160,w_160"/>
+                                </div>
+                                <p class="special-descr"
+                                   title="【预售：付款成功后7日内发货】魏荫 安溪铁观音 2008年老茶 老魏道 特级 传统工艺 碳焙 250g*8罐（买8罐送8罐）">
+                                    【预售：付款成功后7日内发货】魏荫 安溪铁观音 2008年老茶 老魏道 特级 传统工艺 碳焙 250g*8罐（买8罐送8罐）</p>
+                                <p class="special-alt" title="魏月德大师监制，从原料、工艺到存放都严格把关">魏月德大师监制，从原料、工艺到存放都严格把关</p>
+                                <p class="special-price">
+                                    <span class="special-now-price">￥4,000.00</span>
+                                    <del class="special-old-price">￥8,000.00</del>
+                                </p>
+                                <div class="tag-img">
+                                    <img src="https://www.zuipin.cn/web/images/new-gift/time-limit.png" alt="限时特价">
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.zuipin.cn/goods?id=8685177" target="_blank" class="special-good">
+                                <div class="special-img">
+                                    <img src="https://img1.zuipin.cn/zpfx/proimg/2017-09-19-15-39-14-59c0c9a26caa820094.jpg?x-oss-process=image/resize,m_lfit,h_160,w_160"/>
+                                </div>
+                                <p class="special-descr" title="陶瓷茶具 欢聚一堂 豆青色 8入">陶瓷茶具 欢聚一堂 豆青色 8入</p>
+                                <p class="special-alt" title="古典大方 家居、茶室适用">古典大方 家居、茶室适用</p>
+                                <p class="special-price">
+                                    <span class="special-now-price">￥298.80</span>
+                                    <del class="special-old-price">￥698.00</del>
+                                </p>
+                                <div class="tag-img">
+                                    <img src="https://www.zuipin.cn/web/images/new-gift/time-limit.png" alt="限时特价">
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.zuipin.cn/goods?id=8684275" target="_blank" class="special-good">
+                                <div class="special-img">
+                                    <img src="https://img3.zuipin.cn/zpfx/proimg/2017-11-21-15-34-36-5a13d70c784e891309.jpg?x-oss-process=image/resize,m_lfit,h_160,w_160"/>
+                                </div>
+                                <p class="special-descr" title="【非遗大师王顺明亲制】琪明 武夷岩茶 2016春茶 乌龙茶 大红袍 红色长条盒 中火 特级 80g">
+                                    【非遗大师王顺明亲制】琪明 武夷岩茶 2016春茶 乌龙茶 大红袍 红色长条盒 中火 特级 80g</p>
+                                <p class="special-alt" title="花香型 便携装">花香型 便携装</p>
+                                <p class="special-price">
+                                    <span class="special-now-price">￥270.00</span>
+                                    <del class="special-old-price">￥316.00</del>
+                                </p>
+                                <div class="tag-img">
+                                    <img src="https://www.zuipin.cn/web/images/new-gift/time-limit.png" alt="限时特价">
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.zuipin.cn/goods?id=8699872" target="_blank" class="special-good">
+                                <div class="special-img">
+                                    <img src="https://img3.zuipin.cn/zpfx/proimg/2018-04-04-17-41-25-5ac49dc59bdcd78382.jpg?x-oss-process=image/resize,m_lfit,h_160,w_160"/>
+                                </div>
+                                <p class="special-descr" title="顶峰 西湖龙井 2018年雨前茶 绿茶 三级250g AAA牛皮纸包">顶峰 西湖龙井 2018年雨前茶 绿茶
+                                    三级250g AAA牛皮纸包</p>
+                                <p class="special-alt" title="传统包装  拜访长辈手礼茶">传统包装 拜访长辈手礼茶</p>
+                                <p class="special-price">
+                                    <span class="special-now-price">￥207.00</span>
+                                    <del class="special-old-price">￥230.00</del>
+                                </p>
+                                <div class="tag-img">
+                                    <img src="https://www.zuipin.cn/web/images/new-gift/time-limit.png" alt="限时特价">
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.zuipin.cn/goods?id=8699551" target="_blank" class="special-good">
+                                <div class="special-img">
+                                    <img src="https://img1.zuipin.cn/zpfx/proimg/2017-12-27-17-18-13-5a436555106f125271.jpg?x-oss-process=image/resize,m_lfit,h_160,w_160"/>
+                                </div>
+                                <p class="special-descr" title="有机茶 峨眉雪芽 四川绿茶 有机香螺 2018春季茶 绿茶 单盒152g">有机茶 峨眉雪芽 四川绿茶 有机香螺
+                                    2018春季茶 绿茶 单盒152g</p>
+                                <p class="special-alt" title="好茶实惠 有机不贵">好茶实惠 有机不贵</p>
+                                <p class="special-price">
+                                    <span class="special-now-price">￥331.20</span>
+                                    <del class="special-old-price">￥368.00</del>
+                                </p>
+                                <div class="tag-img">
+                                    <img src="https://www.zuipin.cn/web/images/new-gift/time-limit.png" alt="限时特价">
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.zuipin.cn/goods?id=8699696" target="_blank" class="special-good">
+                                <div class="special-img">
+                                    <img src="https://img3.zuipin.cn/zpfx/proimg/2018-01-22-16-31-14-5a65a152ac68878951.jpg?x-oss-process=image/resize,m_lfit,h_160,w_160"/>
+                                </div>
+                                <p class="special-descr" title="大沁 福鼎白茶 2017年 绝代芳华 寿眉饼 300g/饼">大沁 福鼎白茶 2017年 绝代芳华 寿眉饼
+                                    300g/饼</p>
+                                <p class="special-alt" title="欧盟出口 安心好茶">欧盟出口 安心好茶</p>
+                                <p class="special-price">
+                                    <span class="special-now-price">￥151.20</span>
+                                    <del class="special-old-price">￥168.00</del>
+                                </p>
+                                <div class="tag-img">
+                                    <img src="https://www.zuipin.cn/web/images/new-gift/time-limit.png" alt="限时特价">
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.zuipin.cn/goods?id=8699809" target="_blank" class="special-good">
+                                <div class="special-img">
+                                    <img src="https://img4.zuipin.cn/zpfx/proimg/2018-03-09-15-13-38-5aa234222897423884.jpg?x-oss-process=image/resize,m_lfit,h_160,w_160"/>
+                                </div>
+                                <p class="special-descr" title="大益 柑普茶 金柑普 大红柑 2017年  260g">大益 柑普茶 金柑普 大红柑 2017年
+                                    260g</p>
+                                <p class="special-alt" title="天生妙配 健康对味">天生妙配 健康对味</p>
+                                <p class="special-price">
+                                    <span class="special-now-price">￥277.20</span>
+                                    <del class="special-old-price">￥308.00</del>
+                                </p>
+                                <div class="tag-img">
+                                    <img src="https://www.zuipin.cn/web/images/new-gift/time-limit.png" alt="限时特价">
+                                </div>
+                            </a>
+                        </li>
                     </ul>
                 </div>
+                <div class="hdbtn">
+                    <a class="prev sPrev" href="javascript:;"></a>
+                    <ul style="display: none;"></ul>
+                    <a class="next sNext" href="javascript:;"></a>
+                </div>
             </div>
-            <ul id="hotSearchKeyList" class="suggestList clearfix">
-
-            </ul>
         </div>
-
-
-        <a target="_self" href="/busi/cart.html" rel="nofollow"
-           class="shopCartBtn">
-            <span class="wrap">我的购物车<b class="num" id="newcartnum">0</b></span>
-        </a>
-
     </div>
-</header>
-<nav class="headerMenu" id="headerMenu">
-    <div class="wrapper w">
-        <div id="topCats">
-            <span class="txt">全部分类</span>
-            <ul class="catsList" id="catsList">
+    <!-- special end -->
 
-
-                <li class="item cats0">
-                    <div class="wrapper">
-                        <a class="catsTxt" href="/index/categories.html?navId=1" target="_blank">时尚美妆</a>
-                        <div class="catsContent">
-                            <div class="secondLevelList">
-
-
-                                <a href="/prod/list.html?cataId=2101" target="_blank">
-                                    <div class="navItem navId2"></div>
-                                </a>
-
-
-                                <a href="/prod/list.html?cataId=2102" target="_blank">
-                                    <div class="navItem navId3"></div>
-                                </a>
-
-
-                                <a href="/prod/list.html?cataId=2104" target="_blank">
-                                    <div class="navItem navId8"></div>
-                                </a>
-
-
-                                <a href="/prod/list.html?cataId=2103" target="_blank">
-                                    <div class="navItem navId222"></div>
-                                </a>
-
-
-                                <a href="/prod/list.html?cataId=2107" target="_blank">
-                                    <div class="navItem navId227"></div>
-                                </a>
-
-
-                            </div>
-                            <div class="brandList">
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=605" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/605-D51BAF7F8160C054.jpg" alt="春雨"></a>
+    <!-- drink start -->
+    <div class="drink-item" id="drink">
+        <div class="zuipin-wrapper">
+            <div class="card-title">
+                自饮
+            </div>
+            <div class="card-content clearfix">
+                <!-- left -->
+                <div class="card-left">
+                    <a href="/goods?id=8699842" target="_blank" class="tag-card"><img
+                            src="https://img2.zuipin.cn/new_pc/%E8%87%AA%E9%A5%AE%E5%8C%BA/自饮.jpg" alt=""></a>
+                    <a href="https://www.zuipin.cn/assistant/index/drink" target="_blank" class="more-card">
+                        <h2>自饮助手</h2>
+                        <p class="more-text">自己喝的茶</p>
+                        <p class="more-text">包装不用太复杂</p>
+                        <img src="https://www.zuipin.cn/web/images/new-gift/more.png" alt="查看更多">
+                    </a>
+                </div>
+                <!-- center -->
+                <div class="card-center clearfix">
+                    <a href="https://www.zuipin.cn/goods?id=8699820" target="_blank">
+                        <div class="tag-img">
+                            <img src="https://img2.zuipin.cn/zpfx/common/2018-03-06-10-50-40-5a9e0200a4df813079.png">
+                        </div>
+                        <div class="special-img">
+                            <img src="https://img4.zuipin.cn/zpfx/proimg/2018-04-12-21-59-56-5acf665c340a413065.jpg?x-oss-process=image/resize,m_lfit,h_160,w_160"/>
+                        </div>
+                        <p class="special-descr" title="一匠一品 龙井炒茶王仇晓华手制 西湖龙井 2018年雨前茶 特级 50g 方盒">一匠一品 龙井炒茶王仇晓华手制 西湖龙井
+                            2018年雨前茶 特级 50g 方盒</p>
+                        <p class="special-alt" title="鲜浓雨前茶，滋味更足">鲜浓雨前茶，滋味更足</p>
+                        <p class="card-price">￥138</p>
+                    </a>
+                    <a href="https://www.zuipin.cn/goods?id=zrjm1580-250" target="_blank">
+                        <div class="tag-img">
+                            <img src="https://img2.zuipin.cn/zpfx/common/2018-03-06-10-50-40-5a9e0200a4df813079.png">
+                        </div>
+                        <div class="special-img">
+                            <img src="https://img1.zuipin.cn/zpfx/proimg/2017-12-19-08-57-17-5a3863ed38ce557999.jpg?x-oss-process=image/resize,m_lfit,h_160,w_160"/>
+                        </div>
+                        <p class="special-descr" title="醉品朴茶 金骏眉 2018年春茶 红茶 特级 本朴JM1580-250 125g*2盒">醉品朴茶 金骏眉 2018年春茶 红茶
+                            特级 本朴JM1580-250 125g*2盒</p>
+                        <p class="special-alt" title="热销5年的明星茶礼">热销5年的明星茶礼</p>
+                        <p class="card-price">￥342</p>
+                    </a>
+                    <a href="https://www.zuipin.cn/goods?id=8699931" target="_blank">
+                        <div class="tag-img">
+                            <img src="https://img2.zuipin.cn/zpfx/common/2018-03-06-10-50-40-5a9e0200a4df813079.png">
+                        </div>
+                        <div class="special-img">
+                            <img src="https://img4.zuipin.cn/online_img/proimg/2018-04-19 22:49:09_49632436433.jpg?x-oss-process=image/resize,m_lfit,h_160,w_160"/>
+                        </div>
+                        <p class="special-descr" title="醉品朴茶 西湖龙井 2018年雨前茶 一级 100g 罐装">醉品朴茶 西湖龙井 2018年雨前茶 一级 100g 罐装</p>
+                        <p class="special-alt" title="西湖产区龙井，传统炒青工艺">西湖产区龙井，传统炒青工艺</p>
+                        <p class="card-price">￥239</p>
+                    </a>
+                    <a href="https://www.zuipin.cn/goods?id=8684495-1" target="_blank">
+                        <div class="tag-img">
+                            <img src="https://img2.zuipin.cn/zpfx/common/2018-03-06-10-50-40-5a9e0200a4df813079.png">
+                        </div>
+                        <div class="special-img">
+                            <img src="https://img2.zuipin.cn/online_img/proimg/2018-04-13 11:13:20_556122792901.jpg?x-oss-process=image/resize,m_lfit,h_160,w_160"/>
+                        </div>
+                        <p class="special-descr" title="顶峰 2018年明前茶 绿茶 精品 50g 开化龙顶 单罐">顶峰 2018年明前茶 绿茶 精品 50g 开化龙顶 单罐</p>
+                        <p class="special-alt" title=""></p>
+                        <p class="card-price">￥111</p>
+                    </a>
+                    <a href="https://www.zuipin.cn/goods?id=8699873" target="_blank">
+                        <div class="tag-img">
+                            <img src="https://img2.zuipin.cn/zpfx/common/2018-03-06-10-50-40-5a9e0200a4df813079.png">
+                        </div>
+                        <div class="special-img">
+                            <img src="https://img2.zuipin.cn/zpfx/proimg/2018-04-04-17-48-09-5ac49f592aa3864428.jpg?x-oss-process=image/resize,m_lfit,h_160,w_160"/>
+                        </div>
+                        <p class="special-descr" title="顶峰 2018年明前茶 250g 开化龙顶牛皮纸包">顶峰 2018年明前茶 250g 开化龙顶牛皮纸包</p>
+                        <p class="special-alt" title="招待、自饮茶">招待、自饮茶</p>
+                        <p class="card-price">￥330</p>
+                    </a>
+                    <a href="https://www.zuipin.cn/goods?id=8699832" target="_blank">
+                        <div class="tag-img">
+                        </div>
+                        <div class="special-img">
+                            <img src="https://img2.zuipin.cn/zpfx/proimg/2018-03-26-09-22-04-5ab84b3cd42fd81013.jpg?x-oss-process=image/resize,m_lfit,h_160,w_160"/>
+                        </div>
+                        <p class="special-descr" title="普秀 普洱茶 2015年 熟茶 禾润普饼 357g/饼">普秀 普洱茶 2015年 熟茶 禾润普饼 357g/饼</p>
+                        <p class="special-alt" title="香糯甘甜 饱满绵长">香糯甘甜 饱满绵长</p>
+                        <p class="card-price">￥208</p>
+                    </a>
+                </div>
+                <!-- right -->
+                <div class="card-right">
+                    <div class="news-list">
+                        <a target="_blank" class="news-head">自饮锦囊</a>
+                        <div class="news-content">
+                            <!-- news 1 -->
+                            <a href="https://www.zuipin.cn/tips/drink/197#tipsdetail" target="_blank" class="news-item">
+                                <p class="news-title" title="茶友测评：爱喝普洱的都来看看，资深茶鬼告诉你怎么选最靠谱">
+                                    茶友测评：爱喝普洱的都来看看，资深茶鬼告诉你怎么选最靠谱</p>
+                                <div class="news-artical clearfix">
+                                    <img src="https://img1.zuipin.cn/zpfx/newsimg/2018-05-11-11-55-11-5af5141f34ae349124.jpg?x-oss-process=image/resize,m_lfit,h_50,w_50"/>
+                                    <p title="如何鉴别一款普洱茶的品质？怎么根据自己的喜好选购普洱茶？醉品君邀请了我们的茶鬼级会员“肖**96”对老同志的三款热卖普洱茶进行测评。手把手教你怎么辨别茶叶品质高低，怎么挑选适合自己的茶。肖**96&amp;n">
+                                        如何鉴别一款普洱茶的品质？怎么根据自己的喜好选购普洱茶？醉品君邀请了我们的茶鬼级会员“肖**96”对老同志的三款热卖普洱茶进行测评。手把手教你怎么辨别茶叶品质高低，怎么挑选适合自己的茶。肖**96&amp;n</p>
                                 </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=651" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/651-C88C1923C6A9D326.jpg"
-                                            alt="科颜氏"></a>
+                            </a>
+                            <!-- news 1 -->
+                            <a href="https://www.zuipin.cn/tips/drink/189#tipsdetail" target="_blank" class="news-item">
+                                <p class="news-title" title="醉有盛茗|一年卖出20000多份，这款口碑茶风靡茶友圈">
+                                    醉有盛茗|一年卖出20000多份，这款口碑茶风靡茶友圈</p>
+                                <div class="news-artical clearfix">
+                                    <img src="https://img3.zuipin.cn/zpfx/newsimg/2018-04-28-19-40-52-5ae45dc40e3cc27227.jpg?x-oss-process=image/resize,m_lfit,h_50,w_50"/>
+                                    <p title="天气渐热，身体乏困，外卖饮料热量高，甜腻易胖，凉白开又无滋无味，让人提不起兴趣，这时候泡一杯茶再合适不过了，清爽提神又解渴，怎么都喝不腻。1、卖出20000多份的口碑龙井，全新升级4月江南茶区处处飘着">
+                                        天气渐热，身体乏困，外卖饮料热量高，甜腻易胖，凉白开又无滋无味，让人提不起兴趣，这时候泡一杯茶再合适不过了，清爽提神又解渴，怎么都喝不腻。1、卖出20000多份的口碑龙井，全新升级4月江南茶区处处飘着</p>
                                 </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=616" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/616-4C28553D7FCD08E6.jpg"
-                                            alt="梵佐伊"></a>
+                            </a>
+                            <!-- news 1 -->
+                            <a href="https://www.zuipin.cn/tips/drink/187#tipsdetail" target="_blank" class="news-item">
+                                <p class="news-title" title="醉有盛茗|我们淘汰了99款产品，最终选了这一款">醉有盛茗|我们淘汰了99款产品，最终选了这一款</p>
+                                <div class="news-artical clearfix">
+                                    <img src="https://img1.zuipin.cn/zpfx/newsimg/2018-04-20-09-32-26-5ad9432ad8f9791018.jpg?x-oss-process=image/resize,m_lfit,h_50,w_50"/>
+                                    <p title="无需昂贵的茶，重要的是喝茶的心情对中国人而言，喝茶是一件全民乐事。不分尊卑，不计较形式，一杯一碗一壶，或雅室，或山中席地而坐。一杯茶，是中国人的精神食粮，无论生活里有多少琐碎和烦恼，只要还有喝杯茶的心">
+                                        无需昂贵的茶，重要的是喝茶的心情对中国人而言，喝茶是一件全民乐事。不分尊卑，不计较形式，一杯一碗一壶，或雅室，或山中席地而坐。一杯茶，是中国人的精神食粮，无论生活里有多少琐碎和烦恼，只要还有喝杯茶的心</p>
                                 </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=411" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/411-A87CE14005CD03B5.jpg"
-                                            alt="欧缇丽"></a>
+                            </a>
+                            <!-- news 1 -->
+                            <a href="https://www.zuipin.cn/tips/drink/174#tipsdetail" target="_blank" class="news-item">
+                                <p class="news-title" title="你好，我叫龙井，这是我的简历，请多关照！">你好，我叫龙井，这是我的简历，请多关照！</p>
+                                <div class="news-artical clearfix">
+                                    <img src="https://img3.zuipin.cn/zpfx/newsimg/2018-03-27-17-12-25-5aba0af9206c120678.gif?x-oss-process=image/resize,m_lfit,h_50,w_50"/>
+                                    <p title="你好，我叫龙井，来自中国，这是我的简历，初次见面，还请多多关照！♥这是我的基本信息姓名：龙井英文名：LongJing出生日期：很久很久以前年龄：一千两百多岁语言：普通话、浙江方言身份：传统名茶、中国十">
+                                        你好，我叫龙井，来自中国，这是我的简历，初次见面，还请多多关照！♥这是我的基本信息姓名：龙井英文名：LongJing出生日期：很久很久以前年龄：一千两百多岁语言：普通话、浙江方言身份：传统名茶、中国十</p>
                                 </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=405" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/405-3BBEE22DBC0D0998.jpg" alt="苏芊"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=166" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/166-0D21862076FF0A39.png"
-                                            alt="悦诗风吟"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=181" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/181-98F6D4F8486AED2D.jpg" alt="兰芝"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=167" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/167-21BA7FC904A7884F.png" alt="伊思"></a>
-                                </div>
-
-                            </div>
+                            </a>
                         </div>
                     </div>
-                </li>
-
-
-                <li class="item cats1">
-                    <div class="wrapper">
-                        <a class="catsTxt" href="/index/categories.html?navId=11" target="_blank">进口保健</a>
-                        <div class="catsContent">
-                            <div class="secondLevelList">
-
-
-                                <a href="/prod/list.html?cataId=2305" target="_blank">
-                                    <div class="navItem navId12"></div>
-                                </a>
-
-
-                                <a href="/prod/list.html?cataId=2304" target="_blank">
-                                    <div class="navItem navId13"></div>
-                                </a>
-
-
-                                <a href="/prod/list.html?cataId=2307" target="_blank">
-                                    <div class="navItem navId14"></div>
-                                </a>
-
-
-                                <a href="/prod/list.html?cataId=2303" target="_blank">
-                                    <div class="navItem navId172"></div>
-                                </a>
-
-
-                                <a href="/prod/list.html?cataId=2302" target="_blank">
-                                    <div class="navItem navId175"></div>
-                                </a>
-
-
-                                <a href="/prod/list.html?cataId=2306" target="_blank">
-                                    <div class="navItem navId179"></div>
-                                </a>
-
-
-                                <a href="/prod/list.html?cataId=2301" target="_blank">
-                                    <div class="navItem navId182"></div>
-                                </a>
-
-
-                            </div>
-                            <div class="brandList">
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=481" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/481-78F3F43D2A631710.jpg" alt="诺奥"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=89" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/89-BF59A6E408290A96.jpg" alt="莎露斯"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=93" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/93-43A2CDC658B0450E.jpg" alt="双心"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=80" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/80-478C2573F05CBD9A.jpg" alt="瑞思"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=3" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/3-37281FE0732820F1.jpg" alt="澳佳宝"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=7" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/7-FA72D98F187399F4.jpg" alt="汤普森"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=114" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/114-C3E698DAE7119D7E.jpg"
-                                            alt="蝶翠诗"></a>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
-
-                <li class="item cats2">
-                    <div class="wrapper">
-                        <a class="catsTxt" href="/index/categories.html?navId=4" target="_blank">大牌母婴</a>
-                        <div class="catsContent">
-                            <div class="secondLevelList">
-
-
-                                <a href="/prod/list.html?cataId=2201" target="_blank">
-                                    <div class="navItem navId5"></div>
-                                </a>
-
-
-                                <a href="/prod/list.html?cataId=2205" target="_blank">
-                                    <div class="navItem navId6"></div>
-                                </a>
-
-
-                                <a href="/prod/list.html?cataId=2203" target="_blank">
-                                    <div class="navItem navId7"></div>
-                                </a>
-
-
-                                <a href="/prod/list.html?cataId=2202" target="_blank">
-                                    <div class="navItem navId200"></div>
-                                </a>
-
-
-                                <a href="/prod/list.html?cataId=2208" target="_blank">
-                                    <div class="navItem navId204"></div>
-                                </a>
-
-
-                            </div>
-                            <div class="brandList">
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=640" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/640-B40809F3D7F95A15.jpg"
-                                            alt="童年时光"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=555" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/555-F9585EB2C873F289.jpg" alt="嘉宝"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=512" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/512-89553CC2DDCB2C27.jpg" alt="大王"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=450" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/450-F0CFEB03487B1930.png" alt="牛栏"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=408" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/408-32B0B31530739547.jpg"
-                                            alt="妙思乐"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=158" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/158-23D9CFB16D6B480E.jpg" alt="贝亲"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=257" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/257-98B6CAB3917E5BD5.png"
-                                            alt="贝拉米"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=255" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/255-F5AE399D787DCB8D.jpg"
-                                            alt="爱他美"></a>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
-
-                <li class="item cats3">
-                    <div class="wrapper">
-                        <a class="catsTxt" href="/index/categories.html?navId=25" target="_blank">舒适居家</a>
-                        <div class="catsContent">
-                            <div class="secondLevelList">
-
-
-                                <a href="/prod/list.html?cataId=2601" target="_blank">
-                                    <div class="navItem navId26"></div>
-                                </a>
-
-
-                                <a href="/prod/list.html?cataId=2603" target="_blank">
-                                    <div class="navItem navId27"></div>
-                                </a>
-
-
-                                <a href="/prod/list.html?cataId=2604" target="_blank">
-                                    <div class="navItem navId28"></div>
-                                </a>
-
-
-                                <a href="/prod/list.html?cataId=2607" target="_blank">
-                                    <div class="navItem navId83"></div>
-                                </a>
-
-
-                                <a href="/prod/list.html?cataId=2606" target="_blank">
-                                    <div class="navItem navId232"></div>
-                                </a>
-
-
-                                <a href="/prod/list.html?cataId=2605" target="_blank">
-                                    <div class="navItem navId240"></div>
-                                </a>
-
-
-                            </div>
-                            <div class="brandList">
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=509" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/509-8CC51FEC48318A58.jpg" alt="钻技"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=421" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/421-782C49F53CC980D7.jpg" alt="士宾"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=722" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/00-1333196FE270572F.jpg" alt=""></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=666" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/666-2C42D1B05D83BCC6.jpg"
-                                            alt="膳魔师"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=660" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/660-C65B99CD3E8E7CC6.jpg"
-                                            alt="史努比"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=548" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/548-8F80A2B9618E1A81.jpg" alt="宝丽"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=542" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/542-6FF89D35965B1955.jpg" alt=""></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=157" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/157-1A5D79350347C5D3.jpg" alt="相模"></a>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
-
-                <li class="item cats4">
-                    <div class="wrapper">
-                        <a class="catsTxt" href="/index/categories.html?navId=21" target="_blank">环球美食</a>
-                        <div class="catsContent">
-                            <div class="secondLevelList">
-
-
-                                <a href="/prod/list.html?cataId=2401" target="_blank">
-                                    <div class="navItem navId22"></div>
-                                </a>
-
-
-                                <a href="/prod/list.html?cataId=2402" target="_blank">
-                                    <div class="navItem navId23"></div>
-                                </a>
-
-
-                                <a href="/prod/list.html?cataId=2403" target="_blank">
-                                    <div class="navItem navId110"></div>
-                                </a>
-
-
-                            </div>
-                            <div class="brandList">
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=667" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/667-1089C567F64114E6.jpg" alt=""></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=626" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/626-7F5BBF5E6B980797.jpg"
-                                            alt="百乐可"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=527" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/527-71484E6C7157B89D.jpg" alt="九日"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=355" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/355-1921A9DA1412487B.jpg"
-                                            alt="弗尔美"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=240" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/240-18815DEBD26CD0AE.jpg"
-                                            alt="思贝格"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=1" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/1-E5FF76DD24119A52.jpg" alt="蜜纽康"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=4" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/4-28CE176B150DF56E.jpg" alt="康维他"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=14" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/14-1E95DA2374EB7BEE.jpg" alt="新溪岛"></a>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
-
-                <li class="item cats5">
-                    <div class="wrapper">
-                        <a class="catsTxt" href="/index/categories.html?navId=17" target="_blank">家电数码</a>
-                        <div class="catsContent">
-                            <div class="secondLevelList">
-
-
-                                <a href="/prod/list.html?cataId=2506" target="_blank">
-                                    <div class="navItem navId18"></div>
-                                </a>
-
-
-                                <a href="/prod/list.html?cataId=2502" target="_blank">
-                                    <div class="navItem navId19"></div>
-                                </a>
-
-
-                                <a href="/prod/list.html?cataId=2501" target="_blank">
-                                    <div class="navItem navId20"></div>
-                                </a>
-
-
-                                <a href="/prod/list.html?cataId=2507" target="_blank">
-                                    <div class="navItem navId99"></div>
-                                </a>
-
-
-                                <a href="/prod/list.html?cataId=2505" target="_blank">
-                                    <div class="navItem navId235"></div>
-                                </a>
-
-
-                            </div>
-                            <div class="brandList">
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=195" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/195-170DDA33C11815B0.png"
-                                            alt="碧然德"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=588" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/588-E82474A9B1FF1A21.jpg" alt="松下"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=676" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/00-8D1DB530C08AA64D.png" alt=""></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=793" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/793-26543123CF0C99B7.jpg" alt=""></a>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
-
-                <li class="item cats6">
-                    <div class="wrapper">
-                        <a class="catsTxt" href="/index/categories.html?navId=208" target="_blank">时尚轻奢</a>
-                        <div class="catsContent">
-                            <div class="secondLevelList">
-
-
-                                <a href="/prod/list.html?cataId=2703" target="_blank">
-                                    <div class="navItem navId209"></div>
-                                </a>
-
-
-                                <a href="/prod/list.html?cataId=2702" target="_blank">
-                                    <div class="navItem navId213"></div>
-                                </a>
-
-
-                                <a href="/prod/list.html?cataId=2704" target="_blank">
-                                    <div class="navItem navId218"></div>
-                                </a>
-
-
-                            </div>
-                            <div class="brandList">
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=654" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/654-8679D265CAB0139D.jpg" alt="古驰"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=406" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/406-93E3CBB11EA37631.png" alt="蔻驰"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=400" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/400-3D784D4024391549.png" alt="迈克.科尔斯"></a>
-                                </div>
-
-
-                                <div class="brandItem">
-                                    <a href="/prod/list.html?brandIds=724" target="_blank"><img
-                                            src="http://oss.yanglaoban.com/brand/724-2BF5C6757D50728B.jpg"
-                                            alt="丹尼尔·惠灵顿"></a>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
-
-            </ul>
+                    <a href="https://www.zuipin.cn/tips/drink" target="_blank" class="more-card">
+                        <h2>浏览更多</h2>
+                        <p class="more-text">想要喝茶，不知如何选</p>
+                        <p class="more-text">这里有一只锦囊！</p>
+                        <img src="https://www.zuipin.cn/web/images/new-gift/more.png" alt="查看更多">
+                    </a>
+                </div>
+            </div>
         </div>
-        <ul class="menuWrapper">
-            <li class="item active">
-                <a class="" href="/" target="_self">
-                    首页
-                </a>
-            </li>
-            <li class="item">
-                <a class="" href="/nation/new-configuration.html" target="_self">
-                    每日上新
-                </a></li>
-            <li class="item">
-                <a class="" href="/nation/nation.html" target="_self">
-                    国家馆
-                </a></li>
-            <li class="item">
-                <a class="" href="/busi/global-brand.html" target="_self">
-                    全球大牌
-                </a></li>
+    </div>
+    <!-- drink end -->
+
+    <!-- drink start -->
+    <div class="drink-item" id="gift">
+        <div class="zuipin-wrapper">
+            <div class="card-title">
+                送礼
+            </div>
+            <div class="card-content clearfix">
+                <!-- left -->
+                <div class="card-left">
+                    <a href="/goods?id=8699828" target="_blank" class="tag-card"><img
+                            src="https://img2.zuipin.cn/new_pc/%E9%80%81%E7%A4%BC%E5%8C%BA/songli.png" alt=""></a>
+                    <a href="https://www.zuipin.cn/assistant/index/gift" target="_blank" class="more-card">
+                        <h2>送礼助手</h2>
+                        <p class="more-text">为您用心推荐每一份礼物</p>
+                        <img src="https://www.zuipin.cn/web/images/new-gift/more.png" alt="查看更多">
+                    </a>
+                </div>
+                <!-- center -->
+                <div class="card-center clearfix">
+                    <a href="https://www.zuipin.cn/goods?id=8684486-1" target="_blank">
+                        <div class="tag-img">
+                            <img src="https://img2.zuipin.cn/zpfx/common/2018-03-06-10-50-40-5a9e0200a4df813079.png">
+                        </div>
+                        <div class="special-img">
+                            <img src="https://img4.zuipin.cn/zpfx/proimg/2018-03-20-16-07-58-5ab0c15e4c98771578.jpg?x-oss-process=image/resize,m_lfit,h_160,w_160"/>
+                        </div>
+                        <p class="special-descr" title="狮牌 西湖龙井 2018年明前茶 绿茶 一级 100g 湖光礼盒 配手提袋">狮牌 西湖龙井 2018年明前茶 绿茶 一级
+                            100g 湖光礼盒 配手提袋</p>
+                        <p class="special-alt" title="原产地老味道">原产地老味道</p>
+                        <p class="card-price">￥348</p>
+                    </a>
+                    <a href="https://www.zuipin.cn/goods?id=8699598" target="_blank">
+                        <div class="tag-img">
+                            <img src="https://img2.zuipin.cn/zpfx/common/2018-03-06-10-50-40-5a9e0200a4df813079.png">
+                        </div>
+                        <div class="special-img">
+                            <img src="https://img1.zuipin.cn/zpfx/proimg/2018-01-03-09-25-51-5a4c311f0644761816.jpg?x-oss-process=image/resize,m_lfit,h_160,w_160"/>
+                        </div>
+                        <p class="special-descr" title="【有机茶】八桂凌云 白毫绿茶 雾中缘凌螺春 120g 2018春茶 特级">【有机茶】八桂凌云 白毫绿茶 雾中缘凌螺春 120g
+                            2018春茶 特级</p>
+                        <p class="special-alt" title="7年有机认证">7年有机认证</p>
+                        <p class="card-price">￥218</p>
+                    </a>
+                    <a href="https://www.zuipin.cn/goods?id=ZPLYDZ1701-1" target="_blank">
+                        <div class="tag-img">
+                        </div>
+                        <div class="special-img">
+                            <img src="https://img1.zuipin.cn/zpfx/proimg/2018-01-24-17-06-56-5a684cb02f1bf79335.jpg?x-oss-process=image/resize,m_lfit,h_160,w_160"/>
+                        </div>
+                        <p class="special-descr" title="【金骏眉创始人江元勋监制】醉品叶界 正山堂 元正 正山小种 红茶 特级 礼盒 200g">【金骏眉创始人江元勋监制】醉品叶界
+                            正山堂 元正 正山小种 红茶 特级 礼盒 200g</p>
+                        <p class="special-alt" title="独特松木熏焙，桂圆汤香显">独特松木熏焙，桂圆汤香显</p>
+                        <p class="card-price">￥488</p>
+                    </a>
+                    <a href="https://www.zuipin.cn/goods?id=8684490-1" target="_blank">
+                        <div class="tag-img">
+                            <img src="https://img2.zuipin.cn/zpfx/common/2018-03-06-10-50-40-5a9e0200a4df813079.png">
+                        </div>
+                        <div class="special-img">
+                            <img src="https://img1.zuipin.cn/zpfx/proimg/2018-03-20-16-17-29-5ab0c3997200d47520.jpg?x-oss-process=image/resize,m_lfit,h_160,w_160"/>
+                        </div>
+                        <p class="special-descr" title="狮牌 西湖龙井 2018年明前茶 绿茶 一级 100g 银铁盒 配手提袋">狮牌 西湖龙井 2018年明前茶 绿茶 一级
+                            100g 银铁盒 配手提袋</p>
+                        <p class="special-alt" title="正宗核心产区 手工炒制">正宗核心产区 手工炒制</p>
+                        <p class="card-price">￥298</p>
+                    </a>
+                    <a href="https://www.zuipin.cn/goods?id=8699544" target="_blank">
+                        <div class="tag-img">
+                            <img src="https://img2.zuipin.cn/zpfx/common/2018-03-06-10-50-40-5a9e0200a4df813079.png">
+                        </div>
+                        <div class="special-img">
+                            <img src="https://img1.zuipin.cn/zpfx/proimg/2017-12-27-17-10-41-5a436391ecbab76160.jpg?x-oss-process=image/resize,m_lfit,h_160,w_160"/>
+                        </div>
+                        <p class="special-descr" title="峨眉雪芽 四川绿茶 禅心 2018明前茶 绿茶  礼盒96g">峨眉雪芽 四川绿茶 禅心 2018明前茶 绿茶
+                            礼盒96g</p>
+                        <p class="special-alt" title="100颗手工挑选1颗畅销9年 送领导">100颗手工挑选1颗畅销9年 送领导</p>
+                        <p class="card-price">￥498</p>
+                    </a>
+                    <a href="https://www.zuipin.cn/goods?id=ZPLYDZ1705" target="_blank">
+                        <div class="tag-img">
+                        </div>
+                        <div class="special-img">
+                            <img src="https://img4.zuipin.cn/zpfx/proimg/2018-01-10-16-33-08-5a55cfc41256b19132.jpg?x-oss-process=image/resize,m_lfit,h_160,w_160"/>
+                        </div>
+                        <p class="special-descr" title="【白茶类茶王赛金奖吴月平亲制】醉品叶界 太姥山 福鼎白茶 2012年 寿眉饼 357g">【白茶类茶王赛金奖吴月平亲制】醉品叶界
+                            太姥山 福鼎白茶 2012年 寿眉饼 357g</p>
+                        <p class="special-alt" title="【新老包装 随机发货】5年老白茶 边喝边藏">【新老包装 随机发货】5年老白茶 边喝边藏</p>
+                        <p class="card-price">￥520</p>
+                    </a>
+                </div>
+                <!-- right -->
+                <div class="card-right">
+                    <div class="news-list">
+                        <a target="_blank" class="news-head">送礼锦囊</a>
+                        <div class="news-content">
+                            <!-- news 1 -->
+                            <a href="https://www.zuipin.cn/tips/gift/142#tipsdetail" target="_blank" class="news-item">
+                                <p class="news-title" title="年前送礼小技巧，拿走不谢">年前送礼小技巧，拿走不谢</p>
+                                <div class="news-artical clearfix">
+
+                                    <img src="https://img4.zuipin.cn/zpfx/newsimg/2018-01-31-09-48-50-5a7120827be7863023.jpg?x-oss-process=image/resize,m_lfit,h_50,w_50"/>
+                                    <p title="每到年底又到了礼尚往来，买买买的行列除犒劳辛苦一年的自己，更重要的是给身边的人挑选礼物感谢他们这一年来对自己帮助和陪伴“人情练达皆文章”送礼有着太多的讲究礼物太轻，会显得对方误认为瞧不起他礼物太重，一">
+                                        每到年底又到了礼尚往来，买买买的行列除犒劳辛苦一年的自己，更重要的是给身边的人挑选礼物感谢他们这一年来对自己帮助和陪伴“人情练达皆文章”送礼有着太多的讲究礼物太轻，会显得对方误认为瞧不起他礼物太重，一</p>
+                                </div>
+                            </a>
+                            <!-- news 1 -->
+                            <a href="https://www.zuipin.cn/tips/gift/132#tipsdetail" target="_blank" class="news-item">
+                                <p class="news-title" title="本朴金骏眉，暖暖的很贴心">本朴金骏眉，暖暖的很贴心</p>
+                                <div class="news-artical clearfix">
+
+                                    <img src="https://img1.zuipin.cn/zpfx/newsimg/2018-01-02-16-55-59-5a4b491f59af026731.gif?x-oss-process=image/resize,m_lfit,h_50,w_50"/>
+                                    <p title="如今的人，手机普遍了，联系却少了很多对于家人、朋友，好像都开始流行“佛系”式相处了——全靠随缘比如看到Ta发的朋友圈，有空就评论一下没空就觉得自己用意念回复了偶尔想起、想去联系却只是想想而已更过分的是">
+                                        如今的人，手机普遍了，联系却少了很多对于家人、朋友，好像都开始流行“佛系”式相处了——全靠随缘比如看到Ta发的朋友圈，有空就评论一下没空就觉得自己用意念回复了偶尔想起、想去联系却只是想想而已更过分的是</p>
+                                </div>
+                            </a>
+                            <!-- news 1 -->
+                            <a href="https://www.zuipin.cn/tips/gift/130#tipsdetail" target="_blank" class="news-item">
+                                <p class="news-title" title="榜单 | 2017醉品送礼榜，好茶礼送给重要的人">榜单 | 2017醉品送礼榜，好茶礼送给重要的人</p>
+                                <div class="news-artical clearfix">
+
+                                    <img src="https://img4.zuipin.cn/zpfx/newsimg/2017-12-28-10-56-24-5a445d582e52f31466.jpg?x-oss-process=image/resize,m_lfit,h_50,w_50"/>
+                                    <p title="送父母，送领导，送客户，送好友，送同事">送父母，送领导，送客户，送好友，送同事</p>
+                                </div>
+                            </a>
+                            <!-- news 1 -->
+                            <a href="https://www.zuipin.cn/tips/gift/125#tipsdetail" target="_blank" class="news-item">
+                                <p class="news-title" title="一年茶，三年药，七年宝">一年茶，三年药，七年宝</p>
+                                <div class="news-artical clearfix">
+
+                                    <img src="https://img1.zuipin.cn/zpfx/newsimg/2017-12-18-18-38-03-5a379a8b4286083800.jpg?x-oss-process=image/resize,m_lfit,h_50,w_50"/>
+                                    <p title="白茶这么好，懂的人却还是不多&nbsp;就会发现中药是有白茶的，按克销售相比其他茶当然地多保留些寒性白茶在去火和杀菌祛毒方面2白茶越存越好，时间可以让茶自然增值香气越来越好&nbsp;越来越醇和，越来">
+                                        白茶这么好，懂的人却还是不多&nbsp;就会发现中药是有白茶的，按克销售相比其他茶当然地多保留些寒性白茶在去火和杀菌祛毒方面2白茶越存越好，时间可以让茶自然增值香气越来越好&nbsp;越来越醇和，越来</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="https://www.zuipin.cn/tips/gift" target="_blank" class="more-card">
+                        <h2>浏览更多</h2>
+                        <p class="more-text">不懂如何送礼，让你头疼</p>
+                        <p class="more-text">这里有一只锦囊！</p>
+                        <img src="https://www.zuipin.cn/web/images/new-gift/more.png" alt="查看更多">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- drink end -->
+
+    <!-- pro start -->
+    <div class="drink-item" id="tea">
+        <div class="zuipin-wrapper">
+            <div class="card-title">
+                茶器/茶食
+            </div>
+            <div class="card-content clearfix">
+                <!-- left -->
+                <div class="card-left">
+                    <a href="/goods?id=8685045" target="_blank" class="pro-left-two">
+                        <img src="https://img2.zuipin.cn/new_pc/%E8%8C%B6%E5%85%B7%E5%8C%BA/chaju.jpg" alt="">
+                    </a>
+                    <a href="/goods?id=8685180" target="_blank" class="pro-left-two">
+                        <img src="https://img2.zuipin.cn/new_pc/%E8%8C%B6%E5%85%B7%E5%8C%BA/chaju2.jpg" alt="">
+                    </a>
+                    <style>
+                        .pro-left-two img {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                        }
+                    </style>
+                </div>
+                <!-- center -->
+                <div class="card-center clearfix" id="new-card-center">
+                    <a href="https://www.zuipin.cn/goods?id=8699724" target="_blank">
+                        <div class="tag-img">
+                        </div>
+                        <div class="special-img">
+                            <img src="https://img1.zuipin.cn/zpfx/proimg/2018-01-29-16-18-02-5a6ed8bae893c6939.jpg?x-oss-process=image/resize,m_lfit,h_160,w_160"/>
+                        </div>
+                        <p class="special-descr" title="玻璃茶具 钟式敞口杯 单杯">玻璃茶具 钟式敞口杯 单杯</p>
+                        <p class="special-alt" title="24K金箔杯 流金光彩之美">24K金箔杯 流金光彩之美</p>
+                        <p class="card-price">￥84</p>
+                    </a>
+                    <a href="https://www.zuipin.cn/goods?id=8685174" target="_blank">
+                        <div class="tag-img">
+                        </div>
+                        <div class="special-img">
+                            <img src="https://img1.zuipin.cn/zpfx/proimg/2017-09-09-09-34-40-59b34530a790580877.jpg?x-oss-process=image/resize,m_lfit,h_160,w_160"/>
+                        </div>
+                        <p class="special-descr" title="陶瓷茶具 手绘粉彩梅花 木座和趣盖碗套组 10入">陶瓷茶具 手绘粉彩梅花 木座和趣盖碗套组 10入</p>
+                        <p class="special-alt" title="瓷木结合，防划台面 艺术感十足">瓷木结合，防划台面 艺术感十足</p>
+                        <p class="card-price">￥430</p>
+                    </a>
+                    <a href="https://www.zuipin.cn/goods?id=8699421" target="_blank">
+                        <div class="tag-img">
+                        </div>
+                        <div class="special-img">
+                            <img src="https://img3.zuipin.cn/zpfx/proimg/2017-11-09-19-54-16-5a0441e87aaef41549.jpg?x-oss-process=image/resize,m_lfit,h_160,w_160"/>
+                        </div>
+                        <p class="special-descr" title="玻璃茶具 描金盖碗">玻璃茶具 描金盖碗</p>
+                        <p class="special-alt" title="金箔金边装饰 富贵精致">金箔金边装饰 富贵精致</p>
+                        <p class="card-price">￥128</p>
+                    </a>
+                    <a href="https://www.zuipin.cn/goods?id=4010627110" target="_blank">
+                        <div class="tag-img">
+                        </div>
+                        <div class="special-img">
+                            <img src="//static.zuipin.cn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95//i/m/img_0019wr.jpg?x-oss-process=image/resize,m_lfit,h_160,w_160"/>
+                        </div>
+                        <p class="special-descr" title="成艺陶瓷茶具 世外桃源7入 手绘青花瓷红茶茶具">成艺陶瓷茶具 世外桃源7入 手绘青花瓷红茶茶具</p>
+                        <p class="special-alt" title="手绘青花瓷红茶茶具 自用、送礼都适合">手绘青花瓷红茶茶具 自用、送礼都适合</p>
+                        <p class="card-price">￥158</p>
+                    </a>
+                    <a href="https://www.zuipin.cn/goods?id=8684991" target="_blank">
+                        <div class="tag-img">
+                        </div>
+                        <div class="special-img">
+                            <img src="https://img1.zuipin.cn/zpfx/proimg/2017-09-19-17-28-02-59c0e322376c239108.jpg?x-oss-process=image/resize,m_lfit,h_160,w_160"/>
+                        </div>
+                        <p class="special-descr" title="茶道配件 陶瓷茶宠 不看不听不说 3个/套">茶道配件 陶瓷茶宠 不看不听不说 3个/套</p>
+                        <p class="special-alt" title="桌面摆件 茶玩">桌面摆件 茶玩</p>
+                        <p class="card-price">￥230</p>
+                    </a>
+                    <a href="https://www.zuipin.cn/goods?id=8699484" target="_blank">
+                        <div class="tag-img">
+                        </div>
+                        <div class="special-img">
+                            <img src="https://img4.zuipin.cn/zpfx/proimg/2017-12-06-12-48-48-5a2776b005a5347122.jpg?x-oss-process=image/resize,m_lfit,h_160,w_160"/>
+                        </div>
+                        <p class="special-descr" title="紫砂壶 景舟石瓢 200ml 紫泥 手工壶">紫砂壶 景舟石瓢 200ml 紫泥 手工壶</p>
+                        <p class="special-alt" title="经典器型 沉稳大气">经典器型 沉稳大气</p>
+                        <p class="card-price">￥380</p>
+                    </a>
+                    <a href="https://www.zuipin.cn/goods?id=8699437" target="_blank">
+                        <div class="tag-img">
+                        </div>
+                        <div class="special-img">
+                            <img src="https://img1.zuipin.cn/zpfx/proimg/2017-11-16-15-42-12-5a0d41547738070048.jpg?x-oss-process=image/resize,m_lfit,h_160,w_160"/>
+                        </div>
+                        <p class="special-descr" title="紫砂壶 工艺美术大师金奖杨水定之作 扁平壶 135ml 手工壶">紫砂壶 工艺美术大师金奖杨水定之作 扁平壶 135ml
+                            手工壶</p>
+                        <p class="special-alt" title="金奖工艺师之作  好看又好用">金奖工艺师之作 好看又好用</p>
+                        <p class="card-price">￥430</p>
+                    </a>
+                    <div class="add-card">
+                        <a href="https://www.zuipin.cn/goods?id=8684461" target="_blank" class="samll-card">
+                            <p class="small-card-text" title="广州恒福 耐热玻璃 旋转全过滤茶壶 得意壶 绿色 办公室家用 单壶 700ml">广州恒福 耐热玻璃 旋转全过滤茶壶
+                                得意壶 绿色 办公室家用 单壶 700ml</p>
+                            <p class="small-card-price">￥136.00</p>
+                            <img src="//static.zuipin.cn/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95//1/_/1_813.jpg">
+                        </a>
+                        <a href="https://www.zuipin.cn/list?catId=48" target="_blank" class="more-card">
+                            <h2>浏览更多</h2>
+                            <p class="more-text">茶道配件</p>
+                            <img src="https://www.zuipin.cn/web/images/new-gift/more.png" alt="查看更多">
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- pro end -->
+
+    <!-- hot start -->
+    <div class="hot-item" id="hot">
+        <div class="zuipin-wrapper">
+            <div class="hot-head clearfix">
+                <span>热评产品</span>
+                <span></span>
+                <span>评价，你的好茶</span>
+            </div>
+            <div class="hot-content">
+                <div class="slide-item">
+                    <ul class="clearfix">
+                        <li>
+                            <a href="https://www.zuipin.cn/goods?id=8684495-1" target="_blank" class="hot-news">
+                                <div class="news-img">
+                                    <img src="https://img3.zuipin.cn/zpfx/common/2018-05-11-15-38-53-5af5488d32ffa72603.jpg?x-oss-process=image/resize,m_lfit,h_224,w_224"/>
+                                </div>
+                                <p class="hot-text" title="老顾客了，一直买这款，已经习惯了，品质没话说，是新茶，挺好的">
+                                    老顾客了，一直买这款，已经习惯了，品质没话说，是新茶，挺好的</p>
+                                <p class="hot-people" title="来自王玉4854992的评价">来自王玉4854992的评价</p>
+                                <p class="hot-descr clearfix">
+                                    <span title="顶峰 其他绿茶 50g">顶峰 其他绿茶 50g</span>
+                                    <span></span>
+                                    <span>￥111.00</span>
+                                </p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.zuipin.cn/goods?id=8699545" target="_blank" class="hot-news">
+                                <div class="news-img">
+                                    <img src="https://img2.zuipin.cn/zpfx/common/2018-05-11-15-38-18-5af5486ac85eb64761.jpg?x-oss-process=image/resize,m_lfit,h_224,w_224"/>
+                                </div>
+                                <p class="hot-text" title="茶收到了，喝起来非常好，香气扑鼻，特别喜欢，口感很好！客服态度很好，很好的购物体验">
+                                    茶收到了，喝起来非常好，香气扑鼻，特别喜欢，口感很好！客服态度很好，很好的购物体验</p>
+                                <p class="hot-people" title="来自悄虚悄的评价">来自悄虚悄的评价</p>
+                                <p class="hot-descr clearfix">
+                                    <span title="峨眉雪芽 四川绿茶 108g">峨眉雪芽 四川绿茶 108g</span>
+                                    <span></span>
+                                    <span>￥258.00</span>
+                                </p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.zuipin.cn/goods?id=8699598" target="_blank" class="hot-news">
+                                <div class="news-img">
+                                    <img src="https://img4.zuipin.cn/zpfx/common/2018-05-11-15-36-25-5af547f9e11b037380.jpg?x-oss-process=image/resize,m_lfit,h_224,w_224"/>
+                                </div>
+                                <p class="hot-text" title="新茶，日期很新，茶叶足量，早上起来泡杯，味道不错，很清香很好">
+                                    新茶，日期很新，茶叶足量，早上起来泡杯，味道不错，很清香很好</p>
+                                <p class="hot-people" title="来自dostory的评价">来自dostory的评价</p>
+                                <p class="hot-descr clearfix">
+                                    <span title="八桂凌云 凌云白毫绿茶 120g">八桂凌云 凌云白毫绿茶 120g</span>
+                                    <span></span>
+                                    <span>￥218.00</span>
+                                </p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.zuipin.cn/goods?id=8684486-1" target="_blank" class="hot-news">
+                                <div class="news-img">
+                                    <img src="http://imgzuipin.oss-cn-hangzhou.aliyuncs.com/zpfx/comment/8684486-1.jpg?x-oss-process=image/resize,m_lfit,h_224,w_224"/>
+                                </div>
+                                <p class="hot-text" title="密封的很严实，颗粒均匀，茶色隐绿，带淡淡的清香，口感醇厚，不错，值得购买。">
+                                    密封的很严实，颗粒均匀，茶色隐绿，带淡淡的清香，口感醇厚，不错，值得购买。</p>
+                                <p class="hot-people" title="来自caifangbin的评价">来自caifangbin的评价</p>
+                                <p class="hot-descr clearfix">
+                                    <span title="狮牌 龙井 100g">狮牌 龙井 100g</span>
+                                    <span></span>
+                                    <span>￥348.00</span>
+                                </p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.zuipin.cn/goods?id=8699931" target="_blank" class="hot-news">
+                                <div class="news-img">
+                                    <img src="http://imgzuipin.oss-cn-hangzhou.aliyuncs.com/zpfx/comment/8699931.jpg?x-oss-process=image/resize,m_lfit,h_224,w_224"/>
+                                </div>
+                                <p class="hot-text" title="这茶叶绝对有惊喜，茶型，色泽，香气，口味都超出预期">这茶叶绝对有惊喜，茶型，色泽，香气，口味都超出预期</p>
+                                <p class="hot-people" title="来自大米他ba的评价">来自大米他ba的评价</p>
+                                <p class="hot-descr clearfix">
+                                    <span title="醉品朴茶 龙井 100g">醉品朴茶 龙井 100g</span>
+                                    <span></span>
+                                    <span>￥239.00</span>
+                                </p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.zuipin.cn/goods?id=ZPLYDZ1701-1" target="_blank" class="hot-news">
+                                <div class="news-img">
+                                    <img src="http://imgzuipin.oss-cn-hangzhou.aliyuncs.com/zpfx/comment/ZPLYDZ1701-1.jpg?x-oss-process=image/resize,m_lfit,h_224,w_224"/>
+                                </div>
+                                <p class="hot-text" title="茶叶清晰，根根均匀，没有细碎的茶叶末，泡出来的茶，很香，口感醇厚，回味无穷，礼盒装热别适合送礼">
+                                    茶叶清晰，根根均匀，没有细碎的茶叶末，泡出来的茶，很香，口感醇厚，回味无穷，礼盒装热别适合送礼</p>
+                                <p class="hot-people" title="来自單色彩虹的评价">来自單色彩虹的评价</p>
+                                <p class="hot-descr clearfix">
+                                    <span title="醉品叶界 正山小种 200g">醉品叶界 正山小种 200g</span>
+                                    <span></span>
+                                    <span>￥488.00</span>
+                                </p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.zuipin.cn/goods?id=8699842" target="_blank" class="hot-news">
+                                <div class="news-img">
+                                    <img src="http://imgzuipin.oss-cn-hangzhou.aliyuncs.com/zpfx/comment/8699842.jpg?x-oss-process=image/resize,m_lfit,h_224,w_224"/>
+                                </div>
+                                <p class="hot-text" title="帮老爸买的，据说很香，口感也不错">帮老爸买的，据说很香，口感也不错</p>
+                                <p class="hot-people" title="来自天狼型的评价">来自天狼型的评价</p>
+                                <p class="hot-descr clearfix">
+                                    <span title="醉品朴茶 龙井 100g">醉品朴茶 龙井 100g</span>
+                                    <span></span>
+                                    <span>￥138.00</span>
+                                </p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.zuipin.cn/goods?id=8699830" target="_blank" class="hot-news">
+                                <div class="news-img">
+                                    <img src="http://imgzuipin.oss-cn-hangzhou.aliyuncs.com/zpfx/comment/8699830.jpg?x-oss-process=image/resize,m_lfit,h_224,w_224"/>
+                                </div>
+                                <p class="hot-text" title="产品收到了，很不错，是正宗的新茶，香气很足，回甘也好，已经是第二次购买了，特别喜欢，喜欢的朋友赶紧下手吧！">
+                                    产品收到了，很不错，是正宗的新茶，香气很足，回甘也好，已经是第二次购买了，特别喜欢，喜欢的朋友赶紧下手吧！</p>
+                                <p class="hot-people" title="来自看到卡卡的评价">来自看到卡卡的评价</p>
+                                <p class="hot-descr clearfix">
+                                    <span title="狮牌 龙井 150g">狮牌 龙井 150g</span>
+                                    <span></span>
+                                    <span>￥880.00</span>
+                                </p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.zuipin.cn/goods?id=8699820" target="_blank" class="hot-news">
+                                <div class="news-img">
+                                    <img src="http://imgzuipin.oss-cn-hangzhou.aliyuncs.com/zpfx/comment/8699820.jpg?x-oss-process=image/resize,m_lfit,h_224,w_224"/>
+                                </div>
+                                <p class="hot-text" title="品牌口碑好，茶叶确实不错，口感很好，回甘味道正，非常满意！！！发货及时">
+                                    品牌口碑好，茶叶确实不错，口感很好，回甘味道正，非常满意！！！发货及时</p>
+                                <p class="hot-people" title="来自咚咚产的评价">来自咚咚产的评价</p>
+                                <p class="hot-descr clearfix">
+                                    <span title="一匠一品 龙井 50g">一匠一品 龙井 50g</span>
+                                    <span></span>
+                                    <span>￥138.00</span>
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="hdbtn">
+                    <a class="prev sPrev"></a>
+                    <ul style="display: none;"></ul>
+                    <a class="next sNext"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- hot end -->
+
+    <!-- first start -->
+    <!-- first end -->
+    <!--content end-->
+
+    <!-- floor start -->
+    <div class="floor-item">
+        <ul>
+            <li><a href="javascript:;">特价</a></li>
+            <li><a href="javascript:;">自饮</a></li>
+            <li><a href="javascript:;">送礼</a></li>
+            <li><a href="javascript:;">茶具</a></li>
+            <li><a href="javascript:;">热评</a></li>
+            <li><a href="javascript:;" class="last-floor">新闻</a></li>
         </ul>
+        <!-- <a href="javascript:;" class="floor-top">顶部</a> -->
     </div>
-</nav>
-<div id="page-wrapper">
-    <!--banner广告-->
-    <div id="bannerBox"></div>
-    <!--菜单导航-->
-    <div class="leftMenuBox" id="leftMenuBox"></div>
-    <!--客服-->
-    <div class="fixedNavBox" id="fixedNavBox"></div>
-    <!--限时秒杀-->
-    <div id="secKillActivity" class="w"></div>
-    <!--活动广告-->
-    <div id="activityAdver"></div>
-    <!--精选品牌-->
-    <div class="selectedBrandBox w" id="selectedBrandBox"></div>
-    <!--专区广告-->
-    <div class="advertisingPicturesWrapper w" id="per-advertise"></div>
+    <!-- floor end -->
 
-    <div class="navsBox w" id="navsBox"></div>
+    <!-- 右侧导航栏 -->
+    <style>
+        .consultation-item a {
+            color: #fff;
+        }
 
-    <div class="nationalPavilion w" id="nationalPavilion"></div>
+        .consultation-item a:link {
+            color: #fff;
+        }
 
-</div>
-<div class="authenticDescriptionWrapper ">
-    <a class="authenticDescription w" href="/busi/brands.html" target="_blank">
-        <div class="item">
-            <img class="icon"
-                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjgyQTc3OEM1MjFGODExRThBNDY5Q0U0QzQ2MzBGOERBIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjgyQTc3OEM2MjFGODExRThBNDY5Q0U0QzQ2MzBGOERBIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6ODJBNzc4QzMyMUY4MTFFOEE0NjlDRTRDNDYzMEY4REEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6ODJBNzc4QzQyMUY4MTFFOEE0NjlDRTRDNDYzMEY4REEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5nQeDLAAAG4ElEQVR42tRa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"
-                 alt="">
-            <div class="textWrapper">
-                <div class="textTitle">全球好货</div>
-                <div class="textSubTitle">全球精选 优质好货</div>
-            </div>
-        </div>
-        <div class="item">
-            <img class="icon"
-                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjE5MTIwODVGMjFGODExRTg4RUVDOTdFMjlFQzg5OTE0IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjE5MTIwODYwMjFGODExRTg4RUVDOTdFMjlFQzg5OTE0Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MTkxMjA4NUQyMUY4MTFFODhFRUM5N0UyOUVDODk5MTQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MTkxMjA4NUUyMUY4MTFFODhFRUM5N0UyOUVDODk5MTQiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6jV6h6AAAFDElEQVR42syab2hXVRjH72+6P3R7sZLc2NQfm0xZfxQGptIgGiEMJEMyUwnFwI18NYSgN75IIQh8IYSGIGgEGSwQMjJ7YxBRmOHc1FIyp7aKQMe2mtLc7Xngc+NwuX/O/d17f/OBL+d37znnec733nOe85zn/kqe5zlxUiqVHAt5VNAuWCd4XvCUoEUwT/BAMCa4JPhacEZwXTCVpDRpbP83ikOC1DPoU6rKwKTgL8GflJOB+lP0q88yNkUpwxtYInhb0M+1Dvay4BvBj4JbgnuCBsFiQZegW/CkoIk+HwjeFdys9ht4RjDE09Sp8CGDs5Fu2k/Rfwh9Fb2BSgisFNzGuM7rjU5lspH+HvpWVoOALsxfMPq9YKmTTZaix0NvS5EEdC5/ibGRoLEM0oI+D/0NRRF4HSN/sCDjpFXwqmAXZWtC+y70etjJncATeAq9sTdmICsEnwlu4PM/p7zB/RUxffei/yb2ciWwDeXDbFph8oZgVPCRoFfQKShT9nJ/lHZRm+EwdrblScDlSerFvgjjr7G79ptzOCAN1F+nfZjsw47ac/MisEgww0a1OsToAp7cgOWiHaD9gpC61dhRe4tsCNRYGFxGTKNz81xIvS7U3wRHLQkcpf2ukLpz2JmH3USpsfTVDgHZbEj9esFJwYQlgQnarw+pm8WOY7vH2BBoNQgExSWuOZ/S95+nnxtSNxawm5nAfMqZkLpGwuWplASm6NcYUjcTsJuZwLgx2KDcwbu4KQm49LsT8VBMu5kJ/ERZDqmbxmt0pSTQRb/pkLpywG5mAsOU7RELa5CNp2Q5+BLtByMcRnvAbubzgL7ub/EQAxGvXEOFPZYE9tC+MWKPmMVebhuZPrE+dsjTMbH9hHE6i5J+2kWdIU5jR+2V8oyFlnGu1SNiT4TxHYLf8fE9hheZz/VJ6ndE9O9B/6S/ieVJQN/CIZ7OsYTFeYRj4lVOXFe5PpKw2I+h/5C/nvI+D6wxfH7c+bcBT/Kc4GXKckyQ55+T/b1hTVEHmjrBcZ7ScUsPZusJTb11RZ6Ju5mnHnmdPGQd+u4F32xRWQl/LZxJSkxZSD16/LlflbTK02zzWrk9I4Ht6BlHb1UIqLyFYfUwCysc/EL6e+hzqklAd9ELGD9YIYGD9L8QsSsXSkDlJcF9BrE25eDX0u8+epy5IKDyCQP5wXR/CVJHe4/+zlwSaCELnZQvCsv/3ErK7lWDgMpOdtBpiwx1N+0e0M95GAjoTvopT/W7mNOZS71H+5qHhYAfrfqpxwMRbQ4YqUOrlEk1CLhG2LzVCPY2B9ptNoK1rUaY7c4FgSYyaLsFHws6uF8reJ+nfMU425a59qiv5X4H/Xejr6loAh0c+c7iQYaIHpsD5EYMF7nEcLUjgUE2038IfWfR31EEgS2CXwXXBO8Jlse8+WeJbXSTukg5zv0oWY7ea9jZkieBTYS6+1NkHvoCn1X7UmQs9mNvU14ELjFP04gmZ08w+BNcp5E31W5eBMb8LyYppY1F21ZBX7U3lteH7i+k+FvwilM9GSQv1JtHYquTuF0zZRsKHvgG7Ki9zjy9kKb8DpPXUc/yjmBVToNehb6L6D/spzDz/q+E/tC/BLwoeAHXN4vbG8aX63rRP3f8w7Tz6Kc77iPMbY1AF6OrjZjoZ/aBr4wPfVahTKV/9ngMdBpfI5u59ziDrTXa/wspTaff5ZvwKDv0Fe7dDZveSfKfAAMAnreGaHjGMJcAAAAASUVORK5CYII="
-                 alt="">
-            <div class="textWrapper">
-                <div class="textTitle">产地直采</div>
-                <div class="textSubTitle">全新模式 低价保障</div>
-            </div>
-        </div>
-        <div class="item">
-            <img class="icon"
-                 src="data:image/png;base64,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"
-                 alt="">
-            <div class="textWrapper">
-                <div class="textTitle">100%正品</div>
-                <div class="textSubTitle">源头正品 购物无忧</div>
-            </div>
-        </div>
-        <div class="item">
-            <img class="icon"
-                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjBBOTU3QTIyMjFGODExRTg5RTVBODAzMDZEQTlCRjA0IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjBBOTU3QTIzMjFGODExRTg5RTVBODAzMDZEQTlCRjA0Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MEE5NTdBMjAyMUY4MTFFODlFNUE4MDMwNkRBOUJGMDQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MEE5NTdBMjEyMUY4MTFFODlFNUE4MDMwNkRBOUJGMDQiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7/f7zWAAANV0lEQVR42rSa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"
-                 alt="">
-            <div class="textWrapper">
-                <div class="textTitle">无忧退货</div>
-                <div class="textSubTitle">中文客服 本土退货</div>
-            </div>
-        </div>
-        <div class="item">
-            <img class="icon"
-                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkZCRUMwRURDMjFGNzExRThCMjNDRDJDNEU0OUMzNjFFIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkZCRUMwRUREMjFGNzExRThCMjNDRDJDNEU0OUMzNjFFIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RkJFQzBFREEyMUY3MTFFOEIyM0NEMkM0RTQ5QzM2MUUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RkJFQzBFREIyMUY3MTFFOEIyM0NEMkM0RTQ5QzM2MUUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7InemMAAAFVklEQVR42tSaaWxUVRiG77TjWKplMZUmVVxBbDECSlIXjGsMihqVmihiKXWJ4hoTgyJFJMYoEpe4+8P4Q2OiMYpalxDhj4oaExspilEUqQpEtAKtLFNmfD95rj2ZzH7vdMYvedJ25t5z7jnn228jXnCpFWNEk5guJonDxbHiUK7ZKX4W68U34kvRLf7iu6IlEuDeY8RU0S4ucj7fIQbEXjHIZ9UiJkaIkfxtskq8JD4T3w/XAprFJWKpOICHXQu2qz+ITaJP9DunNEo0iuPEyWIapzWCa+4Vb3FCJRGbaL7YJZLiO7FcnBlgzPPFo2IDY9rYt7LgUOVE8R6TbBeLxbgQxzd7eVDsZg6b64SwBr9Q/MLAdsQneaWTU8X7zGVqODPogB3ouA24SBzolV4OEvcz59/iqmIHahNxBprnDb+0M7ep1ZxCb57p6OM1XvnkcmcRF+d70wRcmd14k1d+mcOz/JiPYUfFa9ywzKscuZtnet0JgmllPhd+IcZW0ALqxMpcWtFM6Lf8pMWrPLG05U+RIIL/pzK+2OqeE++IzwscfCLpxciA+ZVH+vExuPKVuALDDlXGMFkyRPrQCC8fo63DuhMFPHQVxrRGHEV0tknvE38UuRFJMtY7SV0m55PY2QI+ZLXJAiesQuU+Ij9aJ54M4USbWYDp/EbmMdvcI34Vv6cuYBURtxCpZuBudLaKlCNGHRBE/BriZlKZCJu7j7l6xBJs4t8FLEKNCq0jIuz8adQF0RAM2HUstts/8XuCzZmMszhDXC/eiDolX9AJwxJ/E14QTzn2EWERN4qH+b4nyOT1YhvqF/HClz3kQK7sJkOwue8SN0TZQSvxDkMVah29c3clTt1qen+duBKvs93R2zClKst35jyuFq2+H9+Up3/uoa7dyt/vinMpeLpCqheWMfbtOa771q6L4j0WEAsGs+hljO7BNnbAUu4X6ULEypBa7PMN0NzeqwXebKrzrNgiTkH1hlsiufQsl2zhZ6yIIFgSQ7FdbCgyBSib+G7UssgnxNniIfE8djGFwjqZZuG1XDfg62M5FzCaJlMjechEauEmomAyjf7ZIn4Tb2NHCXy3Kw1OvNhaiHGmzGU9qINFb2rQ9RdgbrATv/oK7cE2Gk6JDCdgn6+mhq7BhdbjlSxmXCqexk1bIXILfaXqLF4rwVh+ThSlnFzIQrrpkKz3nymMCHqW+AAbWkOI/1R8klKW2imcTu7UmiX6thBUb2PH30y5xua6zNvf4Z4UdQw4XuQCdhGhG0iF7efxaWrqej63E5uexTXuJbDauOdk2LDx3v5+aqOfQVoQm01PcnWBC7CiYy5GHWfgTNWU5fLPYDeRDB4sgh304lxSZTOn2elukl/Q2KqPCKk9uDwlDXnc0e98ZWxKuWqnMyvTxQu56LEQvVwb484NYG+meneIe8i7MkojBcQOstP/pVzLKZgdjKqwxtYCguy4XLWu31rsrKAFLOWZuvKxowl+ru0V0dYugczjWSzYTsv3phneUHu9tYwPPzsf75NJ2r2hFxzleEfQxtxx2itFSQert4EWeyV4e5hGaiiY/BcbHUEHnOXUwF30ZEolVt2tYK7NJIShiMWFlU6H7BHPaXGHIOY4HnBqD5sr9LehdaTEO5mkl7r4ggBjzqCQ2siYA2SheXcKiwnvTajVEuKGpcDWp/yaroW9wbf3WX1OgWO2Y//4cSR511TahFOoI+LY2ApcuFfKBfgyHp21POc8pwixVKSfhx900vUakrzRzrzWGX+ZOmJDkD5kELFS7xB2tIXU3HT6aG/oHzn6OBVTu3U88Foqtf4gk/8jwAAoqXJqx0xGcAAAAABJRU5ErkJggg=="
-                 alt="">
-            <div class="textWrapper">
-                <div class="textTitle">全球物流</div>
-                <div class="textSubTitle">全球仓储 专业配送</div>
-            </div>
-        </div>
-    </a>
-</div>
-<div class="footerInfo">
-    <div class="footerInfoWrapper w">
-        <div class="follow">
-            <div class="title">关注有喜</div>
-            <ul class="followList" id="followList">
-                <li class="item" id="followYang">
-                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAYAAABXuSs3AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjc0RjE3MjZEMjFGRTExRTg4QUM3OUZGQ0M0MURBRkVCIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjc0RjE3MjZFMjFGRTExRTg4QUM3OUZGQ0M0MURBRkVCIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NzRGMTcyNkIyMUZFMTFFODhBQzc5RkZDQzQxREFGRUIiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NzRGMTcyNkMyMUZFMTFFODhBQzc5RkZDQzQxREFGRUIiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5XsEvcAAAJY0lEQVR42tRa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"
-                         alt="">
-                    <div class="followYangWrapper">
-                        <div class="followYangContent">
-                            <div class="qrCode scan-app-s"></div>
-                        </div>
-                    </div>
-                </li>
-                <li class="item">
-                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAYAAABXuSs3AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjg3OUFGMTIxMjFGRTExRTg4RDVFRDBFOTgwQkUwQzg4IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjg3OUFGMTIyMjFGRTExRTg4RDVFRDBFOTgwQkUwQzg4Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6ODc5QUYxMUYyMUZFMTFFODhENUVEMEU5ODBCRTBDODgiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6ODc5QUYxMjAyMUZFMTFFODhENUVEMEU5ODBCRTBDODgiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7ewic6AAAFLklEQVR42tRaa0xcRRT+2C7vpYBFeRTKw22BEglVm4ZUrFCq9GU1RdMUYzXaxGra2EfUxrSJ8Yd/1FSNTWykJQHSErGpCAWx2thGbQWpaQoFSnm/SinLm2VZuJ5ZZykL19257ALbs/kSmD1z57sz58ycc2ZdJEmCneJHeJojnrCM8AjBm38/ROgiNBOuEy4TfiP02jUqIz4LuBMyCMUEo6RcWJ8S/gz32XBQ2sGTcIDQKjlO2vgzPeeK+EZCnTR3UsfHcBhxD8Jxaf7kOB/TKi8XG84ZSCgkPIn5lQrCJsKd/1OwRjyK8BNBi4WROsKzhAYlxEP5thWBhZVGQhKhdfoXKhllL0KBE5AG51DAOdkkfoywCs4jjMsXtkyFOUQRnFM2E87LEfcg3CA86qTE6wlxBP10U9njxKTNu9ye6TPuzt8oBM4tHfwF9GrekD4b0rrRHhQ1F6Ds7lU09N9Gn6EXKhcVHnJfglj/OKwNTELy0lR4LPJ0FPFgwnZCrnnGSwjPifYemzAgqyYTebdz6O8x6zGvmz92x76NLeHbHEWeHYppjDiLp7sJi0R6DY0N4tCVfajS3VA0WlrYZryfcMS0InbKOCGAPWWdKGkKb3C0/LAF6VDvMAR6Bs3QXeIRgAifyMn/S1qK8HXlMUfMOOO6jhF/SrTHpY6LKCd7NssK3xjkrM/HqeTTFnrMprNTvkNW8hnTi5nl+/o8VPdWOYJ8EnPOWFHtwqZzli4+3IYrd/5Ar0Fn0T46rsfFtgsI9ApCz+g9ixX7ofEsYhJW2ks8ltl4DZs8Ee0txesxMDagaIQQ71BsCE2DRq3BkHEII8ZhBHkFI2qxFnH+j8FV5Tob4rVsxoNEtZWQVqvUeD16N22ZOuTV5UI/PjJDZ7GbL16O2okd2gx6ATclxAPYjAun+VtLNqDf0CdE+lD8YWTVfovO4Q6b+st9o/Fp4pemrVNQDIr2ptUPrxHSy9DuwsmaE0Kkmdzqq8HBP/eazgdRYcT7RZV3al+1uQ/7uPqQc46ia+R+1rU//j1kPpMLtynm8Mmaz/FZ4lf3052+WuTTriMog4xFp6i21ncF3oh5y6pOIh3zv7b/bNFWratCxd0yGCXjZNv1e9dwrftvC72SlkJRKt3MOW+J7ipMXln+GsYnjCZTkN9FlqK09bxFW7EModN12TPaWgabhfNRNuPVSveiXdFvIjVUPrRhpjTbY505taDcVPOk+KCSASakCZR3/QVvVw2eD38RLvRpHGwwRYtGCrqi/WJxU1epmPgTAatFVS+reQFyXDReMa1Tfy1eiEzHS1E7oCFnnC7hmkh8rDuiiDRbJbaSgkHWJRWvml5QMgiLUdjhIkeaCTOj5JBURcTfiXsXMX5CocAvLBUwG2O2o1OVDx//CNsittvUY2b2waqjSKfVE5TsqambB0/dgh39AszW8xvOoKzrqilDmqztUShsoAOH+UVOSj7CNMsUpW5TC4n757KSSQ4t9eh7pLbBFmnA0G9q0xv1UnbtSenHxnOijzkgV/Rks17J3+iBKk+whr1OnOHvM5OWK8GxIy/TCUmfml5hk6vWsgLj74QEJyH9D2EtYdhW0ZMpbCU0OQHpJs5lWC6slRNWj07hDrGQzpgCmdq4NeLmjmyJKhaAdAUfu95aImFNOvkDTswj6W/4mNbzBAXXhZsetOtCuQvadgcSbp/rC1q5K/FSO67ES+25EndxwI8Q/Hn9kdnlSh4ysPtRjTmxxX/3lczRqvgZwXIAnT2D/ivAAG7ihtrLv8EVAAAAAElFTkSuQmCC"
-                         alt="">
-                    <div class="followYangWrapper">
-                        <div class="followYangContent">
-                            <div class="qrCode scan-weixin-s"></div>
-                        </div>
-                    </div>
-                </li>
-                <li class="item">
-                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAYAAABXuSs3AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjlDOTg1MzlGMjFGRTExRTg4MjA3QkE5MzUzMDFFNTNFIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjlDOTg1M0EwMjFGRTExRTg4MjA3QkE5MzUzMDFFNTNFIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6OUM5ODUzOUQyMUZFMTFFODgyMDdCQTkzNTMwMUU1M0UiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6OUM5ODUzOUUyMUZFMTFFODgyMDdCQTkzNTMwMUU1M0UiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz54wA8tAAAD+klEQVR42tSaXUhUQRTHz95dXU0JJb+KiCjF1Pwqo4cyy6zI7EnfxId6KSEI6q3nSCgLpTAsqQdNqIzKzMy0EpGISEr8KDHN8BtLCdfUvbvTmW02bL3dnbt3r9498Pcu7JmZ39ydjzNnNBBCQKWFoPYwJaE2oCJQQex7C2oC9Q3VgWpFtaCmVbVKwT2QGZWPeoYSiXKjZRpYHWZPGJQWCESdQQ0R79kwqzNQK/DDqD6infWxNrwGHoAqI8tnZaxNWS6Dm8kZiapDpcHyWjsqGzX+Pwc58E2o56hoWBnrQx1EDSgBX8+WrY2wsvYVlY4acv1CkHBeharVATQwhlrG5Ba8BJUK+jHKUupuqNAJ8RT0aUdQ9VLgAahO1GadgvejElBzrkOlUMfQzlWu0PWNm1mP1vHWYq2oBLHqnmoaIWELmK9exA8GHvdR1oE55xvPUwJt7/4MYnWNV16jvesT2Bpf8rqvReUuHioF3C3NzcPChSvYot1rY8B6uxr/WHndC5zgNJ7O4i0l3n8EZGjEq4OXjE+AWNfI605ZQyh4BsrIVeTXHIh3H2oy88SaxzTi43GlrBkUfDdv5baWNiAzFk3AyfAo2Du6eN3TKXgcN/ibd5qud7a2t7yucRQ8hn8F6NEU3P6R+41HU/Ao7p/zx7Sm4GR0jNc1jIKv5vU2hIZoC26Z5XUNFhTtcvGxmoIboiL4WVA/eZ1NuUexdpmt2Si/qhqCguTrP7CPF2WGgnMPLCElEfwKj0vGFfRtmUuLwO/kMSQwLS2bGA/mqnLwO30CDMFLOyDsSAVTfh4vyiQNsupYrMs/+3t6wdbQDGQE+7wm1AFlytqLoZo/m2TjYHvV6niC2QzC9mQw7kz722FisYCtqQXsvXistIpgTE0C46H9vIEWtXoKXowfzoJv2WWBHYqVGW799vcfHE+1u6X4pMGToq00uRKiNP9n+zJAZjNyHE81Jr547ajHg7xjqMCypk0+NEyaUVPOdbzSh8ArFx8kHrBjkd6NMtYsBqez7BL3Dsc2Esdyp2Zyzs8rLVLsPOUv3imuo06xw6g8eGQ4CNuSwHrtJpCJSazF6AE1AfFODQjJW5WkJ8pUJ4TI5HdYKCrBULQTjy+iZyf82BjwP38ODOFhPO45/7BJ5J4riP7sFk9+nCYY21ApOpmQuNPBLtSsa3ToatQBw0AY1AH0IGOZlQprpYzmozPZhFjJXGEmSOTG5cCdBelP1L4C0O2s7X65g4ScjbEKbiwjdDlrc8zNcsp9XZjta9eFUhe0I14EHtH6glbqSrxRxZV4o5orcXf3nDwWyvKPdFzGs5CB3o8GOw+28Oe+kk60brZH0H9CmFLT6G8BBgDCJ8V7IUZ4HgAAAABJRU5ErkJggg=="
-                         alt="">
-                    <div class="followYangWrapper">
-                        <div class="followYangContent">
-                            <div class="qrCode scan-web-s"></div>
-                        </div>
-                    </div>
-                </li>
-                <li class="item">
-                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAYAAABXuSs3AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkIyMzZEQTc5MjFGRTExRTg4NkQ5OTlGOUZDMkJBMDdBIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkIyMzZEQTdBMjFGRTExRTg4NkQ5OTlGOUZDMkJBMDdBIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QjIzNkRBNzcyMUZFMTFFODg2RDk5OUY5RkMyQkEwN0EiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QjIzNkRBNzgyMUZFMTFFODg2RDk5OUY5RkMyQkEwN0EiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7riru1AAAGJUlEQVR42tRaaWxUVRQ+73X2mdIOLbSFtmDLkiJBqzWILI1NACkiIiRGCSJ/jGhcIDEhLokYV0wQVIjQgClWE/GHWkUKEYksAglUqCCIhVIs7Uw73TvtbO3znPvuvDJlYN6baelwki9v8pZ7v3PvOeeee+4IkiRBjJKMmMMxDZGNGI2w8uduRCPiKqIKcRjxO6Itpl6JeBQwIpYj9iICknahbyp4G8ZoOGj9wIxYi6iTBk+u8TbNQ0V8AaJaGjqp5n0MGnETYqt0+2Qr7/OWvIQIzpmG+BlRALdXKhHFCOfNXrgV8RzEPsQEGB6pRsxD1GghnsnD1ngYXrmCmI2oG/hADPOyBVEeB6SBcyjnnCIS34TIh/gR4rI5kqmQQ+yB+JSFiF/CETchziJy45T4ZcTdCM9AU1kdx6SDUW71wBE3co3GDFWvfR4vNL77BXgv1oDk8YFoMoJx8l1gm/cQWGfdj0wENc00cAU8wRFfNpSkGfEON3j+ushIBxXpOXMBmj7eCY43N0Nve5eaZjIQS68f8QrE/MEgKHl9IAV6QbSab3gWcDaDaDGBgPBfqYeuA8egc+8hkHr7wJCbBRkbXgNBr4vUBS2KjxBxyqddiISoyfoDMomKI+CrqaMECGwPT4fUNSsHDHsfuP/4EyRfAIwTs0GflcFmwfn256wN+7NLIOmJuZG660WkknqFsZD2VteC65NS8P/nCLnfdfAEJD/9KOjSUpR7foeLmQbwSJb85AJIXr4Ir8XQWlYObvxGBXHiWkjEZ0VL2n34JLg27WKjFdauu3vka6cbfJfrQMIRz9r1EYhmI7SW/gBtuysgcWEhWOcUMOK+qw1qu55NxPOiId114Di4Pv1KGb2wih2thJaS78Bzrlp5LyElGcZsXAeJxXOg46eD4K9zgmlKbnA7prb7PCI+USvpnpNnwfVZWcSO2ndX3GigzW3se9O0ybiKiCDaLOBHp2VK2ZPUUphA4TBdC2n/NSc0bdjBHC1suolRQbSYQdDdPDro0lOZ7Y/7diMYxo8Ff42c/BnzctTSYM45QsPOmtk0xWAlSzObmI1apk8Dw6TxkDDCprwbcLWCF82EzIpitqyZgDG7k/mFYDTIuUZ+Hoso5nzVVmujcKjasLqPnYbGD7b3f100HeyrlkJCko0R8f5Tw8gSedPUiSAY9CHmRTMVVFqXmgyj1j0HxklRZc8+It6udtSd67dAz6lz7HfSsvlgf2axrNCJKmje8g30tnX0x6yRSZD21gtsYVGc9cgp2cyCs5Vohcxt65mda5QWsnGH6ph9/hK76rMzwL7isX6b/7AkhDRzwpZ2NKvSkHvWmfcxskq4xDCpmJA2cRHxf1XnG90emcCMfCUp6tx3FJfsXhbmdKNTmImMWFwkz2dtPYsi/Z4rsORqgDtHtR8l4qpV1o9Nu6GvQEMjGHIy2ZRnlrzDkqjOPYdCKmX9EamR+UC/rYioaFR78fMi3xSrEmvhA7JNHz+jxHAx0cYiCyQkgL+hCWOyC5MseSUlx9Ol2pUo01KyOyT2J86dgY6dGA3xw5qSLIoIDa+8zwhSTmFf+Thb+RxvbGLLO1v6OTHDhGwY/frzLHrQ/eYtX0PXbyeUtuh5+nuvykprE0qyRmlOawOOJnDihsCPeYW5YCqMXLWE2TbNgvfSVRBw5I24hFvwmdQnsfttZT8yM1FmbnYBpLz4FFuoopD9xDVIfDmiTEsa2/H9ryzXoMXEkJPF8g1SAEQB+tw9bCY8VRdCNgi046GMkBSOQVYQ1yBxE9+6ZWjKw9GWPVUXoef0BfDhaJOjBlo6WDpAI0+xXD9uDFPK8uA9oM9MhxhF2bpdX0hcI8W/rA1X9KRRP8c1uqPKE3TjpTguT7wcJB2uBEeVoh1xSPrLgRW2cNVayniOIu6NE9KnETNp3YtU9KQXFiFq44B0LefSraZaC7weXcQdYjidsShcbfxWxIMf0hRVDgPpSt73TQdOjNCAgzew/TaS3sb7dETYRqo+Liy+044Lwx3Q1g8i4fqhPqANdyS+P4Yj8f2xHIkLg/AnBDuvP5JdTuEpA22VbMGiF8jnleRof/M1gv6E0BpLp/8LMABjGF199PpVTgAAAABJRU5ErkJggg=="
-                         alt="">
-                    <div class="followYangWrapper">
-                        <div class="followYangContent">
-                            <div class="qrCode scan-webo-s"></div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="centerWrapper">
-            <ul class="subNav">
-                <li><a href="/" target="_self">首页</a></li>
-                <li><a href="/user/my-order.html" target="_blank">我的订单</a></li>
-                <li><a href="/busi/my-collection.html" target="_blank">我的收藏</a></li>
-                <li><a href="/busi/ship-address.html" target="_blank">收货地址</a></li>
-                <li><a href="http://www.yanglaoban.com/aboutUs.html" target="_blank">关于我们</a></li>
-                <li><a href="http://www.yanglaoban.com/contactUs.html" target="_blank">联系我们</a></li>
-            </ul>
-            <div class="info">
-                <p><span>粤ICP备16099825号-1</span></p>
-                <p>广州海货电子商务有限公司 版权所有</p>
-            </div>
-            <div class="f-tac">
-                <a href="javascript:;"><img
-                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFkAAAAhCAIAAAA9GJBUAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjVGMDRDNzlEMjI4QTExRTg4RTlCQTdFRDJDNEIwNkI2IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjVGMDRDNzlFMjI4QTExRTg4RTlCQTdFRDJDNEIwNkI2Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NUYwNEM3OUIyMjhBMTFFODhFOUJBN0VEMkM0QjA2QjYiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NUYwNEM3OUMyMjhBMTFFODhFOUJBN0VEMkM0QjA2QjYiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5wYJ57AAAREUlEQVR42sxa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"
-                        alt=""></a>
-                <a href="javascript:;"><img
-                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGIAAAAfCAIAAACTe49GAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjhDRTU2MEU1MjI4QTExRTg5NzUwRkY0MDE1NzM1QUE1IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjhDRTU2MEU2MjI4QTExRTg5NzUwRkY0MDE1NzM1QUE1Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6OENFNTYwRTMyMjhBMTFFODk3NTBGRjQwMTU3MzVBQTUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6OENFNTYwRTQyMjhBMTFFODk3NTBGRjQwMTU3MzVBQTUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz55dVtlAAAO2ElEQVR42uxZ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"
-                        alt=""></a>
-                <a href="javascript:;"><img
-                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAF8AAAAiCAIAAAC2kpK9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjlGRERDNDExMjI4QTExRTg5RTU1QzM2NDVEMTVEMENEIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjlGRERDNDEyMjI4QTExRTg5RTU1QzM2NDVEMTVEMENEIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6OUZEREM0MEYyMjhBMTFFODlFNTVDMzY0NUQxNUQwQ0QiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6OUZEREM0MTAyMjhBMTFFODlFNTVDMzY0NUQxNUQwQ0QiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5eSf4sAAAaxElEQVR42pR6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"
-                        alt=""></a>
-                <a href="javascript:;"><img
-                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGgAAAAiCAIAAAA8vQv8AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkJCMUVBMkNBMjI4QTExRTg4MTVGQTI0RENBRDBEQTVBIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkJCMUVBMkNCMjI4QTExRTg4MTVGQTI0RENBRDBEQTVBIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QkIxRUEyQzgyMjhBMTFFODgxNUZBMjREQ0FEMERBNUEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QkIxRUEyQzkyMjhBMTFFODgxNUZBMjREQ0FEMERBNUEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7wSA5+AAAL4ElEQVR42uxZ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"
-                        alt=""></a>
-            </div>
-        </div>
-        <div class="contact">
-            <div class="title">联系客服</div>
-            <p class="item">客服电话 400-883-1959</p>
-            <p class="item">客服时间 周一至周日 9:00-21:00</p>
-            <!--<p class="item">在线客服 9:00-18:00</p>-->
+        .consultation-item a:visited {
+            color: #fff;
+        }
+
+        .consultation-item a:active {
+            color: #fff;
+        }
+
+        .consultation-item {
+            top: 27%;
+        / / top: 30 %;
+        }
+
+        /* gif图，没弹窗 */
+
+        .consultion-gif {
+            width: 50px;
+            height: 150px;
+            text-align: center;
+            color: #fff;
+            font-size: 12px;
+            position: relative;
+            margin-bottom: 11px;
+            cursor: pointer;
+        }
+
+        /* 没弹窗 */
+
+        .consultion-nodialog {
+            width: 50px;
+            height: 58px;
+            background-color: rgba(0, 0, 0, .6);
+            text-align: center;
+            color: #fff;
+            font-size: 12px;
+            position: relative;
+            margin-bottom: 1px;
+            cursor: pointer;
+        }
+
+        .consultion-nodialog .iconfont {
+            font-size: 20px;
+            line-height: 36px;
+        }
+
+        .consultion-nodialog:hover {
+            background-color: #ff3700;
+        }
+
+        .consultion-nodialog a img {
+            margin: auto;
+            width: 18px;
+            height: 18px;
+            padding-top: 9px;
+            padding-bottom: 9px;
+        }
+
+        .consultion-text .consultion-content {
+            cursor: default;
+            display: none;
+            width: 158px;
+            height: 158px;
+            background-color: #fff;
+            color: #333;
+            font-size: 12px;
+            position: absolute;
+            left: -158px;
+            top: -48px;
+        }
+
+        .consultion-text .consultion-content::after {
+            position: absolute;
+            content: '';
+            right: -5px;
+            top: 72px;
+            width: 0;
+            height: 0;
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+            border-left: 5px solid #fff;
+        }
+
+        .consultion-nodialog p {
+            font-size: 12px;
+        }
+
+        /* 服务号 */
+
+        .consultion-content img {
+            display: block;
+            width: 108px;
+            height: 108px;
+            margin: 25px auto;
+        }
+
+        /* 热线 */
+
+        .phone-content .iconfont {
+            font-size: 16px;
+            color: #ff3600;
+            margin-right: 5px;
+            position: relative;
+        }
+
+        .zpphone {
+            font-size: 12px;
+            color: #333;
+            margin: 20px 0 7px 15px;
+            line-height: 12px;
+            text-align: left;
+        }
+
+        .zpphone i {
+            font-size: 16px;
+            color: #ff3600;
+            margin-right: 5px;
+            position: relative;
+        }
+
+        .consultion-text .phone {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin: 0 0 20px 36px;
+            line-height: 18px;
+            text-align: left;
+        }
+
+        .serverTime {
+            font-size: 12px;
+            color: #333;
+            margin: 0 0 7px 16px;
+            line-height: 12px;
+            text-align: left;
+        }
+
+        .serverTime i {
+            font-size: 16px;
+            color: #ff3600;
+            margin-right: 5px;
+            position: relative;
+        }
+
+        .consultion-content .time {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin: 0 0 5px 36px;
+            line-height: 18px;
+            text-align: left;
+        }
+
+        .consultion-content .week {
+            font-size: 12px;
+            color: #333;
+            margin: 0 0 0 36px;
+            line-height: 12px;
+            text-align: left;
+        }
+
+        /* 客服 */
+
+        .seller-content {
+            cursor: default;
+            display: none;
+            width: 158px;
+            height: 108px;
+            background-color: #fff;
+            color: #333;
+            font-size: 12px;
+            position: absolute;
+            left: -158px;
+            top: -24px;
+            padding: 13px 32px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -o-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .seller-content .iconfont {
+            font-size: 14px;
+            padding: 0 4px;
+            color: #fff;
+        }
+
+        .seller-content span {
+            display: inline-block;
+            width: 65px;
+            text-align: left;
+            background: #fff;
+            padding-top: 1px;
+            padding-bottom: 1px;
+            padding-left: 5px;
+            font-size: 12px;
+            color: #55a0fd;
+        }
+
+        .seller {
+            line-height: 18px;
+            border: 1px solid #55a0fd;
+            border-radius: 3px;
+            background-color: #55a0fd;
+            height: 20px;
+            overflow: hidden;
+        }
+
+        .seller img {
+            font-size: 12px;
+            color: #55a0fd;
+            display: block;
+        }
+
+        .consultion-content {
+            cursor: default;
+        }
+
+        .seller:hover {
+            background-color: #ffffff;
+        }
+
+        .seller:hover > a > i {
+            color: #55a0fd;
+        }
+
+        .seller:hover > a > span {
+            background-color: #55a0fd;
+            color: #ffffff
+        }
+    </style>
+    <div class="consultation-item">
+        <div class="consultion-top">
+            <i class="iconfont">&#xe65d;</i>
+            <p>顶部</p>
         </div>
     </div>
 
+    <script>
+        document.getElementsByClassName('consultion-text')[0].onmouseover = function (e) {
+            this.getElementsByClassName('seller-content')[0].style.display = 'block';
+        };
+        document.getElementsByClassName('consultion-text')[0].onmouseout = function (e) {
+            this.getElementsByClassName('seller-content')[0].style.display = 'none';
+        };
+        document.getElementsByClassName('consultion-text')[1].onmouseover = function (e) {
+            this.getElementsByClassName('consultion-content ')[0].style.display = 'block';
+        };
+        document.getElementsByClassName('consultion-text')[1].onmouseout = function (e) {
+            this.getElementsByClassName('consultion-content ')[0].style.display = 'none';
+        };
+        document.getElementsByClassName('consultion-text')[2].onmouseover = function (e) {
+            this.getElementsByClassName('consultion-content ')[0].style.display = 'block';
+        };
+        document.getElementsByClassName('consultion-text')[2].onmouseout = function (e) {
+            this.getElementsByClassName('consultion-content ')[0].style.display = 'none';
+        };
+    </script>
+
+
+    <!-- footer -->
+    <div class="zuipin-footer">
+        <div class="zuipin-wrapper">
+            <div class="footer-links clearfix">
+                <dl class="col-links col-links-first">
+                    <dt>购物指南</dt>
+                    <dd><a rel="nofollow" href="https://www.zuipin.cn/page/shopping#g1" target="_blank">购物保障</a></dd>
+                    <dd><a rel="nofollow" href="https://www.zuipin.cn/page/shopping#g2" target="_blank">积分政策</a></dd>
+                    <dd><a rel="nofollow" href="https://www.zuipin.cn/page/shopping#g3" target="_blank">企业用户</a></dd>
+                </dl>
+                <dl class="col-links col-links-first">
+                    <dt>配送方式</dt>
+                    <dd><a rel="nofollow" href="https://www.zuipin.cn/page/distance#a-1" target="_blank">快递资费</a></dd>
+                    <dd><a rel="nofollow" href="https://www.zuipin.cn/page/distance#a-1" target="_blank">配送时间</a></dd>
+                    <dd><a rel="nofollow" href="https://www.zuipin.cn/page/distance#a-2" target="_blank">配送范围</a></dd>
+                    <dd><a rel="nofollow" href="https://www.zuipin.cn/page/distance#a-3" target="_blank">验货签收</a></dd>
+                </dl>
+                <dl class="col-links col-links-first">
+                    <dt>支付方式</dt>
+                    <dd><a rel="nofollow" href="https://www.zuipin.cn/page/paymethod#hdfk" target="_blank">货到付款</a></dd>
+                    <dd><a rel="nofollow" href="https://www.zuipin.cn/page/paymethod#wsyh" target="_blank">在线支付</a></dd>
+                    <dd><a rel="nofollow" href="https://www.zuipin.cn/page/paymethod#zfb" target="_blank">网银在线</a></dd>
+                    <dd><a rel="nofollow" href="https://www.zuipin.cn/page/paymethod#yhzz" target="_blank">银行转账</a></dd>
+                </dl>
+            </div>
+        </div>
+        <div class="footer-info-box">
+            <div class="zuipin-wrapper">
+            </div>
+        </div>
+    </div>
+
+
+    <!--loading-->
+    <div class="mask-bg"></div>
+    <div class="loading_Spinner">
+        <div class="spinner-cont cont1">
+            <div class="c1"></div>
+            <div class="c2"></div>
+            <div class="c3"></div>
+            <div class="c4"></div>
+        </div>
+        <div class="spinner-cont cont2">
+            <div class="c1"></div>
+            <div class="c2"></div>
+            <div class="c3"></div>
+            <div class="c4"></div>
+        </div>
+    </div>
+
+
 </div>
-<script type="text/javascript" src="/static/js/jquery.min.js"></script>
-<script type="text/javascript" src="/commons/commons/libs.95d1a934e2b28c5e81f8.js?95d1a934e2b28c5e81f8"></script>
-<script type="text/javascript" src="/commons/commons/bundle.75e2f6435ce9a07a970c.js?95d1a934e2b28c5e81f8"></script>
-<script type="text/javascript" src="/index/entry.247d00d2b30d2228be48.js?95d1a934e2b28c5e81f8"></script>
+<!--container end-->
+
+<script id="bannerTemplate" type="text/html">
+    <div class="zuipin-wrapper">
+        <div class="slide-box">
+            <div class="bd">
+                <ul>
+                    {{each banners as value i}}
+                    <li class="banner-item" data-color="#e6e1de">
+                        <a href="1" target="_blank">
+                            <img src="{{value.picV2}}" alt="">
+                        </a>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</script>
 </body>
 </html>
+<script src="https://www.zuipin.cn/web/js/lib/jquery-3.2.1.min.js?v=547"></script>
+<script src="https://www.zuipin.cn/web/js/lib/jquery.downCount.js?v=547"></script>
+
+
+<script src="https://www.zuipin.cn/web/js/common.js?v=547"></script>
+<script src="https://www.zuipin.cn/web/js/dsp.js?v=547"></script>
+<script src="https://www.zuipin.cn/web/js/mix_public/web_index_index.9e90d3b6ac3b527cccb34aec229ff235.js"></script>
+<script type="text/javascript" th:src="@{/js/template-web.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+    var data = new Object();
+    data.page = 1;
+    data.pageSize = 10;
+    $.ajax(
+        {
+            type: "post",
+            url: "/index",
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            success: function (result) {
+                var data = result.data;
+                console.info(data);
+                var html = template('bannerTemplate', data);
+                console.info(html)
+                $("#banner").html(html);
+            }
+        }
+    );
+</script>
+<script src="/js/index.js"></script>
+
+
+
+
+

@@ -19,6 +19,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -89,6 +90,12 @@ public class Application implements WebMvcConfigurer {
         fastJsonConfig.setSerializeConfig(serializeConfig);
         fastConverter.setFastJsonConfig(fastJsonConfig);
         converters.add(fastConverter);
+    }
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        log.info("先处理静态....");
+        registry.addViewController("/").setViewName("index");
     }
 
     /**
