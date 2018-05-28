@@ -72,37 +72,37 @@ jQuery(function ($) {
 
 
     // 自动楼层
-    var special = $("#drink").offset().top - 48;
-    if ($("#special").html()) {
-        special = $("#special").offset().top - 48;
-    }
-    var drink = $("#drink").offset().top - 48,
-        gift = $("#gift").offset().top - 48,
-        tea = $("#tea").offset().top - 48,
-        hot = $("#hot").offset().top - 48,
-        first = $("#first").offset().top - 48;
-    var floorMax = [
-        {'h': special, 'c': 0},
-        {'h': drink, 'c': 1},
-        {'h': gift, 'c': 2},
-        {'h': tea, 'c': 3},
-        {'h': hot, 'c': 4},
-        {'h': first, 'c': 5}
-    ];
-    $(window).scroll(function () {
-        var floorTop = $(window).scrollTop();
-        if (floorTop >= floorMax[0].h) {
-            $('.floor-item').fadeIn();
-            for (var i = 0; i < floorMax.length; i++) {
-                if (floorTop >= floorMax[i].h) {
-                    $('.floor-top').removeClass('on');
-                    $('.floor-item ul li').eq(floorMax[i].c).addClass('on').siblings().removeClass('on');
-                }
-            }
-        } else {
-            $('.floor-item').fadeOut();
-        }
-    })
+    // var special = $("#drink").offset().top - 48;
+    // if ($("#special").html()) {
+    //     special = $("#special").offset().top - 48;
+    // }
+    // var drink = $("#drink").offset().top - 48,
+    //     gift = $("#gift").offset().top - 48,
+    //     tea = $("#tea").offset().top - 48,
+    //     hot = $("#hot").offset().top - 48,
+    //     first = $("#first").offset().top - 48;
+    // var floorMax = [
+    //     {'h': special, 'c': 0},
+    //     {'h': drink, 'c': 1},
+    //     {'h': gift, 'c': 2},
+    //     {'h': tea, 'c': 3},
+    //     {'h': hot, 'c': 4},
+    //     {'h': first, 'c': 5}
+    // ];
+    // $(window).scroll(function () {
+    //     var floorTop = $(window).scrollTop();
+    //     if (floorTop >= floorMax[0].h) {
+    //         $('.floor-item').fadeIn();
+    //         for (var i = 0; i < floorMax.length; i++) {
+    //             if (floorTop >= floorMax[i].h) {
+    //                 $('.floor-top').removeClass('on');
+    //                 $('.floor-item ul li').eq(floorMax[i].c).addClass('on').siblings().removeClass('on');
+    //             }
+    //         }
+    //     } else {
+    //         $('.floor-item').fadeOut();
+    //     }
+    // })
     // 点击跳转楼层
     $('.floor-item ul li').on('click', function () {
         var index = $(this).index();
