@@ -94,7 +94,14 @@ public enum HttpCode {
     /**
      * 手机号码格式错误
      */
-    PHONE_ERROR(606);
+    PHONE_ERROR(606),
+
+    /**
+     * 身份毛用
+     */
+    INVALID_USER_TOKEN(1001),
+
+    INVALID_TOKEN(1002);
 
     private final Integer value;
 

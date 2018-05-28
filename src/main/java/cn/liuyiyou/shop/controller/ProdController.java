@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import static cn.liuyiyou.shop.resp.ResultGenerator.genSuccessResult;
 
@@ -33,9 +34,9 @@ public class ProdController {
     }
 
     @GetMapping("{id}")
-    public Result hello(@PathVariable("id") Long id) {
-        log.info("id::{}", id);
-        return genSuccessResult(prodService.selectByPrimaryKey(id));
-
+    public ModelAndView prod(@PathVariable("id") Long id) {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("/prod/detail");
+        return mv;
     }
 }

@@ -1,20 +1,27 @@
 package cn.liuyiyou.shop;
 
+import cn.liuyiyou.shop.config.JwtProperty;
+import cn.liuyiyou.shop.entity.JwtPatternUrl;
+import cn.liuyiyou.shop.filter.JwtAuthorizeFilter;
 import com.alibaba.fastjson.serializer.SerializeConfig;
 import com.alibaba.fastjson.serializer.SimpleDateFormatSerializer;
 import com.alibaba.fastjson.serializer.ToStringSerializer;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -31,6 +38,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.sql.DataSource;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -40,6 +48,7 @@ import java.util.List;
 @Slf4j
 @Configuration
 @EnableSwagger2
+@EnableConfigurationProperties({JwtProperty.class, JwtPatternUrl.class})  //加载自定义的properties解析类
 public class Application implements WebMvcConfigurer {
 
 
@@ -94,7 +103,6 @@ public class Application implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        log.info("先处理静态....");
         registry.addViewController("/").setViewName("index");
     }
 
@@ -125,4 +133,17 @@ public class Application implements WebMvcConfigurer {
     }
 
 
+    /*
+     * 注册过滤器类和过滤的url
+     */
+    @Bean
+    public FilterRegistrationBean basicFilterRegistrationBean(){
+        FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+        JwtAuthorizeFilter filter = new JwtAuthorizeFilter();
+        registrationBean.setFilter(filter);
+        List<String> urlPatterns = new ArrayList<>();
+        urlPatterns.add("/*");
+        registrationBean.setUrlPatterns(urlPatterns);
+        return registrationBean;
+    }
 }
