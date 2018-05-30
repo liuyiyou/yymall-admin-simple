@@ -50,8 +50,6 @@ public class JwtAuthorizeFilter implements Filter {
 
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
-
-
         if ("OPTIONS".equals(httpRequest.getMethod())) {
             chain.doFilter(httpRequest, httpResponse);
 
@@ -60,19 +58,16 @@ public class JwtAuthorizeFilter implements Filter {
         String url = httpRequest.getRequestURI().substring(httpRequest.getContextPath().length());
 
         if (isInclude(url)) {
-
             //如果是属于排除的URL，比如登录，注册，验证码等URL，则直接通行
             chain.doFilter(httpRequest, httpResponse);
             return;
         }
 
-        String auth = httpRequest.getHeader("Authorization");
+        String auth = httpRequest.getParameter("_token");
         boolean isRightUser = true;
-
         if ((auth != null) && (auth.length() > 7)) {
             String HeadStr = auth.substring(0, 6).toLowerCase();
             if (HeadStr.compareTo("bearer") == 0) {
-
                 auth = auth.substring(7, auth.length());
                 Claims claims = JwtHelper.parseJWT(auth, jwtProperty.getBase64Secret());
                 if (claims != null) {
@@ -104,7 +99,7 @@ public class JwtAuthorizeFilter implements Filter {
     }
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
         SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, filterConfig.getServletContext());
     }
 

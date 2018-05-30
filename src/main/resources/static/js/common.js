@@ -5,16 +5,6 @@ var cartNum = parseInt($('.headerCartNum').text());
 $(function () {
 
     // 下拉全部商品
-    //$('.good-list').hover(
-    //    function(){
-    //        $('.list-info-tab').stop().slideDown('400');
-    //    },
-    //    function(){
-    //        $('.list-info-tab').stop().slideUp('400');
-    //    }
-    //)
-
-    // 下拉全部商品
     $('.good-list').hover(
         function () {
             $('.list-info-tab').stop().slideDown('400');

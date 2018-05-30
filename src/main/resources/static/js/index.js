@@ -218,8 +218,7 @@ $('.accountLogin').click(function () {
     var psw = $('#pwd').val();
 
     var data = {'phone': phone, '_token': token, 'psd': psw}
-    $.post('/accountLogin', data, function (data) {
-        var result = data.data;
+    $.post('/login', data, function (data) {
         if (d == 1) {
             var redirectTo = $('.popup-login').data('redirectTo');
             if (!redirectTo) {

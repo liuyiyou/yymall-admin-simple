@@ -9,7 +9,7 @@ public enum ResultStatusCode {
     SYSTEM_ERR(-1, "System Error"),
     PERMISSION_DENIED(-100, "Permission Denied"),
     INVALID_CLIENTID(-101, "Invalid clientid"),
-    INVALID_PASSWORD(-102, "User name or password is incorrect"),
+    INVALID_PASSWORD(-102, "Member name or password is incorrect"),
     INVALID_CAPTCHA(-103, "Invalid captcha or captcha overdue"),
     INVALID_TOKEN(-104, "Invalid token"),
     INVALID_USER_TOKEN(-105, "Invalid token");

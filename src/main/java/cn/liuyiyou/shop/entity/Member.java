@@ -14,12 +14,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class Member {
 
     private String id;
     private String accessToken;
     private String userId;
     private String realName;
+    private String pwd;
     private String phoneNo;
     private String accountName;
     private String avatar;

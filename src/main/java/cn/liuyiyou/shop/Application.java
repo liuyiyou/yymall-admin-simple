@@ -8,7 +8,6 @@ import com.alibaba.fastjson.serializer.SimpleDateFormatSerializer;
 import com.alibaba.fastjson.serializer.ToStringSerializer;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
-import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,6 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -137,7 +135,7 @@ public class Application implements WebMvcConfigurer {
      * 注册过滤器类和过滤的url
      */
     @Bean
-    public FilterRegistrationBean basicFilterRegistrationBean(){
+    public FilterRegistrationBean basicFilterRegistrationBean() {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         JwtAuthorizeFilter filter = new JwtAuthorizeFilter();
         registrationBean.setFilter(filter);
@@ -146,4 +144,14 @@ public class Application implements WebMvcConfigurer {
         registrationBean.setUrlPatterns(urlPatterns);
         return registrationBean;
     }
+
+
+    /**
+     java.lang.IllegalArgumentException: There is no PasswordEncoder mapped for the id "null"
+     * @return
+     */
+//    @Bean
+//    public static NoOpPasswordEncoder passwordEncoder() {
+//        return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
+//    }
 }

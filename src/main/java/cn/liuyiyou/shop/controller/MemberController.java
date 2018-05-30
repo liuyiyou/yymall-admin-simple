@@ -1,11 +1,12 @@
 package cn.liuyiyou.shop.controller;
 
 import cn.liuyiyou.shop.config.JwtProperty;
-import cn.liuyiyou.shop.entity.User;
+import cn.liuyiyou.shop.entity.Member;
 import cn.liuyiyou.shop.resp.Result;
 import cn.liuyiyou.shop.resp.ResultGenerator;
 import cn.liuyiyou.shop.resp.ResultStatusCode;
 import cn.liuyiyou.shop.utils.JwtHelper;
+import io.jsonwebtoken.Jwts;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +22,7 @@ import java.util.Map;
  * @date: 2018/5/28
  */
 @RestController
-public class AccountController {
+public class MemberController {
 
 
     @Autowired
@@ -36,13 +37,7 @@ public class AccountController {
 
         Result result = new Result();
         try {
-            if (clientId == null || (clientId.compareTo(jwtProperty.getClientId()) != 0)) {
-                result.setCode(ResultStatusCode.INVALID_CLIENTID.getErrorCode());
-                result.setMessage(ResultStatusCode.INVALID_CLIENTID.getErrorMsg());
-                return result;
-            }
-
-            User user = new User();
+            Member user = Member.builder().accountName("18600774073").pwd("123456").build();
             try {
 //                user = userService.login(accountName, accountPwd, logonMode);
 //                accountService.updateLogin(accountName, mobileType, deviceToken);
@@ -55,8 +50,10 @@ public class AccountController {
                     jwtProperty.getName(), jwtProperty.getExpiresSecond() * 1000, jwtProperty.getBase64Secret());
 
 
+            Jwts.builder().setSubject(accountName);
+
             Map map = new HashMap<>();
-            map.put("accessToken", "bearer;" + accessToken);
+            map.put("_token", "bearer " + accessToken);
             map.put("userId", user.getId());
             map.put("realName", user.getRealName());
             map.put("phoneNo", user.getPhoneNo());
