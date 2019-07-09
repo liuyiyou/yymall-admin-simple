@@ -76,7 +76,8 @@ function add() {
 	$.ajax({
 		cache : true,
 		type : "POST",
-		url : ctx + "system/role/save",
+        dataType: "json",
+		url : ctx + "system/role/add",
 		data : {
 			"roleName": roleName,
 			"roleKey": roleKey,
