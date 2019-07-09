@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.liuyiyou.yiadmin.mapper.SysMenuMapper">
+
+    <resultMap type="cn.liuyiyou.shop.system.entity.SysMenu" id="MenuResult">
+        <id property="menuId" column="menu_id"/>
+        <result property="menuName" column="menu_name"/>
+        <result property="parentName" column="parent_name"/>
+        <result property="parentId" column="parent_id"/>
+        <result property="orderNum" column="order_num"/>
+        <result property="url" column="url"/>
+        <result property="menuType" column="menu_type"/>
+        <result property="visible" column="visible"/>
+        <result property="perms" column="perms"/>
+        <result property="icon" column="icon"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <select id="selectMenusByUserId" parameterType="java.lang.Integer" resultMap="MenuResult">
+        SELECT DISTINCT
+            m.menu_id,
+            m.parent_id,
+            m.menu_name,
+            m.url,
+            m.perms,
+            m.menu_type,
+            m.icon,
+            m.order_num,
+            m.create_time
+        FROM sys_menu m
+            LEFT JOIN sys_role_menu rm ON m.menu_id = rm.menu_id
+            LEFT JOIN sys_user_role ur ON rm.role_id = ur.role_id
+        WHERE ur.user_id = #{userId} AND m.menu_type IN ('M', 'C') AND m.visible = 0
+        ORDER BY m.order_num
+    </select>
+    <select id="selectPermsByUserId" resultType="java.lang.String">
+         SELECT DISTINCT
+           m.perms
+        FROM sys_menu m
+            LEFT JOIN sys_role_menu rm ON m.menu_id = rm.menu_id
+            LEFT JOIN sys_user_role ur ON rm.role_id = ur.role_id
+        WHERE ur.user_id = #{userId}
+    </select>
+
+    <select id="selectMenuAll" resultMap="MenuResult">
+        select menu_id, menu_name, parent_id, order_num, url, menu_type, visible, perms, icon, create_by, create_time from sys_menu
+    </select>
+
+    <select id="selectMenuTree" parameterType="java.lang.Integer" resultType="java.lang.String">
+        select concat(m.menu_id, m.perms) as perms
+        from sys_menu m
+        left join sys_role_menu rm on m.menu_id = rm.menu_id
+        where rm.role_id = #{roleId}
+        order by m.parent_id, m.order_num
+    </select>
+
+    <select id="checkMenuNameUnique" parameterType="java.lang.String" resultMap="MenuResult">
+        select t.menu_id, t.parent_id, t.menu_name, t.order_num, t.url, t.menu_type, t.visible, t.perms, t.icon, t.remark
+        from sys_menu t where menu_name=#{menuName}
+    </select>
+
+
+    <select id="selectCountMenuByParentId" resultType="java.lang.Integer">
+        select count(*) from sys_menu where parent_id=#{menuId}
+    </select>
+
+    <select id="selectMenuContainParentNameById" parameterType="java.lang.Integer" resultMap="MenuResult">
+        SELECT t.menu_id, t.parent_id, t.menu_name, t.order_num, t.url, t.menu_type, t.visible, t.perms, t.icon, t.remark,
+        (SELECT menu_name FROM sys_menu WHERE menu_id = t.parent_id) parent_name
+        FROM sys_menu t
+        where t.menu_id = #{menuId}
+    </select>
+</mapper>
