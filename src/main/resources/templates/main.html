@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      lang="zh" xmlns:th="http://www.thymeleaf.org"
+>
+<meta charset="utf-8">
+<head>
+    <head th:include="include :: header"></head>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content  animated fadeInRight article">
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <div class="text-center article-title">
+                        <h3 class="badge-primary">说明 </h3>
+                    </div>
+                    <div class="text-center">
+                        <p>
+                            本项目表结构、js和部分代码来自于：https://gitee.com/y_project/RuoYi 管理系统</p>
+                        <p>和Ruoyi的区别</p>
+                        <p>1:权限采用SpringSecurity</p>
+                        <p>2:orm使用MyBatis-Plus</p>
+                        <p>3:提供最基础的功能</p>
+                    </div>
+                    <div class="text-center article-title">
+                        <h3 class="badge-danger">注意 </h3>
+                    </div>
+                    <div class="text-center">
+                        <p>本项目仅供参考，不保证生产可用</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!--<div sec:authorize="isAuthenticated()" style="hidden">-->
+<!--<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>-->
+<!--<div sec:authorize="hasAuthority('USER')"> Has Authority USER</div>-->
+<!--<div sec:authorize="hasRole('USER')">Has Role USER</div>-->
+<!--当前登陆用户: <span sec:authentication="name"></span> |-->
+<!--角色: <span sec:authentication="principal.authorities"></span>-->
+<!--用户名<span sec:authentication="principal.username"></span>-->
+<!--<div sec:authorize="hasAuthority('system:user:save')"> system:user:save</div>-->
+<!--<div>-->
+<!--<form action="#" th:action="@{/logout}" method="post">-->
+<!--<input class="btn btn-success btn-xs" type="submit" value="注销"/>-->
+<!--</form>-->
+<!--</div>-->
+<!--</div>-->
+<!--<script th:inline="javascript">-->
+<!--var username = /*[[${name}]]*/ '';-->
+<!--var context = /*[[@{/}]]*/'';-->
+<!--var admin = [[${#authorization.expression('hasRole(''ADMIN'')')}]];-->
+<!--var user = [[${#authorization.expression('hasRole(''USER'')')}]];-->
+<!--var hasAuthority = [[${#authorization.expression('hasAuthority(''system:user:save'')')}]];-->
+<!--console.info("登陆用户名:" + username);-->
+<!--console.info("是否拥有ADMIN角色" + admin);-->
+<!--console.info("是否拥有USER角色" + user);-->
+<!--console.info("是否拥有system:user:save权限：" + hasAuthority);-->
+<!--console.info("项目根路径::" + context);-->
+
+<!--</script>-->
+
+
+</body>
+</html>

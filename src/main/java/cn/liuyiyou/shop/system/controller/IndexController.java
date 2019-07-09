@@ -1,10 +1,9 @@
 package cn.liuyiyou.shop.system.controller;
 
-import cn.liuyiyou.yiadmin.config.YiAdminConfig;
-import cn.liuyiyou.yiadmin.entity.SysMenu;
-import cn.liuyiyou.yiadmin.entity.SysUser;
-import cn.liuyiyou.yiadmin.service.ISysUserService;
-import cn.liuyiyou.yiadmin.service.SysMenuService;
+import cn.liuyiyou.shop.config.YiAdminConfig;
+import cn.liuyiyou.shop.system.entity.SysMenu;
+import cn.liuyiyou.shop.system.entity.SysUser;
+import cn.liuyiyou.shop.system.service.SysMenuService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +26,7 @@ public class IndexController {
     @Autowired
     private SysMenuService sysMenuService;
     @Autowired
-    private ISysUserService ISysUserService;
+    private cn.liuyiyou.shop.system.service.ISysUserService ISysUserService;
 
     @Autowired
     private YiAdminConfig yiAdminConfig;

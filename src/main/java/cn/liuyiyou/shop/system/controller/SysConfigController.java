@@ -1,8 +1,8 @@
 package cn.liuyiyou.shop.system.controller;
 
 
-import cn.liuyiyou.yiadmin.entity.SysConfig;
-import cn.liuyiyou.yiadmin.service.SysConfigService;
+import cn.liuyiyou.shop.system.entity.SysConfig;
+import cn.liuyiyou.shop.system.service.SysConfigService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

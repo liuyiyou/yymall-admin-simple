@@ -1,12 +1,12 @@
 package cn.liuyiyou.shop.system.controller;
 
 
-import cn.liuyiyou.yiadmin.annotation.Log;
-import cn.liuyiyou.yiadmin.entity.SysRole;
-import cn.liuyiyou.yiadmin.result.Response;
-import cn.liuyiyou.yiadmin.result.Result;
-import cn.liuyiyou.yiadmin.service.ISysRoleService;
-import cn.liuyiyou.yiadmin.vo.req.DataTableVo;
+import cn.liuyiyou.shop.common.response.Response;
+import cn.liuyiyou.shop.common.response.Result;
+import cn.liuyiyou.shop.system.annotation.Log;
+import cn.liuyiyou.shop.system.entity.SysRole;
+import cn.liuyiyou.shop.system.service.ISysRoleService;
+import cn.liuyiyou.shop.system.vo.req.DataTableVo;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;

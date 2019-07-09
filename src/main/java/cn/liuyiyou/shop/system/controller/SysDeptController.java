@@ -1,11 +1,11 @@
 package cn.liuyiyou.shop.system.controller;
 
 
-import cn.liuyiyou.yiadmin.annotation.Log;
-import cn.liuyiyou.yiadmin.entity.SysDept;
-import cn.liuyiyou.yiadmin.result.Response;
-import cn.liuyiyou.yiadmin.result.Result;
-import cn.liuyiyou.yiadmin.service.ISysDeptService;
+import cn.liuyiyou.shop.common.response.Response;
+import cn.liuyiyou.shop.common.response.Result;
+import cn.liuyiyou.shop.system.annotation.Log;
+import cn.liuyiyou.shop.system.entity.SysDept;
+import cn.liuyiyou.shop.system.service.ISysDeptService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -1,14 +1,14 @@
 package cn.liuyiyou.shop.system.controller;
 
 
-import cn.liuyiyou.yiadmin.annotation.Log;
-import cn.liuyiyou.yiadmin.entity.SysRole;
-import cn.liuyiyou.yiadmin.entity.SysUser;
-import cn.liuyiyou.yiadmin.result.Response;
-import cn.liuyiyou.yiadmin.result.Result;
-import cn.liuyiyou.yiadmin.service.ISysRoleService;
-import cn.liuyiyou.yiadmin.service.ISysUserService;
-import cn.liuyiyou.yiadmin.vo.req.user.SysUserListReqVo;
+import cn.liuyiyou.shop.common.response.Response;
+import cn.liuyiyou.shop.common.response.Result;
+import cn.liuyiyou.shop.system.annotation.Log;
+import cn.liuyiyou.shop.system.entity.SysRole;
+import cn.liuyiyou.shop.system.entity.SysUser;
+import cn.liuyiyou.shop.system.service.ISysRoleService;
+import cn.liuyiyou.shop.system.service.ISysUserService;
+import cn.liuyiyou.shop.system.vo.req.user.SysUserListReqVo;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;

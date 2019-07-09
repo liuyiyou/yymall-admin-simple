@@ -1,6 +1,6 @@
 package cn.liuyiyou.shop.system.controller;
 
-import cn.liuyiyou.yiadmin.exception.DefaultException;
+import cn.liuyiyou.shop.common.exception.DefaultException;
 import com.alibaba.fastjson.JSON;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
