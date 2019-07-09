@@ -3,6 +3,7 @@ package cn.liuyiyou.shop.system.security;
 import cn.liuyiyou.shop.system.entity.SysUser;
 import cn.liuyiyou.shop.system.service.ISysUserService;
 import cn.liuyiyou.shop.system.service.SysMenuService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

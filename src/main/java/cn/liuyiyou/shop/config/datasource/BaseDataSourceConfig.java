@@ -15,7 +15,7 @@ import javax.sql.DataSource;
 public class BaseDataSourceConfig extends AbstractDataSourceConfig {
 
     static final String BASE_PACKAGE = "cn.liuyiyou.shop.base.mapper";
-    private static final String MAPPER_LOCATION = "classpath:cn/liuyiyou/shop/base/mapper/system/*.xml";
+    private static final String MAPPER_LOCATION = "classpath:/cn/liuyiyou/shop/base/mapper/xml/*.xml";
 
     @Bean(name = "baseDataSource")
     @ConfigurationProperties(prefix = "spring.jta.atomikos.datasource.base")
