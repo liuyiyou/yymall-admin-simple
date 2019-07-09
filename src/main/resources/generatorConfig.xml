@@ -1,50 +1,50 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE generatorConfiguration PUBLIC
-        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
-        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
-<generatorConfiguration>
+<!--<?xml version="1.0" encoding="UTF-8" ?>-->
+<!--<!DOCTYPE generatorConfiguration PUBLIC-->
+        <!--"-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"-->
+        <!--"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >-->
+<!--<generatorConfiguration>-->
 
-    <!--https://blog.csdn.net/sunny243788557/article/details/45166397-->
-    <!--mybatis-generator:generate  -e -->
+    <!--&lt;!&ndash;https://blog.csdn.net/sunny243788557/article/details/45166397&ndash;&gt;-->
+    <!--&lt;!&ndash;mybatis-generator:generate  -e &ndash;&gt;-->
 
-    <properties resource="generator.properties"></properties>
-    <classPathEntry location="${driverLocation}"/>
+    <!--<properties resource="generator.properties"></properties>-->
+    <!--<classPathEntry location="${driverLocation}"/>-->
 
 
-    <context id="context" targetRuntime="MyBatis3"> <!--MyBatis3Simple会生成selectAll-->
-        <!--mybatis generator代码生成工具时，遇到生成的代码重复-->
-        <property name="mergeable" value="true"></property>
-        <commentGenerator>
-            <property name="suppressAllComments" value="true"/>
-            <property name="suppressDate" value="true"/>
-        </commentGenerator>
+    <!--<context id="context" targetRuntime="MyBatis3"> &lt;!&ndash;MyBatis3Simple会生成selectAll&ndash;&gt;-->
+        <!--&lt;!&ndash;mybatis generator代码生成工具时，遇到生成的代码重复&ndash;&gt;-->
+        <!--<property name="mergeable" value="true"></property>-->
+        <!--<commentGenerator>-->
+            <!--<property name="suppressAllComments" value="true"/>-->
+            <!--<property name="suppressDate" value="true"/>-->
+        <!--</commentGenerator>-->
 
-        <jdbcConnection userId="${username}" password="${password}" driverClass="${driverClassName}"
-                        connectionURL="${url}"/>
+        <!--<jdbcConnection userId="${username}" password="${password}" driverClass="${driverClassName}"-->
+                        <!--connectionURL="${url}"/>-->
 
-        <javaTypeResolver>
-            <property name="forceBigDecimals" value="false"/>
-        </javaTypeResolver>
+        <!--<javaTypeResolver>-->
+            <!--<property name="forceBigDecimals" value="false"/>-->
+        <!--</javaTypeResolver>-->
 
-        <javaModelGenerator targetPackage="cn.liuyiyou.shop.entity" targetProject="src/main/java">
-            <property name="enableSubPackages" value="false"/>
-            <property name="trimStrings" value="true"/>
-        </javaModelGenerator>
+        <!--<javaModelGenerator targetPackage="cn.liuyiyou.shop.entity" targetProject="src/main/java">-->
+            <!--<property name="enableSubPackages" value="false"/>-->
+            <!--<property name="trimStrings" value="true"/>-->
+        <!--</javaModelGenerator>-->
 
-        <sqlMapGenerator targetPackage="cn.liuyiyou.shop.mapper" targetProject="src/main/resources">
-            <property name="enableSubPackages" value="false"/>
-        </sqlMapGenerator>
+        <!--<sqlMapGenerator targetPackage="cn.liuyiyou.shop.mapper" targetProject="src/main/resources">-->
+            <!--<property name="enableSubPackages" value="false"/>-->
+        <!--</sqlMapGenerator>-->
 
-        <javaClientGenerator targetPackage="cn.liuyiyou.shop.mapper" type="ANNOTATEDMAPPER"
-                             targetProject="src/main/java">
-            <property name="enableSubPackages" value="false"/>
-        </javaClientGenerator>
+        <!--<javaClientGenerator targetPackage="cn.liuyiyou.shop.mapper" type="ANNOTATEDMAPPER"-->
+                             <!--targetProject="src/main/java">-->
+            <!--<property name="enableSubPackages" value="false"/>-->
+        <!--</javaClientGenerator>-->
 
-        <table schema="prod" tableName="prod" domainObjectName="Prod" enableCountByExample="true"
-               enableDeleteByExample="false"
-               enableDeleteByPrimaryKey="false" enableSelectByExample="true" enableUpdateByExample="false"/>
+        <!--<table schema="prod" tableName="prod" domainObjectName="Prod" enableCountByExample="true"-->
+               <!--enableDeleteByExample="false"-->
+               <!--enableDeleteByPrimaryKey="false" enableSelectByExample="true" enableUpdateByExample="false"/>-->
 
-        <table tableName="prod" domainObjectName="Prod" enableCountByExample="true" enableDeleteByExample="false"
-               enableDeleteByPrimaryKey="false" enableSelectByExample="true" enableUpdateByExample="false"/>
-    </context>
-</generatorConfiguration>
+        <!--<table tableName="prod" domainObjectName="Prod" enableCountByExample="true" enableDeleteByExample="false"-->
+               <!--enableDeleteByPrimaryKey="false" enableSelectByExample="true" enableUpdateByExample="false"/>-->
+    <!--</context>-->
+<!--</generatorConfiguration>-->

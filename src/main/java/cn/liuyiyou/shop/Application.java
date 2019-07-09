@@ -1,8 +1,7 @@
 package cn.liuyiyou.shop;
 
 import cn.liuyiyou.shop.config.JwtProperty;
-import cn.liuyiyou.shop.entity.JwtPatternUrl;
-import cn.liuyiyou.shop.filter.JwtAuthorizeFilter;
+//import cn.liuyiyou.shop.filter.JwtAuthorizeFilter;
 import com.alibaba.fastjson.serializer.SerializeConfig;
 import com.alibaba.fastjson.serializer.SimpleDateFormatSerializer;
 import com.alibaba.fastjson.serializer.ToStringSerializer;
@@ -23,6 +22,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -41,12 +41,11 @@ import java.util.Date;
 import java.util.List;
 
 @SpringBootApplication
-@MapperScan(basePackages = "cn.liuyiyou.shop.mapper")
 @EnableTransactionManagement
 @Slf4j
 @Configuration
 @EnableSwagger2
-@EnableConfigurationProperties({JwtProperty.class, JwtPatternUrl.class})  //加载自定义的properties解析类
+//@EnableConfigurationProperties({JwtProperty.class, JwtPatternUrl.class})  //加载自定义的properties解析类
 public class Application implements WebMvcConfigurer {
 
 
@@ -64,7 +63,7 @@ public class Application implements WebMvcConfigurer {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("cn.liuyiyou.shop.controller"))
+                .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
                 .paths(PathSelectors.any())
                 .build();
     }
@@ -118,32 +117,32 @@ public class Application implements WebMvcConfigurer {
      * </code>
      * 可以不需要配置，或者配置之后不要设置，由<code>ConfigurationProperties</code>自动装配
      */
-    @Bean
-    @Primary
-    @ConfigurationProperties(prefix = "spring.datasource")
-    public DataSource mysqlDataSource() {
-        return DataSourceBuilder.create()
-                .driverClassName("com.mysql.jdbc.Driver")
-                .url("jdbc:mysql://localhost:3306/shop?useUnicode=true&useSSL=false&characterEncoding=utf-8&rewriteBatchedStatements=true&zeroDateTimeBehavior=convertToNull")
-                .username("root")
-                .password("123456")
-                .build();
-    }
+//    @Bean
+//    @Primary
+//    @ConfigurationProperties(prefix = "spring.datasource")
+//    public DataSource mysqlDataSource() {
+//        return DataSourceBuilder.create()
+//                .driverClassName("com.mysql.jdbc.Driver")
+//                .url("jdbc:mysql://localhost:3306/shop?useUnicode=true&useSSL=false&characterEncoding=utf-8&rewriteBatchedStatements=true&zeroDateTimeBehavior=convertToNull")
+//                .username("root")
+//                .password("123456")
+//                .build();
+//    }
 
 
     /*
      * 注册过滤器类和过滤的url
      */
-    @Bean
-    public FilterRegistrationBean basicFilterRegistrationBean() {
-        FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-        JwtAuthorizeFilter filter = new JwtAuthorizeFilter();
-        registrationBean.setFilter(filter);
-        List<String> urlPatterns = new ArrayList<>();
-        urlPatterns.add("/*");
-        registrationBean.setUrlPatterns(urlPatterns);
-        return registrationBean;
-    }
+//    @Bean
+//    public FilterRegistrationBean basicFilterRegistrationBean() {
+//        FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+////        JwtAuthorizeFilter filter = new JwtAuthorizeFilter();
+//        registrationBean.setFilter(filter);
+//        List<String> urlPatterns = new ArrayList<>();
+//        urlPatterns.add("/*");
+//        registrationBean.setUrlPatterns(urlPatterns);
+//        return registrationBean;
+//    }
 
 
     /**
