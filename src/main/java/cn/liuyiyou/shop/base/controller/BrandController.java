@@ -9,14 +9,14 @@ import cn.liuyiyou.shop.common.vo.PageVo;
 import cn.liuyiyou.shop.common.web.BaseController;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.constraints.NotNull;
 
@@ -27,8 +27,8 @@ import javax.validation.constraints.NotNull;
  * @date: 2019/2/7
  * @Copyright 2019 liuyiyou.cn Inc. All rights reserved
  */
-@RestController
-@RequestMapping("/brand")
+@Controller
+@RequestMapping("/base/brand")
 public class BrandController extends BaseController {
 
     @Autowired
@@ -36,6 +36,7 @@ public class BrandController extends BaseController {
 
 
     @PostMapping("/list")
+    @ResponseBody
     public Result<IPage<Brand>> list(@RequestBody @NotNull PageVo pageVo) {
         IPage<Brand> brandByPage = brandService.getBrandByPage(pageVo);
         return Response.success(brandByPage);

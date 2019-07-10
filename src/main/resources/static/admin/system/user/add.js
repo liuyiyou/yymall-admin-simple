@@ -97,8 +97,9 @@ function add() {
 	var postIds = $.getSelects("post");
 	$.ajax({
 		cache : true,
-		type : "POST",
-		url : ctx + "system/user/save",
+		type : "put",
+        dataType: "json",
+		url : ctx + "system/user/add",
 		data : {
 			"userId": userId,
 			"deptId": deptId,

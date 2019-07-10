@@ -9,9 +9,11 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -25,8 +27,8 @@ import java.util.List;
  * @since 2019-05-15
  */
 @Api(description = "省市区接口")
-@RestController
-@RequestMapping("/area")
+@Controller
+@RequestMapping("'base/area")
 public class AreaController {
 
     @Autowired
@@ -48,7 +50,8 @@ public class AreaController {
     }
 
 
-    @GetMapping("/tree")
+    @GetMapping("/xxx")
+    @ResponseBody
     public void getAreaService() {
         List<Area> list = areaService.list(new LambdaQueryWrapper<Area>().eq(Area::getLevel, 3));
         list.forEach(area -> {

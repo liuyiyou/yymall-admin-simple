@@ -9,6 +9,11 @@ web_status = {
     FAIL: 500
 };
 
+STATUS = {
+    SUCCESS:true,
+    FAIL:false
+}
+
 /** 弹窗状态码 */
 modal_status = {
     SUCCESS: "success",
@@ -83,7 +88,7 @@ _ajax = function(url, data, type) {
 
 /** 返回结果处理 */
 function simpleSuccess(result) {
-    if (result.code == web_status.SUCCESS) {
+    if (result.success == STATUS.SUCCESS) {
 		$.modalMsg(result.msg, modal_status.SUCCESS);
 		$.refreshTable();
     } else {
@@ -93,7 +98,7 @@ function simpleSuccess(result) {
 
 /** 操作结果处理 */
 function handleSuccess(result) {
-    if (result.code == web_status.SUCCESS) {
+    if (result.success == STATUS.SUCCESS) {
     	parent.layer.msg("新增成功,正在刷新数据请稍后……",{icon:1,time: 500,shade: [0.1,'#fff']},function(){
 			$.parentReload();
 		});

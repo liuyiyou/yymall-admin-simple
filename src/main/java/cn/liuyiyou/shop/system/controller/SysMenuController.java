@@ -6,9 +6,15 @@ import cn.liuyiyou.shop.common.response.Result;
 import cn.liuyiyou.shop.system.annotation.Log;
 import cn.liuyiyou.shop.system.entity.SysMenu;
 import cn.liuyiyou.shop.system.entity.SysRole;
+import cn.liuyiyou.shop.system.entity.SysUser;
+import cn.liuyiyou.shop.system.service.ISysUserService;
 import cn.liuyiyou.shop.system.service.SysMenuService;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -160,5 +166,8 @@ public class SysMenuController {
         List<Map<String, Object>> tree = sysMenuService.roleMenuTreeData(role);
         return tree;
     }
+
+
+
 }
 

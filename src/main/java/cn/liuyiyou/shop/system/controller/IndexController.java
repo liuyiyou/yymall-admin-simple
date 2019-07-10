@@ -1,5 +1,7 @@
 package cn.liuyiyou.shop.system.controller;
 
+import cn.liuyiyou.shop.common.response.Response;
+import cn.liuyiyou.shop.common.response.Result;
 import cn.liuyiyou.shop.config.YiAdminConfig;
 import cn.liuyiyou.shop.system.entity.SysMenu;
 import cn.liuyiyou.shop.system.entity.SysUser;
@@ -12,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -30,6 +33,20 @@ public class IndexController {
 
     @Autowired
     private YiAdminConfig yiAdminConfig;
+
+
+    @GetMapping("/menus")
+    @ResponseBody
+    public Result<List<SysMenu>> menus() {
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getPrincipal();
+        LambdaQueryWrapper<SysUser> queryWrapper = new QueryWrapper<SysUser>().lambda().select()
+                .eq(SysUser::getLoginName, userDetails.getUsername());
+        SysUser user = ISysUserService.getOne(queryWrapper);
+        List<SysMenu> menus = sysMenuService.selectMenusByUserId(user.getUserId());
+        return Response.success(menus);
+    }
 
     // 系统首页
     @GetMapping({"/", "/index"})
