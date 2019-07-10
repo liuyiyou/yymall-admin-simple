@@ -99,6 +99,7 @@ function add() {
 		cache : true,
 		type : "put",
         dataType: "json",
+        contentType: "application/json",
 		url : ctx + "system/user/add",
 		data : {
 			"userId": userId,

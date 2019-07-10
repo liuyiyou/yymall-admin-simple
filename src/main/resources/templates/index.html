@@ -20,7 +20,7 @@
 <!-- 顶部开始 -->
 <div class="container">
     <div class="logo">
-        <a th:href="/">YiAdmin</a>
+        <a href="/">YiAdmin</a>
     </div>
     <div class="left_open">
         <!-- <i title="展开左侧栏" class="iconfont">&#xe699;</i> -->
@@ -46,7 +46,7 @@
     </ul>
     <ul class="layui-nav right" lay-filter="">
         <li class="layui-nav-item">
-            <a href="javascript:;">Admin</a>
+            <a href="javascript:;"><span th:text="${user.userName}"></span></a>
             <dl class="layui-nav-child">
                 <!-- 二级菜单 -->
                 <dd>
@@ -56,13 +56,13 @@
                     <a onclick="WeAdminShow('切换帐号','./login.html')">切换帐号</a>
                 </dd>
                 <dd>
-                    <a class="loginout" href="./login.html">退出</a>
+                    <a class="loginout" href="/logout">退出</a>
                 </dd>
             </dl>
         </li>
-        <li class="layui-nav-item to-index">
-            <a href="https://www.jiuwei.com/" target="_blank">前台首页</a>
-        </li>
+        <!--<li class="layui-nav-item to-index">-->
+            <!--<a href="https://www.jiuwei.com/" target="_blank">前台首页</a>-->
+        <!--</li>-->
     </ul>
 
 </div>
@@ -92,7 +92,7 @@
 <!-- 中部结束 -->
 <!-- 底部开始 -->
 <div class="footer">
-    <div class="copyright">Copyright ©2018 WeAdmin v1.0 All Rights Reserved</div>
+    <div class="pull-right">© [[${copyrightYear}]] YiAdmin Copyright </div>
 </div>
 <!-- 底部结束 -->
 <script type="text/javascript">

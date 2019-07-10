@@ -10,13 +10,13 @@
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/favicon.ico}"/>
-    <link th:href="@{css/font.css}" rel="stylesheet"/>
-    <link th:href="@{css/weadmin.css}" rel="stylesheet"/>
+    <link th:href="@{/css/font.css}" rel="stylesheet"/>
+    <link th:href="@{/css/weadmin.css}" rel="stylesheet"/>
 
 </head>
 <body class="login-bg">
 <div class="login">
-    <div class="message">YiAdmin-管理登录</div>
+    <div class="message">登录</div>
     <div id="darkbannerwrap"></div>
     <form method="post" class="layui-form">
         <input name="username" placeholder="用户名" type="text" lay-verify="required" class="layui-input">
@@ -26,23 +26,17 @@
         <input class="loginin" value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
     </form>
 </div>
-
+<script type="text/javascript" th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
 <script type="text/javascript">
-
     layui.extend({
-        admin: '{/}./static/js/admin'
+        admin: '{/}/js/admin'
     });
     layui.use(['form', 'admin'], function () {
         var form = layui.form
             , admin = layui.admin;
-        // layer.msg('玩命卖萌中', function(){
-        //   //关闭后的操作
-        //   });
-        //监听提交
         form.on('submit(login)', function (data) {
-            // alert(888)
             layer.msg(JSON.stringify(data.field), function () {
-                location.href = './index.html'
+                location.href = '/';
             });
             return false;
         });
