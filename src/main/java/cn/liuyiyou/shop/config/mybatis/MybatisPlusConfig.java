@@ -18,7 +18,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @EnableTransactionManagement
 @Configuration
-//@MapperScan("cn.liuyiyou.shop.base.mapper")
 public class MybatisPlusConfig {
     /**
      * mybatis-plus SQL执行效率插件【生产环境可以关闭】

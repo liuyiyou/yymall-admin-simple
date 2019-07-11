@@ -24,13 +24,13 @@ public class LoginController {
     public String login() {
         return "login";
     }
-
-
-    @PostMapping("/login")
-    @ResponseBody
-    public String loginPost(String username,String password) {
-        return "login";
-    }
+//
+//
+//    @PostMapping("/login")
+//    @ResponseBody
+//    public String loginPost(String username,String password) {
+//        return "login";
+//    }
 
     @GetMapping("/403")
     @ResponseBody
