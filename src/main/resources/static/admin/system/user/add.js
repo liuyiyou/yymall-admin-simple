@@ -95,25 +95,26 @@ function add() {
 	var status = $("input[name='status']").is(':checked') == true ? 0 : 1;
 	var roleIds = $.getCheckeds("role");
 	var postIds = $.getSelects("post");
+	var data =  {
+        "userId": userId,
+        "deptId": deptId,
+        "loginName": loginName,
+        "userName": userName,
+        "password": password,
+        "email": email,
+        "phonenumber": phonenumber,
+        "sex": sex,
+        "status": status,
+        "roleIds": roleIds,
+        "postIds": postIds
+    };
 	$.ajax({
 		cache : true,
 		type : "put",
         dataType: "json",
         contentType: "application/json",
 		url : ctx + "system/user/add",
-		data : {
-			"userId": userId,
-			"deptId": deptId,
-			"loginName": loginName,
-			"userName": userName,
-			"password": password,
-			"email": email,
-			"phonenumber": phonenumber,
-			"sex": sex,
-			"status": status,
-			"roleIds": roleIds,
-			"postIds": postIds
-		},
+        data : JSON.stringify(data),
 		async : false,
 		error : function(request) {
 			$.modalAlert("系统错误", modal_status.FAIL);
