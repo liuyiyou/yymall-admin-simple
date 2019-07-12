@@ -13,6 +13,10 @@
     <div class="btn-group hidden-xs" id="toolbar" role="group">
         <button sec:authorize="hasAuthority('system:user:save')" class="btn btn-outline btn-default"
                 onclick="javascript:add()">
+            <i class="fa fa-plus"></i> 查看SKU
+        </button>
+        <button sec:authorize="hasAuthority('system:user:save')" class="btn btn-outline btn-default"
+                onclick="javascript:add()">
             <i class="fa fa-plus"></i> 新增
         </button>
         <button class="btn btn-outline btn-default" onclick="javascript:batchRemove()"
@@ -30,5 +34,10 @@
 <div th:include="include :: footer"></div>
 <script th:src="@{/admin/prod/prod/prod.js}"></script>
 <script th:src="@{/ajax/libs/jquery-layout/jquery.layout-latest.js}"></script>
+<script th:inline="javascript">
+    var editFlag = [[${#authorization.expression('hasAuthority(''system:user:edit'')')}]];
+    var removeFlag = [[${#authorization.expression('hasAuthority(''system:user:remove'')')}]];
+    var resetPwdFlag = [[${#authorization.expression('hasAuthority(''system:user:resetPwd'')')}]];
+</script>
 </body>
 </html>

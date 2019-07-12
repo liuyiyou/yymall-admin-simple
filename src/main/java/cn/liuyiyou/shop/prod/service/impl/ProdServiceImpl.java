@@ -72,7 +72,6 @@ public class ProdServiceImpl extends ServiceImpl<ProdMapper, Prod> implements IP
                     .setPrice(Math.round(10000) * 1.1F)
                     .setProdId(prod.getProdId())
                     .setProdName(prod.getProdName());
-
             return prodListRespVo;
         }).collect(Collectors.toList());
         prodListRespVoIPage.setRecords(listRespVos);
@@ -93,11 +92,15 @@ public class ProdServiceImpl extends ServiceImpl<ProdMapper, Prod> implements IP
         IPage<Prod> prodIPage = this.page(pageQuery, prodQueryWrapper);
         IPage<AdminProdListRespVo> prodListRespVoIPage = new Page<>(prodIPage.getCurrent(), prodIPage.getSize(), prodIPage.getTotal());
         List<AdminProdListRespVo> listRespVos = prodIPage.getRecords().stream().map(prod -> {
+            LambdaQueryWrapper<ProdSku> skuWrapper = new QueryWrapper<ProdSku>().lambda().select().eq(ProdSku::getProdId, prod.getProdId());
+            List<ProdSku> skus = prodSkuService.list(skuWrapper);
             AdminProdListRespVo prodListRespVo = new AdminProdListRespVo();
             BeanUtils.copyProperties(prod, prodListRespVo);
             prodListRespVo.setAlbum(prod.getAlbum().split(",")[0]);
+            prodListRespVo.setSkus(skus);
             return prodListRespVo;
         }).collect(Collectors.toList());
+
         prodListRespVoIPage.setRecords(listRespVos);
         return prodListRespVoIPage;
     }

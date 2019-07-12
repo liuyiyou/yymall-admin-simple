@@ -1,8 +1,11 @@
 package cn.liuyiyou.shop.prod.vo;
 
 import cn.liuyiyou.shop.prod.entity.Prod;
+import cn.liuyiyou.shop.prod.entity.ProdSku;
 import lombok.Data;
 import lombok.experimental.Accessors;
+
+import java.util.List;
 
 /***
  *
@@ -13,6 +16,7 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 public class AdminProdListRespVo extends Prod {
+    private List<ProdSku> skus;
 
 
 }

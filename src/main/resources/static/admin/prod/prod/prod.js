@@ -1,9 +1,8 @@
-var prefix = ctx + "prod/prod"
+var prefix = ctx + "prod"
 
 $(document).ready(function () {
     $('body').layout({west__size: 185});
     queryList();
-    queryDeptTreeDaTa();
 });
 
 
@@ -53,7 +52,7 @@ function queryList() {
                 return actions.join('');
             }
         }];
-    var url = prefix;
+    var url = prefix + "/admin-list";
     $.initTableJsonParams(columns, url, queryParams);
 }
 
@@ -82,63 +81,17 @@ function edit(userId) {
     layer_showAuto("修改用户", url);
 }
 
+
+/*查看-SKU*/
+function add() {
+    var url = prefix + '/add';
+    layer_showAuto("新增用户", url);
+}
+
+
 /*用户管理-新增*/
 function add() {
     var url = prefix + '/add';
     layer_showAuto("新增用户", url);
 }
 
-/*用户管理-批量新增*/
-function batchAdd() {
-    //文件默认上传方法,传ID:uploadfile
-    $('#uploadfile').fileinput("upload");
-    //同步上传错误处理
-    $('#uploadfile').on('filebatchuploaderror', function (event, data, msg) {
-        // get message
-        $.modalAlert(msg, "error");
-        //重置
-        $('#uploadfile').fileinput("clear");
-        $('#uploadfile').fileinput("reset");
-        $('#uploadfile').fileinput('refresh');
-        $('#uploadfile').fileinput('enable');
-    });
-    //同步上传后从后台返回结果
-    $('#uploadfile').on('filebatchuploadsuccess', function (event, data, previewId, index) {
-        var result = data.response;
-        if (result.code == 0) {
-            //刷新数据表格
-            $('.bootstrap-table').bootstrapTable('refresh');
-            var count = result.msg;
-            $.modalAlert("成功导入" + count + "条数据", "success");
-            $('#uploadfile').fileinput('reset');
-            $('#exampleModal').modal('hide');
-
-        } else {
-            $.modalAlert(result.msg, "error");
-            //重置
-            $('#uploadfile').fileinput("clear");
-            $('#uploadfile').fileinput("reset");
-            $('#uploadfile').fileinput('refresh');
-            $('#uploadfile').fileinput('enable');
-        }
-    });
-
-}
-
-/*用户管理-重置密码*/
-function resetPwd(userId) {
-    var url = prefix + '/resetPwd/' + userId;
-    layer_show("重置密码", url, '800', '300');
-}
-
-// 批量删除用户
-function batchRemove() {
-    var rows = $.getSelections("userId");
-    if (rows.length == 0) {
-        $.modalMsg("请选择要删除的数据", modal_status.WARNING);
-        return;
-    }
-    $.modalConfirm("确认要删除选中的" + rows.length + "条数据吗?", function () {
-        _ajax(prefix + '/batchRemove', {"ids": rows}, "post");
-    });
-}
