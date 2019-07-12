@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<link href="/admin/css/admin.css" th:href="@{/ruoyi/css/RuoYi.css}" rel="stylesheet"/>
+<link href="/ajax/libs/jquery-layout/jquery.layout-latest.css"
+      th:href="@{/ajax/libs/jquery-layout/jquery.layout-latest.css}" rel="stylesheet"/>
+
+<body class="white-bg">
+<div class="wrapper wrapper-content ui-layout-center">
+    <table class="bootstrap-table" data-mobile-responsive="true"
+           data-sort-name="create_time" data-sort-order="desc">
+    </table>
+</div>
+
+<div th:include="include :: footer"></div>
+<script th:src="@{/admin/oms/order/order.js}"></script>
+<script th:src="@{/ajax/libs/jquery-layout/jquery.layout-latest.js}"></script>
+<script th:inline="javascript">
+    var editFlag = [[${#authorization.expression('hasAuthority(''system:user:edit'')')}]];
+    var removeFlag = [[${#authorization.expression('hasAuthority(''system:user:remove'')')}]];
+    var resetPwdFlag = [[${#authorization.expression('hasAuthority(''system:user:resetPwd'')')}]];
+</script>
+</body>
+</html>
