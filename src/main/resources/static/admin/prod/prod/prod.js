@@ -19,6 +19,21 @@ function queryList() {
             title: '商品名称'
         },
         {
+            field: 'skus',
+            title: 'SKU信息',
+            align: 'center',
+            formatter: function (value, row, index) {
+                console.info(value);
+                var table = "<table>"
+                for (i = 0; i < value.length; i++) {
+                    table += '<tr><td>' + value[i].price + '</td><td>' + value[i].store + '</td><td>' + value[i].saled + '</td><td>' + value[i].freez + '</td></tr>';
+                }
+                table += '</table>';
+                return table;
+
+            }
+        },
+        {
             field: 'brandName',
             title: '品牌'
         },
