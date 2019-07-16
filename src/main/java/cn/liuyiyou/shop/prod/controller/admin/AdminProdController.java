@@ -8,6 +8,7 @@ import cn.liuyiyou.shop.prod.vo.ProdListReqVo;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,14 +36,23 @@ public class AdminProdController {
         return new ModelAndView(prefix + "/prod");
     }
 
+    @GetMapping("/add")
+    public ModelAndView add() {
+        return new ModelAndView(prefix + "/add");
+    }
+
+
+    @GetMapping("/edit/{id}")
+    public ModelAndView edit(@PathVariable("id") Long id) {
+        return new ModelAndView(prefix + "/edit");
+    }
+
+
     @PostMapping("/list")
     public Result<IPage<AdminProdListRespVo>> list(@RequestBody ProdListReqVo prodListReqVo) {
         IPage<AdminProdListRespVo> adminProdListRespVoIPage = prodService.adminProdPage(prodListReqVo);
         return Response.success(adminProdListRespVoIPage);
     }
 
-    @GetMapping("/add")
-    public ModelAndView add() {
-        return new ModelAndView(prefix + "/add");
-    }
+
 }

@@ -1,4 +1,4 @@
-var prefix = ctx + "prod"
+var prefix = ctx + "prod/admin"
 
 $(document).ready(function () {
     $('body').layout({west__size: 185});
@@ -62,12 +62,12 @@ function queryList() {
             align: 'center',
             formatter: function (value, row, index) {
                 var actions = [];
-                actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="#" onclick="edit(\'' + row.userId + '\')"><i class="fa fa-edit"></i>编辑</a> ');
-                actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="#" onclick="remove(\'' + row.userId + '\')"><i class="fa fa-remove"></i>删除</a> ');
+                actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="#" onclick="edit(\'' + row.prodId + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="#" onclick="remove(\'' + row.prodId + '\')"><i class="fa fa-remove"></i>删除</a> ');
                 return actions.join('');
             }
         }];
-    var url = prefix + "/admin/list";
+    var url = prefix + "/list";
     $.initTableJsonParams(columns, url, queryParams);
 }
 
@@ -84,16 +84,16 @@ function queryParams(params) {
 }
 
 /*用户管理-删除*/
-function remove(userId) {
+function remove(prodId) {
     $.modalConfirm("确定要删除选中用户吗？", function () {
         _ajax(prefix + "/" + userId, "", "delete");
     })
 }
 
-/*用户管理-修改*/
-function edit(userId) {
-    var url = prefix + '/edit/' + userId;
-    layer_showAuto("修改用户", url);
+/*商品管理-修改*/
+function edit(prodId) {
+    var url = prefix + '/edit/' + prodId;
+    layer_showAuto("编辑商品", url);
 }
 
 

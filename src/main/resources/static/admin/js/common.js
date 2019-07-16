@@ -47,9 +47,23 @@ function layer_show(title, url, w, h) {
     });
 }
 
+
+
+
 /** 弹出层自动宽高 */
 function layer_showAuto(title, url) {
 	layer_show(title, url, '', '');
+}
+
+
+function getQueryStr(name) {
+    var url = location.href;
+    var rs = new RegExp("(^|)" + name + "=([^\&]*)(\&|$|#)", "gi").exec(url),
+        tmp;
+    if (tmp = rs) {
+        return tmp[2];
+    }
+    return "";
 }
 
 /** 关闭弹出框口 */
