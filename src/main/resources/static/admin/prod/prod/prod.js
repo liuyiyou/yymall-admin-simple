@@ -67,7 +67,7 @@ function queryList() {
                 return actions.join('');
             }
         }];
-    var url = prefix + "/admin-list";
+    var url = prefix + "/admin/list";
     $.initTableJsonParams(columns, url, queryParams);
 }
 

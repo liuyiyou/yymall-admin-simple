@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 @Slf4j
-public class LoginController {
+public class SysLoginController {
 
     @GetMapping("/login")
     public String login() {

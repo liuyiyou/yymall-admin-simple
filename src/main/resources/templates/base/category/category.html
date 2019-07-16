@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      lang="zh" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content">
+    <div class="btn-group hidden-xs" id="toolbar" role="group">
+        <div class="form-group">
+            <button sec:authorize="hasAuthority('system:menu:add')" type="button" class="btn btn-outline btn-default"
+                    onclick="javascript:add(0)">
+                <i class="fa fa-plus"></i> 新增
+            </button>
+            <button sec:authorize="hasAuthority('system:menu:test')" type="button" class="btn btn-outline btn-default"
+                    onclick="javascript:add(0)">
+                <i class="fa fa-plus"></i> 测试
+            </button>
+        </div>
+    </div>
+    <table class="bootstrap-table" data-mobile-responsive="true">
+    </table>
+</div>
+<div th:include="include :: footer"></div>
+<script th:src="@{/admin/base/category/category.js}"></script>
+<script th:inline="javascript">
+    var addFlag = [[${#authorization.expression('hasAuthority(''system:menu:add'')')}]];
+    var editFlag = [[${#authorization.expression('hasAuthority(''system:menu:edit'')')}]];
+    var removeFlag = [[${#authorization.expression('hasAuthority(''system:menu:remove'')')}]];
+</script>
+</body>
+</html>

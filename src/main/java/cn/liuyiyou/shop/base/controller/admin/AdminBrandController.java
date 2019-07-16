@@ -1,4 +1,4 @@
-package cn.liuyiyou.shop.base.controller;
+package cn.liuyiyou.shop.base.controller.admin;
 
 import cn.liuyiyou.shop.base.entity.Brand;
 import cn.liuyiyou.shop.base.service.IBrandService;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /***
  *
@@ -35,6 +36,11 @@ public class AdminBrandController {
     @GetMapping("/list")
     public ModelAndView list() {
         return new ModelAndView(prefix + "/brand");
+    }
+
+    @GetMapping("/all")
+    public Result<List<Brand>> all() {
+        return Response.success(brandService.list());
     }
 
     @PostMapping("/list")

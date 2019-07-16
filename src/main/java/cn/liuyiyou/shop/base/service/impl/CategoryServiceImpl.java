@@ -101,7 +101,6 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
                 CascaderVo secondVo = new CascaderVo();
                 secondVo.setValue(e.getCataId());
                 secondVo.setLabel(e.getCataName());
-
                 List<Category> thirdeCategories = findListByCataParentId(e.getCataId());
                 List<CascaderVo> thirdVoList = thirdeCategories.stream().map(e2 -> {
                     CascaderVo thirdVo = new CascaderVo();

@@ -1,6 +1,5 @@
 package cn.liuyiyou.shop.order.vo.resp;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 import lombok.experimental.Accessors;
 

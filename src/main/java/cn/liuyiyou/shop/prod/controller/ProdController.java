@@ -51,11 +51,7 @@ public class ProdController extends BaseController {
         return Response.success(prodListRespVoIPage);
     }
 
-    @PostMapping("/admin-list")
-    public Result<IPage<AdminProdListRespVo>> adminList(@RequestBody ProdListReqVo prodListReqVo) {
-        IPage<AdminProdListRespVo> adminProdListRespVoIPage = prodService.adminProdPage(prodListReqVo);
-        return Response.success(adminProdListRespVoIPage);
-    }
+
 
 
     @GetMapping("/prods/{brandId}/{page}-{pageSize}")

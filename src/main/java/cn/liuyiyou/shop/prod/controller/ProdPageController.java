@@ -14,8 +14,4 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ProdPageController {
 
 
-    @GetMapping("/admin-list")
-    private String prodList() {
-        return "/prod/prod/prod";
-    }
 }

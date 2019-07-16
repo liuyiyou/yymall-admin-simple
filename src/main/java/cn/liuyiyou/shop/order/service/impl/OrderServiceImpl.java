@@ -104,7 +104,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         if (orderListReqVo.getOrderId() != null) {
             wrapper.eq(Order::getOrderId, orderListReqVo.getOrderId());
         }
-        wrapper.orderByDesc(Order::getOrderId);
+        wrapper.orderByDesc(Order::getCreateTime);
         IPage<Order> orderIPage = this.page(pageQuery, wrapper);
         Page<AdminOrderListRespVo> result = new Page<>(orderIPage.getCurrent(), orderIPage.getSize(), orderIPage.getTotal());
         List<AdminOrderListRespVo> orderListRespVos = orderIPage.getRecords().stream().map(order -> {

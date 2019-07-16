@@ -58,17 +58,9 @@ public class CategoryController extends BaseController {
         return Response.success(categoryService.getCategoryTree());
     }
 
-    @ApiOperation(value = "从一级类目往下获取")
-    @GetMapping("/tree")
-    public Result<List<CascaderVo>> getCategoryAdminTree() {
-        return Response.success(categoryService.getCascaderVo());
-    }
 
-    @ApiOperation(value = "获取一级类目")
-    @GetMapping("/list")
-    public Result<List<Category>> firtCatagoryList() {
-        return Response.success(categoryService.findListByLevel(1));
-    }
+
+
 
 }
 
