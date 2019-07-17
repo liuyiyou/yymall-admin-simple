@@ -41,6 +41,12 @@ public class AdminCategoryController {
         return categoryService.list();
     }
 
+    @GetMapping("/parent/{pid}")
+    public Result<List<Category>> getCategoryByPid(@PathVariable("pid") Integer pid) {
+        List<Category> categories = categoryService.findListByCataParentId(pid);
+        return Response.success(categories);
+    }
+
     @GetMapping("/add/{parentId}")
     public ModelAndView add(@PathVariable("parentId") Long parentId, Model model) {
         Category category;

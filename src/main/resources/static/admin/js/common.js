@@ -1,6 +1,6 @@
 /**
  * 通用方法封装处理
- * Copyright (c) 2018 ruoyi 
+ * Copyright (c) 2018 ruoyi
  */
 
 /** 消息状态码 */
@@ -10,8 +10,8 @@ web_status = {
 };
 
 STATUS = {
-    SUCCESS:true,
-    FAIL:false
+    SUCCESS: true,
+    FAIL: false
 }
 
 /** 弹窗状态码 */
@@ -25,16 +25,20 @@ modal_status = {
 function layer_show(title, url, w, h) {
     if (title == null || title == '') {
         title = false;
-    };
+    }
+    ;
     if (url == null || url == '') {
         url = "404.html";
-    };
+    }
+    ;
     if (w == null || w == '') {
         w = 800;
-    };
+    }
+    ;
     if (h == null || h == '') {
         h = ($(window).height() - 50);
-    };
+    }
+    ;
     layer.open({
         type: 2,
         area: [w + 'px', h + 'px'],
@@ -48,11 +52,9 @@ function layer_show(title, url, w, h) {
 }
 
 
-
-
 /** 弹出层自动宽高 */
 function layer_showAuto(title, url) {
-	layer_show(title, url, '', '');
+    layer_show(title, url, '', '');
 }
 
 
@@ -73,29 +75,40 @@ function layer_close() {
 }
 
 /** 对ajax的post方法再次封装 */
-_ajax_save = function(url, data) {
+_ajax_save = function (url, data) {
     var config = {
         url: url,
         type: "post",
         dataType: "json",
         data: data,
-        success: function(result) {
-        	handleSuccess(result);
+        success: function (result) {
+            handleSuccess(result);
         }
     };
     $.ajax(config)
 };
 
 /** 对jquery的ajax方法再次封装 */
-_ajax = function(url, data, type) {
+_ajax = function (url, data, type) {
     var config = {
         url: url,
         type: type,
         dataType: "json",
         data: data,
-        success: function(result) {
+        success: function (result) {
             simpleSuccess(result);
         }
+    };
+    $.ajax(config)
+};
+
+get = function (url, data, type, success) {
+    var config = {
+        url: url,
+        type: type,
+        dataType: "json",
+        data: data,
+        success: success
     };
     $.ajax(config)
 };
@@ -103,68 +116,68 @@ _ajax = function(url, data, type) {
 /** 返回结果处理 */
 function simpleSuccess(result) {
     if (result.success == STATUS.SUCCESS) {
-		$.modalMsg(result.msg, modal_status.SUCCESS);
-		$.refreshTable();
+        $.modalMsg(result.msg, modal_status.SUCCESS);
+        $.refreshTable();
     } else {
-    	$.modalAlert(result.msg, modal_status.FAIL);
+        $.modalAlert(result.msg, modal_status.FAIL);
     }
 }
 
 /** 操作结果处理 */
 function handleSuccess(result) {
     if (result.success == STATUS.SUCCESS) {
-    	parent.layer.msg("新增成功,正在刷新数据请稍后……",{icon:1,time: 500,shade: [0.1,'#fff']},function(){
-			$.parentReload();
-		});
+        parent.layer.msg("新增成功,正在刷新数据请稍后……", {icon: 1, time: 500, shade: [0.1, '#fff']}, function () {
+            $.parentReload();
+        });
     } else {
-    	$.modalAlert(result.msg, modal_status.FAIL);
+        $.modalAlert(result.msg, modal_status.FAIL);
     }
 }
 
 /** 时间格式化 */
 function formatDate(_date, _pattern) {
-	var date = new Date(_date);
-	var newDate = date.format(_pattern);
-	return newDate;
+    var date = new Date(_date);
+    var newDate = date.format(_pattern);
+    return newDate;
 }
 
-Date.prototype.format = function(format) {
-	var date = {
-		"M+" : this.getMonth() + 1,
-		"d+" : this.getDate(),
-		"h+" : this.getHours(),
-		"m+" : this.getMinutes(),
-		"s+" : this.getSeconds(),
-		"q+" : Math.floor((this.getMonth() + 3) / 3),
-		"S+" : this.getMilliseconds()
-	};
-	if (/(y+)/i.test(format)) {
-		format = format.replace(RegExp.$1, (this.getFullYear() + '')
-				.substr(4 - RegExp.$1.length));
-	}
-	for ( var k in date) {
-		if (new RegExp("(" + k + ")").test(format)) {
-			format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? date[k]
-					: ("00" + date[k]).substr(("" + date[k]).length));
-		}
-	}
-	return format;
+Date.prototype.format = function (format) {
+    var date = {
+        "M+": this.getMonth() + 1,
+        "d+": this.getDate(),
+        "h+": this.getHours(),
+        "m+": this.getMinutes(),
+        "s+": this.getSeconds(),
+        "q+": Math.floor((this.getMonth() + 3) / 3),
+        "S+": this.getMilliseconds()
+    };
+    if (/(y+)/i.test(format)) {
+        format = format.replace(RegExp.$1, (this.getFullYear() + '')
+            .substr(4 - RegExp.$1.length));
+    }
+    for (var k in date) {
+        if (new RegExp("(" + k + ")").test(format)) {
+            format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? date[k]
+                : ("00" + date[k]).substr(("" + date[k]).length));
+        }
+    }
+    return format;
 }
 
 /** 创建选项卡 */
 function createMenuItem(dataUrl, menuName) {
-    dataIndex = Math.floor(Math.random()*100),
-    flag = true;
+    dataIndex = Math.floor(Math.random() * 100),
+        flag = true;
     if (dataUrl == undefined || $.trim(dataUrl).length == 0) return false;
     var topWindow = $(window.parent.document);
     // 选项卡菜单已存在
-    $('.menuTab', topWindow).each(function() {
+    $('.menuTab', topWindow).each(function () {
         if ($(this).data('id') == dataUrl) {
             if (!$(this).hasClass('active')) {
                 $(this).addClass('active').siblings('.menuTab').removeClass('active');
-                $('.page-tabs-content').animate({ marginLeft: ""}, "fast");
+                $('.page-tabs-content').animate({marginLeft: ""}, "fast");
                 // 显示tab对应的内容区
-                $('.mainContent .RuoYi_iframe', topWindow).each(function() {
+                $('.mainContent .RuoYi_iframe', topWindow).each(function () {
                     if ($(this).data('id') == dataUrl) {
                         $(this).show().siblings('.RuoYi_iframe').hide();
                         return false;
@@ -192,11 +205,11 @@ function createMenuItem(dataUrl, menuName) {
 
 /** 设置全局ajax超时处理 */
 $.ajaxSetup({
-    complete: function(XMLHttpRequest, textStatus) {
+    complete: function (XMLHttpRequest, textStatus) {
         if (textStatus == "parsererror") {
-        	$.modalConfirm("登陆超时！请重新登陆！", function() {
-        		window.location.href = ctx + "login";
-        	})
+            $.modalConfirm("登陆超时！请重新登陆！", function () {
+                window.location.href = ctx + "login";
+            })
         }
     }
 }); 

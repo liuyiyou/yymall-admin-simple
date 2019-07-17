@@ -36,7 +36,7 @@ public class CodeGenerate {
 
 
     private final static String MODULE_NAME = "base";
-    private final static String[] TABLES = {"area", "banner", "brand", "category"};
+    private final static String[] TABLES = {"category_brand"};
     private final static String DB_URL = "jdbc:mysql://localhost:3306/shop-base?useUnicode=true&characterEncoding=utf-8&rewriteBatchedStatements=true&zeroDateTimeBehavior=convertToNull";
     private final static String DB_USERNAME = "root";
     private final static String DB_PASSWORD = "123456";

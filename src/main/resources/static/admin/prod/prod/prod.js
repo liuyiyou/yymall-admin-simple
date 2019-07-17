@@ -63,7 +63,7 @@ function queryList() {
             formatter: function (value, row, index) {
                 var actions = [];
                 actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="#" onclick="edit(\'' + row.prodId + '\')"><i class="fa fa-edit"></i>编辑</a> ');
-                actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="#" onclick="remove(\'' + row.prodId + '\')"><i class="fa fa-remove"></i>删除</a> ');
+                actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="#" onclick="detail(\'' + row.prodId + '\')"><i class="fa fa-remove"></i>详情</a> ');
                 return actions.join('');
             }
         }];
@@ -84,10 +84,8 @@ function queryParams(params) {
 }
 
 /*用户管理-删除*/
-function remove(prodId) {
-    $.modalConfirm("确定要删除选中用户吗？", function () {
-        _ajax(prefix + "/" + userId, "", "delete");
-    })
+function detail(prodId) {
+    _ajax(prefix + "/" + prodId, "", "get");
 }
 
 /*商品管理-修改*/
