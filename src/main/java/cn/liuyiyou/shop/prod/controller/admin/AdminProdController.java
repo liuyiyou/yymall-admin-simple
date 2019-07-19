@@ -3,11 +3,12 @@ package cn.liuyiyou.shop.prod.controller.admin;
 import cn.liuyiyou.shop.common.response.Response;
 import cn.liuyiyou.shop.common.response.Result;
 import cn.liuyiyou.shop.prod.service.IProdService;
-import cn.liuyiyou.shop.prod.vo.AdminProdListRespVo;
-import cn.liuyiyou.shop.prod.vo.ProdListReqVo;
 import cn.liuyiyou.shop.prod.vo.ProdVo;
+import cn.liuyiyou.shop.prod.vo.req.ProdListReqVo;
+import cn.liuyiyou.shop.prod.vo.resp.AdminProdListRespVo;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,11 +44,14 @@ public class AdminProdController {
     }
 
 
-    @GetMapping("/detail")
-    private ModelAndView detail() {
-        return new ModelAndView(prefix + "/detail");
+    @GetMapping("/detail/{prodId}")
+    private ModelAndView detail(@PathVariable("prodId") Long prodId) {
+        ModelMap modelMap = new ModelMap();
+        ProdVo prodvo = prodService.getProdById(prodId);
+        modelMap.put("prodId", prodId);
+        modelMap.put("prod", prodvo);
+        return new ModelAndView(prefix + "/detail", modelMap);
     }
-
 
 
     @GetMapping("/edit/{id}")

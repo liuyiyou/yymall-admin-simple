@@ -23,27 +23,31 @@ import java.util.List;
  */
 @RequestMapping("/base/admin/category")
 @RestController
-public class AdminCategoryController {
+public class AdminCategoryPageController {
 
 
     @Autowired
     private ICategoryService categoryService;
 
-    @ApiOperation(value = "获取一级类目")
-    @GetMapping("/list2")
-    public List<Category> firtCatagoryList() {
-        return categoryService.list();
-    }
-
-    @GetMapping("/parent/{pid}")
-    public Result<List<Category>> getCategoryByPid(@PathVariable("pid") Integer pid) {
-        List<Category> categories = categoryService.findListByCataParentId(pid);
-        return Response.success(categories);
-    }
-
     @ApiOperation(value = "从一级类目往下获取")
-    @GetMapping("/tree")
-    public Result<List<CascaderVo>> getCategoryAdminTree() {
-        return Response.success(categoryService.getCascaderVo());
+    @GetMapping("/list")
+    public ModelAndView list() {
+        return new ModelAndView("base/category/category");
     }
+
+
+    @GetMapping("/add/{parentId}")
+    public ModelAndView add(@PathVariable("parentId") Long parentId, Model model) {
+        Category category;
+        if (0L != parentId) {
+            category = categoryService.getById(parentId);
+        } else {
+            category = new Category();
+            category.setCataId(0);
+            category.setCataName("主目录");
+        }
+        model.addAttribute("category", category);
+        return new ModelAndView("base/category/add");
+    }
+
 }

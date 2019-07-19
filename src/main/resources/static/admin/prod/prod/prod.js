@@ -63,7 +63,7 @@ function queryList() {
             formatter: function (value, row, index) {
                 var actions = [];
                 actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="#" onclick="edit(\'' + row.prodId + '\')"><i class="fa fa-edit"></i>编辑</a> ');
-                actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="#" onclick="detail(\'' + row.prodId + '\')"><i class="fa fa-remove"></i>详情</a> ');
+                actions.push('<a class="btn btn-success btn-xs ' + removeFlag + '" href="#" onclick="detail(\'' + row.prodId + '\')"><i class="fa fa-remove"></i>详情</a> ');
                 return actions.join('');
             }
         }];
@@ -83,9 +83,10 @@ function queryParams(params) {
     return param;
 }
 
-/*用户管理-删除*/
+/*商品管理-常看详情*/
 function detail(prodId) {
-    _ajax(prefix + "/" + prodId, "", "get");
+    var url = prefix + "/detail/" + prodId;
+    layer_showAuto("商品详情", url);
 }
 
 /*商品管理-修改*/

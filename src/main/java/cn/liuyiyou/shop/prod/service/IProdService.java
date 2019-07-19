@@ -1,9 +1,9 @@
 package cn.liuyiyou.shop.prod.service;
 
 import cn.liuyiyou.shop.prod.entity.Prod;
-import cn.liuyiyou.shop.prod.vo.AdminProdListRespVo;
-import cn.liuyiyou.shop.prod.vo.ProdListReqVo;
-import cn.liuyiyou.shop.prod.vo.ProdListRespVo;
+import cn.liuyiyou.shop.prod.vo.resp.AdminProdListRespVo;
+import cn.liuyiyou.shop.prod.vo.req.ProdListReqVo;
+import cn.liuyiyou.shop.prod.vo.resp.ProdListRespVo;
 import cn.liuyiyou.shop.prod.vo.ProdVo;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;

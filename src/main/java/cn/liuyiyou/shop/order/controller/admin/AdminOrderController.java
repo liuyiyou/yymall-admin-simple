@@ -47,7 +47,6 @@ public class AdminOrderController {
     }
 
 
-
     @ApiOperation("订单详情")
     @GetMapping("/{id}")
     public Result adminDetail(@PathVariable("id") Long orderId) {

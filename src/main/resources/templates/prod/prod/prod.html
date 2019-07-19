@@ -13,10 +13,6 @@
     <div class="btn-group hidden-xs" id="toolbar" role="group">
         <button sec:authorize="hasAuthority('system:user:save')" class="btn btn-outline btn-default"
                 onclick="javascript:add()">
-            <i class="fa fa-plus"></i> 查看SKU
-        </button>
-        <button sec:authorize="hasAuthority('system:user:save')" class="btn btn-outline btn-default"
-                onclick="javascript:add()">
             <i class="fa fa-plus"></i> 新增
         </button>
         <button class="btn btn-outline btn-default" onclick="javascript:batchRemove()"

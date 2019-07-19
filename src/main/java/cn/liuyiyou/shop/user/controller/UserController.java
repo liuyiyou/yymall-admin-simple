@@ -4,7 +4,7 @@ package cn.liuyiyou.shop.user.controller;
 import cn.liuyiyou.shop.common.response.Response;
 import cn.liuyiyou.shop.common.response.Result;
 import cn.liuyiyou.shop.common.web.BaseController;
-import cn.liuyiyou.shop.prod.vo.ProdListReqVo;
+import cn.liuyiyou.shop.prod.vo.req.ProdListReqVo;
 import cn.liuyiyou.shop.user.entity.User;
 import cn.liuyiyou.shop.user.service.IUserService;
 import cn.liuyiyou.shop.user.vo.Prod;

@@ -9,7 +9,7 @@ import lombok.Data;
  * @Copyright 2019 liuyiyou.cn Inc. All rights reserved
  */
 @Data
-public class SimpleProdVo {
+public class ProdSimpleVo {
 
     private Long prodId;
     private String prodName;

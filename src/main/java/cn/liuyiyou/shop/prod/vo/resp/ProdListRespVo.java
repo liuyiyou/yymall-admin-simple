@@ -1,6 +1,5 @@
-package cn.liuyiyou.shop.prod.vo;
+package cn.liuyiyou.shop.prod.vo.resp;
 
-import cn.liuyiyou.shop.common.vo.PageVo;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -12,10 +11,12 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class ProdListReqVo  extends PageVo {
+public class ProdListRespVo {
 
-    private Integer cataId;
-    private String orderBy;
-    private Long brandId;
+    private Long prodId;
+    private String prodName;
+    private String album;
+    private Float price;
+    private Integer commentNum;
 
 }

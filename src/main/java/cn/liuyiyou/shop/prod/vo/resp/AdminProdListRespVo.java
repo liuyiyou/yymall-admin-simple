@@ -1,4 +1,4 @@
-package cn.liuyiyou.shop.prod.vo;
+package cn.liuyiyou.shop.prod.vo.resp;
 
 import cn.liuyiyou.shop.prod.entity.Prod;
 import cn.liuyiyou.shop.prod.entity.ProdSku;

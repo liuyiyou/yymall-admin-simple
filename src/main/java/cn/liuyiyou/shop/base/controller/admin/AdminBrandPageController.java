@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -24,19 +25,18 @@ import java.util.List;
  */
 @RequestMapping("/base/admin/brand")
 @RestController
-public class AdminBrandController {
+public class AdminBrandPageController {
+
+    private String prefix = "base/brand";
+
 
     @Autowired
     private IBrandService brandService;
 
-    @GetMapping("/all")
-    public Result<List<Brand>> all() {
-        return Response.success(brandService.list());
+    @GetMapping("/list")
+    public ModelAndView list() {
+        return new ModelAndView(prefix + "/brand");
     }
 
-    @PostMapping("/list")
-    public Result<IPage<Brand>> list(@RequestBody @NotNull PageVo pageVo) {
-        IPage<Brand> brandByPage = brandService.getBrandByPage(pageVo);
-        return Response.success(brandByPage);
-    }
+
 }

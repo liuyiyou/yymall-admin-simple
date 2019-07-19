@@ -1,6 +1,5 @@
 package cn.liuyiyou.shop.order.service.impl;
 
-import cn.liuyiyou.shop.common.response.Result;
 import cn.liuyiyou.shop.order.config.OrderPayTypeMap;
 import cn.liuyiyou.shop.order.config.OrderStatusMap;
 import cn.liuyiyou.shop.order.dto.OrderCountDto;
@@ -18,12 +17,11 @@ import cn.liuyiyou.shop.order.vo.resp.OrderCountRespVo;
 import cn.liuyiyou.shop.order.vo.resp.OrderInfoRespVo;
 import cn.liuyiyou.shop.order.vo.resp.OrderListRespVo;
 import cn.liuyiyou.shop.order.vo.resp.OrderProdListRespVo;
-import cn.liuyiyou.shop.order.vo.resp.UserDeliveryVo;
 import cn.liuyiyou.shop.prod.entity.Prod;
 import cn.liuyiyou.shop.prod.entity.ProdSku;
 import cn.liuyiyou.shop.prod.service.IProdService;
 import cn.liuyiyou.shop.prod.service.IProdSkuService;
-import com.alibaba.fastjson.JSON;
+import cn.liuyiyou.shop.user.service.impl.UserDeliveryService;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -35,10 +33,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -70,6 +68,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
 
     @Autowired
     private RestTemplate restTemplate;
+    @Autowired
+    private UserDeliveryService userDeliveryService;
 
     @Override
     public Page<OrderListRespVo> getOrderList(OrderListReqVo orderListReqVo) {
@@ -195,45 +195,18 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     }
 
     @Override
+    @Transactional(rollbackOn = Exception.class)
     public Long createOrder(OrderAddReqVo orderAddReqVo) {
-
-        //通过dubbo获取prod和prodSku
 
         ProdSku prodSku = prodSkuService.getById(orderAddReqVo.getSkuId());
         Prod prod = prodService.getById(prodSku.getProdId());
 
-        //通过Ribbon获取用户地址信息
-        UserDeliveryVo userDeliveryVo = new UserDeliveryVo();
-        Result<UserDeliveryVo> body = restTemplate.getForEntity("http://USER-SERVICE/user/delivery", Result.class).getBody();
-        if (body.isSuccess()) {
-            userDeliveryVo = JSON.parseObject(JSON.toJSONString(body.getData()), UserDeliveryVo.class);
-        }
-        log.info("收获地址：：" + userDeliveryVo);
-
-
-        //冻结库存
         prodSku.setFreez(prodSku.getFreez() + orderAddReqVo.getProdNum());
-        boolean freezSkuResult = prodSkuService.updateById(prodSku);
-        if (freezSkuResult) {
-            log.info("冻结库存成功，skuId为::" + prodSku.getSkuId());
-        } else {
-            log.info("冻结库存失败，skuId为::" + prodSku.getSkuId());
-        }
-
+        prodSkuService.updateById(prodSku);
 
         //创建订单
         Order order = new Order();
-        order.setStatus(1)
-                .setUid(1);
-        BeanUtils.copyProperties(userDeliveryVo, order);
-
-        boolean saveOrderResult = this.save(order);
-        if (saveOrderResult) {
-            log.info("创建订单成功，订单id为::" + order.getOrderId());
-        } else {
-            log.info("创建订单失败");
-        }
-
+        this.save(order);
 
         //创建订单商品
         OrderProd orderProd = new OrderProd();
@@ -247,12 +220,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
                 .setProdNum(orderAddReqVo.getProdNum())
                 .setProdAttr(prod.getSpuAttr())
                 .setAlbum(prod.getAlbum().split(",")[0]);
-        boolean saveOrderProd = orderProdService.save(orderProd);
-        if (saveOrderProd) {
-            log.info("创建订单商品成功，id为::" + orderProd.getOrderId());
-        } else {
-            log.info("创建订单商品失败");
-        }
+
+        orderProdService.save(orderProd);
         return order.getOrderId();
 
     }

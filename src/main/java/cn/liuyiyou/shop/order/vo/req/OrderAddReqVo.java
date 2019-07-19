@@ -1,5 +1,6 @@
 package cn.liuyiyou.shop.order.vo.req;
 
+import cn.liuyiyou.shop.user.entity.UserDelivery;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -17,5 +18,7 @@ public class OrderAddReqVo implements Serializable {
 
     private Long skuId;
     private Integer prodNum;
+    private UserDelivery userDelivery;
+
 
 }
