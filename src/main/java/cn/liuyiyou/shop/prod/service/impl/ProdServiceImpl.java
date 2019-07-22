@@ -112,7 +112,6 @@ public class ProdServiceImpl extends ServiceImpl<ProdMapper, Prod> implements IP
         ProdVo prodVo = new ProdVo();
         BeanUtils.copyProperties(prod, prodVo);
         prodVo.setAlbums(Arrays.asList(prod.getAlbum().split(",")));
-        prodVo.setBrandName(brandService.getById(prod.getBrandId()).getBrandNameCn());
         LambdaQueryWrapper<ProdSku> skuWrapper = new QueryWrapper<ProdSku>().lambda().select().eq(ProdSku::getProdId, id);
         List<SkuKeyValueVo> skuKeyValueVoList = Lists.newArrayList();
         List<ProdSkuVo> prodSkuVos = Lists.newArrayList();

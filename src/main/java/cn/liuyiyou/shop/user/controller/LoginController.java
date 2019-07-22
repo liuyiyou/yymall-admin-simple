@@ -6,9 +6,11 @@ import cn.liuyiyou.shop.user.service.IUserService;
 import cn.liuyiyou.shop.user.vo.LoginVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 /***
  *
@@ -22,6 +24,8 @@ public class LoginController {
 
     @Autowired
     private IUserService userService;
+
+
 
     @PostMapping("/login")
     public Result<String> login(@Validated @RequestBody LoginVo loginVo) {
