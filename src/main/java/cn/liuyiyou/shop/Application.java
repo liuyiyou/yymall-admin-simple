@@ -57,7 +57,7 @@ public class Application implements WebMvcConfigurer {
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
-                .apis(RequestHandlerSelectors.withClassAnnotation(Controller.class))
+//                .apis(RequestHandlerSelectors.withClassAnnotation(Controller.class))
                 .paths(PathSelectors.any())
                 .build();
     }

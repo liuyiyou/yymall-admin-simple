@@ -31,13 +31,13 @@ import static com.baomidou.mybatisplus.annotation.IdType.INPUT;
 public class CodeGenerate {
 
     private final static String AUTHOR = "liuyiyou.cn";
-    private final static String OUTPUT_DIR = "F:\\github\\cn.liuyiyou.shop.simple\\src\\main\\java";
+    private final static String OUTPUT_DIR = "/Users/liuyiyou/code/github/cn.liuyiyou.shop.simple/src/main/java";
     private final static String BASE_PACKAGE = "cn.liuyiyou.shop";
 
 
-    private final static String MODULE_NAME = "base";
-    private final static String[] TABLES = {"category_brand"};
-    private final static String DB_URL = "jdbc:mysql://localhost:3306/shop-base?useUnicode=true&characterEncoding=utf-8&rewriteBatchedStatements=true&zeroDateTimeBehavior=convertToNull";
+    private final static String MODULE_NAME = "user";
+    private final static String[] TABLES = {"user_delivery"};
+    private final static String DB_URL = "jdbc:mysql://localhost:3306/shop-user?useUnicode=true&characterEncoding=utf-8&rewriteBatchedStatements=true&zeroDateTimeBehavior=convertToNull";
     private final static String DB_USERNAME = "root";
     private final static String DB_PASSWORD = "123456";
 
@@ -106,14 +106,24 @@ public class CodeGenerate {
         return dataSourceConfig;
     }
 
+//    private PackageConfig getPackageConfig() {
+//        return new PackageConfig().setParent(BASE_PACKAGE)
+//                .setController("modules." + MODULE_NAME + ".controller")
+//                .setEntity("modules." + MODULE_NAME + ".entity")
+//                .setMapper("modules." + MODULE_NAME + ".mapper")
+//                .setService("modules." + MODULE_NAME + ".service")
+//                .setServiceImpl("modules." + MODULE_NAME + ".service.impl")
+//                .setXml("modules." + MODULE_NAME + ".mapper.xml");
+//    }
+
     private PackageConfig getPackageConfig() {
         return new PackageConfig().setParent(BASE_PACKAGE)
-                .setController("modules." + MODULE_NAME + ".controller")
-                .setEntity("modules." + MODULE_NAME + ".entity")
-                .setMapper("modules." + MODULE_NAME + ".mapper")
-                .setService("modules." + MODULE_NAME + ".service")
-                .setServiceImpl("modules." + MODULE_NAME + ".service.impl")
-                .setXml("modules." + MODULE_NAME + ".mapper.xml");
+                .setController(MODULE_NAME + ".controller")
+                .setEntity(MODULE_NAME + ".entity")
+                .setMapper(MODULE_NAME + ".mapper")
+                .setService(MODULE_NAME + ".service")
+                .setServiceImpl(MODULE_NAME + ".service.impl")
+                .setXml(MODULE_NAME + ".mapper.xml");
     }
 
     class CustomMySqlTypeConvert implements ITypeConvert {
@@ -134,7 +144,7 @@ public class CodeGenerate {
             } else if (t.contains("text")) {
                 return DbColumnType.STRING;
             } else if (t.contains("bit")) {
-                return DbColumnType.BASE_BOOLEAN;
+                return DbColumnType.BOOLEAN;
             } else if (t.contains("decimal")) {
                 return DbColumnType.BIG_DECIMAL;
             } else if (t.contains("clob")) {

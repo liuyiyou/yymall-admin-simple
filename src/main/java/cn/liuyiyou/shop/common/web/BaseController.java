@@ -63,6 +63,6 @@ public class BaseController {
                 }
             }
         }
-        return null;
+        return 1;
     }
 }

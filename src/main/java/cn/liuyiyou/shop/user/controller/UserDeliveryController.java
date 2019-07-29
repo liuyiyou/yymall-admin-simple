@@ -4,7 +4,7 @@ package cn.liuyiyou.shop.user.controller;
 import cn.liuyiyou.shop.common.response.Response;
 import cn.liuyiyou.shop.common.response.Result;
 import cn.liuyiyou.shop.user.entity.UserDelivery;
-import cn.liuyiyou.shop.user.service.IUserDeliveryService;
+import cn.liuyiyou.shop.user.service.UserDeliveryService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -34,7 +34,7 @@ import static cn.liuyiyou.shop.common.web.BaseController.getUid;
 public class UserDeliveryController {
 
     @Autowired
-    private IUserDeliveryService userDeliveryService;
+    private UserDeliveryService userDeliveryService;
 
     @ApiOperation(value = "获取收货地址列表")
     @PostMapping("/list")
