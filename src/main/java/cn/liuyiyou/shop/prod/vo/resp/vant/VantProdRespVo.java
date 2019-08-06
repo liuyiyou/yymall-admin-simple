@@ -1,18 +1,17 @@
-package cn.liuyiyou.shop.prod.vo;
+package cn.liuyiyou.shop.prod.vo.resp.vant;
 
 import lombok.Data;
 
-import java.io.Serializable;
 import java.util.List;
 
-/**
+/***
+ *
  * @author: liuyiyou.cn
- * @date: 2018/10/31
- * @version: V1.0
- * @Copyright: 2018 liuyiyou.cn Inc. All rights reserved.
+ * @date: 2019/7/30
+ * @Copyright 2019 liuyiyou.cn Inc. All rights reserved
  */
 @Data
-public class ProdVo implements Serializable {
+public class VantProdRespVo {
     private List<String> albums;
     private Long prodId;
     private String prodName;
@@ -20,10 +19,6 @@ public class ProdVo implements Serializable {
     private String brandName;
     private Integer cataId;
     private String country;
-    private List<ProdSkuVo> prodSkus;
     private String price;
     private Integer remain;
-    List<SkuKeyListValueVo> skuKeyListValue;
-
-
 }
