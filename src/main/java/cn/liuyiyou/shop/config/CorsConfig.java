@@ -15,7 +15,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @date: 2018/5/28
  */
 @Configuration
-public class CorsConfig {
+public class CorsConfig implements WebMvcConfigurer {
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedMethods("*")
+                .allowedOrigins("*")
+                .allowedHeaders("*");
+    }
 
     @Bean
     public FilterRegistrationBean corsFilter() {

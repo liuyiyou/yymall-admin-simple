@@ -19,7 +19,7 @@ function queryList() {
             field: 'brandIcon',
             title: '品牌图标',
             formatter: function (value, row, index) {
-                return '<img style="width:50px;height:50px;"  src="https://oss.yanglaoban.com/' + value + '">';
+                return '<img style="width:50px;height:50px;"  src="https://oss.liuyiyou.cn/' + value + '">';
             }
         },
         {

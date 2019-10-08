@@ -14,10 +14,10 @@ package cn.liuyiyou.shop.order.config;//package cn.liuyiyou.shop.order.config;
 //import java.util.Map;
 //
 ///**
-// * @author: liuyiyou@yanglaoban.com
+// * @author: liuyiyou@liuyiyou.cn
 // * @date: 2018/11/5
 // * @version: V1.0
-// * @Copyright: 2018 yanglaoban.com Inc. All rights reserved.
+// * @Copyright: 2018 liuyiyou.cn Inc. All rights reserved.
 // */
 //@Configuration
 //@EnableKafka

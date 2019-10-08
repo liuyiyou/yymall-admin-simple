@@ -2,6 +2,7 @@ package cn.liuyiyou.shop.common.web;
 
 import cn.liuyiyou.shop.common.utils.StringUtil;
 import com.alibaba.fastjson.JSONObject;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.http.HttpServletRequest;
 import java.nio.charset.Charset;
@@ -13,6 +14,7 @@ import java.text.MessageFormat;
  * @date: 2019/2/7
  * @Copyright 2019 liuyiyou.cn Inc. All rights reserved
  */
+@Slf4j
 public class BaseController {
 
     public static Integer EXEC_OK = 0;
@@ -54,12 +56,12 @@ public class BaseController {
         String trackId = request.getHeader("trackId");
         if (StringUtil.isNotEmptyString(trackId)) {
             String[] trackSplites = trackId.split(TRACK_ID_SPLIT_SIGN);
-            if (trackSplites != null && trackSplites.length == 3) {
+            if (trackSplites.length == 3) {
                 try {
                     String s = new String(StringUtil.decodeBase64(trackSplites[1]), Charset.defaultCharset());
                     return Integer.valueOf(s);
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    log.error("登陆异常",e);
                 }
             }
         }

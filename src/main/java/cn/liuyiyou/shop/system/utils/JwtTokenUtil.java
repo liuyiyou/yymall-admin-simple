@@ -15,10 +15,10 @@ package cn.liuyiyou.shop.system.utils;//package cn.liuyiyou.yiadmin.utils;
 ///**
 // * JWT工具类
 // *
-// * @author: liuyiyou@yanglaoban.com
+// * @author: liuyiyou@liuyiyou.cn
 // * @date: 2018/8/27
 // * @version: V1.0
-// * @Copyright: 2018 yanglaoban.com Inc. All rights reserved.
+// * @Copyright: 2018 liuyiyou.cn Inc. All rights reserved.
 // */
 //@Component
 //public class JwtTokenUtil implements Serializable {

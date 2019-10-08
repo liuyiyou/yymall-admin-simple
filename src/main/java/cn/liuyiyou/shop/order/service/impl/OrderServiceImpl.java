@@ -21,7 +21,6 @@ import cn.liuyiyou.shop.prod.entity.Prod;
 import cn.liuyiyou.shop.prod.entity.ProdSku;
 import cn.liuyiyou.shop.prod.service.IProdService;
 import cn.liuyiyou.shop.prod.service.IProdSkuService;
-import cn.liuyiyou.shop.user.service.UserDeliveryService;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -69,7 +68,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     @Autowired
     private RestTemplate restTemplate;
 //    @Autowired
-    private UserDeliveryService userDeliveryService;
+//    private UserDeliveryService userDeliveryService;
 
     @Override
     public Page<OrderListRespVo> getOrderList(OrderListReqVo orderListReqVo) {

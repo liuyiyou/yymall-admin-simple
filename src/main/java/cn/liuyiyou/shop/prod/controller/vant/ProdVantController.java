@@ -38,7 +38,7 @@ public class ProdVantController {
         ProdVo prodvo = prodService.getProdById(id);
         BeanUtils.copyProperties(prodvo, vantProdRespVo);
         List<String> albums = prodvo.getAlbums().stream().map(thumb -> {
-            thumb = "https://oss.yanglaoban.com/" + thumb;
+            thumb = "https://oss.liuyiyou.cn/" + thumb;
             return thumb;
         }).collect(Collectors.toList());
         vantProdRespVo.setAlbums(albums);
