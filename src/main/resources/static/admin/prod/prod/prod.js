@@ -1,4 +1,4 @@
-var prefix = ctx + "prod/admin"
+var prefix = ctx + "prod/admin";
 
 $(document).ready(function () {
     $('body').layout({west__size: 185});
@@ -23,14 +23,16 @@ function queryList() {
             title: 'SKU信息',
             align: 'center',
             formatter: function (value, row, index) {
-                console.info(value);
-                var table = "<table>"
-                for (i = 0; i < value.length; i++) {
-                    table += '<tr><td>' + value[i].price + '</td><td>' + value[i].store + '</td><td>' + value[i].saled + '</td><td>' + value[i].freez + '</td></tr>';
+                if (value.length == 1) {
+                    var table = "<table>"
+                    for (var i = 0; i < value.length; i++) {
+                        table += '<tr><td>' + value[i].price + '</td><td>' + value[i].store + '</td><td>' + value[i].saled + '</td><td>' + value[i].freez + '</td></tr>';
+                    }
+                    table += '</table>';
+                    return table;
+                } else {
+                    return "查看SKU";
                 }
-                table += '</table>';
-                return table;
-
             }
         },
         {
@@ -40,10 +42,6 @@ function queryList() {
         {
             field: 'createTime',
             title: '创建时间'
-        },
-        {
-            field: 'lastUpdate',
-            title: '修改时间'
         },
         {
             field: 'status',
@@ -68,7 +66,7 @@ function queryList() {
             }
         }];
     var url = prefix + "/list";
-    $.initTableJsonParams(columns, url, queryParams);
+    $.initTreeTable('menuId', 'parentId', columns, url, false);
 }
 
 function queryParams(params) {

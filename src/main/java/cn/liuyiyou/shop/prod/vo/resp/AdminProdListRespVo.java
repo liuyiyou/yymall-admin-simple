@@ -17,6 +17,4 @@ import java.util.List;
 @Accessors(chain = true)
 public class AdminProdListRespVo extends Prod {
     private List<ProdSku> skus;
-
-
 }

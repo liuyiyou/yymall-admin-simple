@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       lang="zh" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+>
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
-<body class="gray-bg">
+<body>
 <div class="wrapper wrapper-content">
-    <div class="btn-group hidden-xs" id="toolbar" role="group">
-        <div class="form-group">
-            <button sec:authorize="hasAuthority('system:menu:add')" type="button" class="btn btn-outline btn-default"
-                    onclick="javascript:add(0)">
-                <i class="fa fa-plus"></i> 新增
-            </button>
-            <button sec:authorize="hasAuthority('system:menu:test')" type="button" class="btn btn-outline btn-default"
-                    onclick="javascript:add(0)">
-                <i class="fa fa-plus"></i> 测试
-            </button>
+    <!-- 省市区地域查询展示 -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <h4>一级类目</h4>
+                <div id="treeview-searchable_0" class=""></div>
+            </div>
+            <div class="col-sm-4">
+                <h4>二级类目</h4>
+                <div id="treeview-searchable_1"></div>
+            </div>
+            <div class="col-sm-4">
+                <h4>三级类目</h4>
+                <div id="treeview-searchable_2"></div>
+            </div>
         </div>
     </div>
-    <table class="bootstrap-table" data-mobile-responsive="true">
-    </table>
 </div>
 <div th:include="include :: footer"></div>
 <script th:src="@{/admin/base/category/category.js}"></script>

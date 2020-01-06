@@ -25,7 +25,7 @@ import static cn.liuyiyou.shop.common.web.BaseController.getUid;
  * @Copyright 2019 liuyiyou.cn Inc. All rights reserved
  */
 @Slf4j
-@Api(description = "用户订单管理")
+@Api(description = "用户订单管理",tags = "用户订单管理")
 @RestController
 @RequestMapping("/user/order")
 public class UserOrderController {

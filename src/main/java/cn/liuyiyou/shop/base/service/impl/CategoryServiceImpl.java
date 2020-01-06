@@ -55,7 +55,9 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
 
     @Override
     public List<Category> findListByLevel(int categoryTyep) {
-        List<Category> list = this.list(new QueryWrapper<Category>().eq("cata_type", categoryTyep).orderByDesc(true, "cata_weight"));
+        final QueryWrapper<Category> queryWrapper = new QueryWrapper<Category>()
+                .eq("cata_type", categoryTyep).orderByDesc(true, "cata_weight");
+        List<Category> list = this.list(queryWrapper);
         return list;
     }
 
