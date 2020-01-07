@@ -4,9 +4,11 @@ import cn.liuyiyou.shop.common.response.Response;
 import cn.liuyiyou.shop.common.response.Result;
 import cn.liuyiyou.shop.prod.entity.ProdSku;
 import cn.liuyiyou.shop.prod.service.IProdService;
+import cn.liuyiyou.shop.prod.service.IProdSkuService;
 import cn.liuyiyou.shop.prod.vo.ProdVo;
 import cn.liuyiyou.shop.prod.vo.resp.vant.VantProdDetailRespVo;
 import cn.liuyiyou.shop.prod.vo.resp.vant.VantProdRespVo;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +31,8 @@ public class ProdVantController {
 
     @Autowired
     private IProdService prodService;
+    @Autowired
+    private IProdSkuService prodSkuService;
 
 
     @GetMapping("{id}")
@@ -50,6 +54,8 @@ public class ProdVantController {
 
 
         //封装SKU
+        List<ProdSku> prodSkus = prodSkuService.list(new LambdaQueryWrapper<ProdSku>().eq(ProdSku::getProdId, id));
+
 
 
         return Response.success(vantProdDetailRespVo);

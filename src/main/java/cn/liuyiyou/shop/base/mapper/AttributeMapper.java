@@ -2,6 +2,7 @@ package cn.liuyiyou.shop.base.mapper;
 
 import cn.liuyiyou.shop.base.entity.Attribute;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.springframework.stereotype.Repository;
 
 /**
  * <p>
@@ -24,6 +25,7 @@ attr_clazz = 3 是为限制组合属性，是比较复杂的组合属性，由�
  * @author liuyiyou.cn
  * @since 2019-04-12
  */
+@Repository
 public interface AttributeMapper extends BaseMapper<Attribute> {
 
 }

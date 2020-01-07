@@ -6,39 +6,46 @@ $(document).ready(function () {
 
 function queryList() {
     var columns = [{
-        checkbox: true
+        checkbox: true,
+
     },
         {
             field: 'orderId',
-            title: '订单ID'
+            title: '订单ID',
+
         },
         {
             field: 'totalPrice',
-            title: '价格'
+            title: '价格',
+
         },
         {
             field: 'consignee',
-            title: '联系人'
+            title: '联系人',
+
         },
         {
             field: 'payTypeName',
-            title: '支付类型'
+            title: '支付类型',
+
         },
         {
-            field: 'statusName',
-            title: '订单状态'
-        },
-        {
-            field: 'createTime',
-            title: '创建时间'
+            field: 'prods',
+            title: '商品信息',
+            align: 'center',
+            formatter:function (value,row,index) {
+                if(value.length ==1){
+
+                }
+            }
         },
         {
             title: '操作',
             align: 'center',
             formatter: function (value, row, index) {
                 var actions = [];
-                actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="#" onclick="edit(\'' + row.userId + '\')"><i class="fa fa-edit"></i>编辑</a> ');
-                actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="#" onclick="remove(\'' + row.userId + '\')"><i class="fa fa-remove"></i>删除</a> ');
+                actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="#" onclick="edit(\'' + row.orderId + '\')"><i class="fa fa-eye"></i>查看</a> ');
+                actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="#" onclick="edit(\'' + row.orderId + '\')"><i class="fa fa-edit"></i>编辑</a> ');
                 return actions.join('');
             }
         }];
@@ -58,30 +65,5 @@ function queryParams(params) {
     return param;
 }
 
-/*用户管理-删除*/
-function remove(userId) {
-    $.modalConfirm("确定要删除选中用户吗？", function () {
-        _ajax(prefix + "/" + userId, "", "delete");
-    })
-}
 
-/*用户管理-修改*/
-function edit(userId) {
-    var url = prefix + '/edit/' + userId;
-    layer_showAuto("修改用户", url);
-}
-
-
-/*查看-SKU*/
-function add() {
-    var url = prefix + '/add';
-    layer_showAuto("新增用户", url);
-}
-
-
-/*用户管理-新增*/
-function add() {
-    var url = prefix + '/add';
-    layer_showAuto("新增用户", url);
-}
 

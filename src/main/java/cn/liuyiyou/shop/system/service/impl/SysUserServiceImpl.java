@@ -1,10 +1,12 @@
 package cn.liuyiyou.shop.system.service.impl;
 
 import cn.liuyiyou.shop.system.constans.UserConstants;
+import cn.liuyiyou.shop.system.entity.SysRole;
 import cn.liuyiyou.shop.system.entity.SysUser;
 import cn.liuyiyou.shop.system.entity.SysUserRole;
 import cn.liuyiyou.shop.system.mapper.SysUserMapper;
 import cn.liuyiyou.shop.system.mapper.SysUserRoleMapper;
+import cn.liuyiyou.shop.system.service.ISysRoleService;
 import cn.liuyiyou.shop.system.service.ISysUserService;
 import cn.liuyiyou.shop.system.utils.CurrentUserUtil;
 import cn.liuyiyou.shop.system.utils.StringUtils;
@@ -18,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.constraints.NotNull;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * <p>
@@ -36,6 +39,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     @Autowired
     private SysUserRoleMapper sysUserRoleMapper;
 
+    @Autowired
+    private ISysRoleService sysRoleService;
+
 
     @Override
     public SysUser selectUserInfoByUserId(Integer userId) {
@@ -50,7 +56,12 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
     @Override
     public IPage<SysUser> selectUserList(Page<SysUser> page, SysUser sysUser) {
-        return sysUserMapper.selectUserList(page, sysUser);
+        IPage<SysUser> sysUserIPage = sysUserMapper.selectUserList(page, sysUser);
+        sysUserIPage.getRecords().forEach(sysUser1 -> {
+            List<SysRole> roles = sysRoleService.selectRolesByUserId(sysUser1.getUserId());
+            sysUser1.setRoles(roles);
+        });
+        return sysUserIPage;
     }
 
 

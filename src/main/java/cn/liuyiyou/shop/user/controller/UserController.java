@@ -5,6 +5,7 @@ import cn.liuyiyou.shop.common.response.Response;
 import cn.liuyiyou.shop.common.response.Result;
 import cn.liuyiyou.shop.common.web.BaseController;
 import cn.liuyiyou.shop.prod.vo.req.ProdListReqVo;
+import cn.liuyiyou.shop.system.vo.req.DataTableVo;
 import cn.liuyiyou.shop.user.entity.User;
 import cn.liuyiyou.shop.user.service.IUserService;
 import cn.liuyiyou.shop.user.vo.Prod;
@@ -12,9 +13,13 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -32,7 +37,7 @@ import java.util.Optional;
  * @since 2018-11-12
  */
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/users")
 //@CrossOrigin
 public class UserController extends BaseController {
 
@@ -66,6 +71,14 @@ public class UserController extends BaseController {
                 .select().last("1= 1 limit 10");
         List<User> list = userService.list(userWrap);
         return Response.success(list);
+    }
+
+    @ApiOperation(value = "获取用户列表")
+    @PostMapping()
+    public Result<IPage<User>> list(DataTableVo dataTableVo) {
+        Page<User> pageQuery = new Page<>(dataTableVo.getPageNo(), dataTableVo.getPageSize());
+        IPage<User> sysUserPage = userService.page(pageQuery);
+        return Response.success(sysUserPage);
     }
 }
 

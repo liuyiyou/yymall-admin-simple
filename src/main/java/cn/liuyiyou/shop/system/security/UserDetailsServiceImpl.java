@@ -3,7 +3,7 @@ package cn.liuyiyou.shop.system.security;
 import cn.liuyiyou.shop.system.entity.SysUser;
 import cn.liuyiyou.shop.system.service.ISysUserService;
 import cn.liuyiyou.shop.system.service.SysMenuService;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -18,13 +18,14 @@ import java.util.Set;
 
 import static java.util.stream.Collectors.toList;
 
-/*
+/**
  * @author: liuyiyou
  * @date: 2018/8/27
  * @version: V1.0
  * @Copyright: 2018 liuyiyou.cn Inc. All rights reserved.
  */
 @Component
+@Slf4j
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
@@ -34,7 +35,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        log.debug("Authenticating {}", username);
         SysUser sysUser = sysUserService.selectUserByLoginName(username);
+        if (sysUser.getStatus() != 1) {
+            throw new UserNotActivatedException("Member " + username + " was not activated");
+        }
         User.UserBuilder builder = User.builder().username(username).password(sysUser.getPassword());
         Set<String> permsissions = sysMenuService.selectPermsByUserId(sysUser.getUserId());
         List<GrantedAuthority> grantedAuthorities = permsissions.stream().map(SimpleGrantedAuthority::new).collect(toList());

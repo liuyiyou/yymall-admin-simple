@@ -53,7 +53,7 @@ public class SysDictDataController {
 //    @RequiresPermissions("system:dict:list")
     @ResponseBody
     public Result<IPage<SysDictData>> list(@RequestBody DataTableVo dataTableVo) {
-        Page<SysDictData> pageQuery = new Page<>(dataTableVo.getPageNum(), dataTableVo.getPageSize());
+        Page<SysDictData> pageQuery = new Page<>(dataTableVo.getPageNo(), dataTableVo.getPageSize());
         LambdaQueryWrapper<SysDictData> queryWrapper = new QueryWrapper<SysDictData>().lambda().select();
         IPage<SysDictData> page = dictDataService.page(pageQuery, queryWrapper);
         return Response.success(page);

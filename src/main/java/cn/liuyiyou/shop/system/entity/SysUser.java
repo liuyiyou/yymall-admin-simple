@@ -9,6 +9,7 @@ import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * <p>
@@ -105,6 +106,13 @@ public class SysUser implements Serializable {
      */
     @TableField(exist = false)
     private SysDept dept;
+
+
+    /**
+     * 用户拥有的角色
+     */
+    @TableField(exist = false)
+    private List<SysRole> roles;
 
     /**
      * 部门父ID

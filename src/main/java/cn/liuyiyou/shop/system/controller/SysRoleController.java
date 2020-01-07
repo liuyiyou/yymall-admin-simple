@@ -30,7 +30,7 @@ import java.util.Arrays;
 
 @Api(description = "用户管理相关接口")
 @RestController
-@RequestMapping("/system/role")
+@RequestMapping("api/system/role")
 public class SysRoleController {
 
     private String prefix = "system/role";
@@ -72,7 +72,7 @@ public class SysRoleController {
     @PostMapping()
     @PreAuthorize("hasAuthority('system:role:view')")
     public Result<IPage<SysRole>> list(@RequestBody DataTableVo dataTableVo) {
-        Page<SysRole> pageQuery = new Page<>(dataTableVo.getPageNum(), dataTableVo.getPageSize());
+        Page<SysRole> pageQuery = new Page<>(dataTableVo.getPageNo(), dataTableVo.getPageSize());
         LambdaQueryWrapper<SysRole> queryWrapper = new QueryWrapper<SysRole>().lambda().select();
         IPage<SysRole> page = sysRoleService.page(pageQuery, queryWrapper);
         return Response.success(page);

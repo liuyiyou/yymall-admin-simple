@@ -41,7 +41,7 @@ import java.util.List;
  * @since 2018-08-27
  */
 @RestController
-@RequestMapping("/system/user")
+@RequestMapping("/api/system/user")
 @Api(description = "用户管理相关接口")
 public class SysUserController {
 
@@ -90,8 +90,8 @@ public class SysUserController {
     @ApiOperation(value = "获取用户列表")
     @PostMapping()
     @PreAuthorize("hasAuthority('system:user:list')")
-    public Result<IPage<SysUser>> list(@RequestBody SysUserListReqVo sysUserListReqVo) {
-        Page<SysUser> pageQuery = new Page<>(sysUserListReqVo.getPageNum(), sysUserListReqVo.getPageSize());
+    public Result<IPage<SysUser>> list(SysUserListReqVo sysUserListReqVo) {
+        Page<SysUser> pageQuery = new Page<>(sysUserListReqVo.getPageNo(), sysUserListReqVo.getPageSize());
         SysUser sysUserQuery = new SysUser()
                 .setDeptId(sysUserListReqVo.getDeptId())
                 .setParentId(sysUserListReqVo.getParentId());

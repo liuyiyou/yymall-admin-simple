@@ -2,6 +2,8 @@ package cn.liuyiyou.shop.prod.vo.resp.vant;
 
 import lombok.Data;
 
+import java.util.List;
+
 /***
  *
  * @author: liuyiyou.cn
@@ -10,4 +12,7 @@ import lombok.Data;
  */
 @Data
 public class VantProdSkuRespVo {
+
+    List<SkuTreeVo> tree;
+    List<String> list;
 }

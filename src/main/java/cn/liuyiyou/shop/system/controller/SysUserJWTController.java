@@ -1,0 +1,124 @@
+package cn.liuyiyou.shop.system.controller;
+
+import cn.liuyiyou.shop.common.req.ResultEntity;
+import cn.liuyiyou.shop.system.entity.SysUser;
+import cn.liuyiyou.shop.system.security.SecurityUtils;
+import cn.liuyiyou.shop.system.security.jwt.JWTFilter;
+import cn.liuyiyou.shop.system.security.jwt.TokenProvider;
+import cn.liuyiyou.shop.system.service.ISysUserService;
+import cn.liuyiyou.shop.system.utils.CurrentUserUtil;
+import cn.liuyiyou.shop.user.vo.LoginVM;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.Api;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import java.util.Map;
+
+@Api(value = "UserJWTController", tags = "注册与授权")
+@RestController
+@RequestMapping("/api")
+public class SysUserJWTController {
+
+    private final TokenProvider tokenProvider;
+
+    private final AuthenticationManagerBuilder authenticationManagerBuilder;
+
+    @Autowired
+    private ISysUserService userService;
+
+    public SysUserJWTController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder) {
+        this.tokenProvider = tokenProvider;
+        this.authenticationManagerBuilder = authenticationManagerBuilder;
+    }
+
+    @PostMapping("/authenticate")
+    public ResponseEntity<JWTToken> authorize(@Valid @RequestBody LoginVM loginVM) {
+        UsernamePasswordAuthenticationToken authenticationToken =
+                new UsernamePasswordAuthenticationToken(loginVM.getUsername(), loginVM.getPassword());
+        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String jwt = tokenProvider.createToken(authentication, loginVM.isRememberMe());
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add(JWTFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
+        return new ResponseEntity<>(new JWTToken(jwt), httpHeaders, HttpStatus.OK);
+    }
+
+    @PostMapping("/auth/login")
+    public ResponseEntity<ResultEntity<JWTToken>> login(@Valid @RequestBody LoginVM loginVM, HttpServletRequest request) {
+
+        UsernamePasswordAuthenticationToken authenticationToken =
+                new UsernamePasswordAuthenticationToken(loginVM.getUsername(), loginVM.getPassword());
+        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        boolean rememberMe = loginVM.isRememberMe();
+        Map<String, Object> map = tokenProvider.createTokenWithExpiration(authentication, rememberMe);
+        String idToken = String.valueOf(map.get("token"));
+        long expiresIn = Long.valueOf(String.valueOf(map.get("expiresIn")));
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add(JWTFilter.AUTHORIZATION_HEADER, "Bearer " + idToken);
+        //update last login ip
+        String loginIp = request.getRemoteAddr();
+//        userService.updateLastLoginInfo(loginVM.getUsername(), loginIp);
+        return new ResponseEntity<>(ResultEntity.ok(new JWTToken(idToken, expiresIn)), httpHeaders, HttpStatus.OK);
+    }
+
+
+    @GetMapping("/user")
+    public ResultEntity<User> getAccountInfo() {
+//        SecurityUtils.getCurrentUserLogin();
+//        return null;
+        User user = CurrentUserUtil.getUser();
+        return ResultEntity.ok(user);
+    }
+
+    /**
+     * Object to return as body in JWT Authentication.
+     */
+    static class JWTToken {
+
+        private String idToken;
+        private long expiresIn;
+
+        JWTToken(String idToken) {
+            this.idToken = idToken;
+        }
+
+        public JWTToken(String idToken, long expiresIn) {
+            this.idToken = idToken;
+            this.expiresIn = expiresIn;
+        }
+
+        @JsonProperty("id_token")
+        String getIdToken() {
+            return idToken;
+        }
+
+        void setIdToken(String idToken) {
+            this.idToken = idToken;
+        }
+
+        @JsonProperty("expires_in")
+        public long getExpiresIn() {
+            return expiresIn;
+        }
+
+        public void setExpiresIn(long expiresIn) {
+            this.expiresIn = expiresIn;
+        }
+    }
+}

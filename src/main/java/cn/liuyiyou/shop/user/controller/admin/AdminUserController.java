@@ -10,7 +10,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,11 +41,5 @@ public class AdminUserController {
     }
 
 
-    @ApiOperation(value = "获取用户列表")
-    @PostMapping("list")
-    public Result<IPage<User>> list(@RequestBody DataTableVo dataTableVo) {
-        Page<User> pageQuery = new Page<>(dataTableVo.getPageNum(), dataTableVo.getPageSize());
-        IPage<User> sysUserPage = userService.page(pageQuery);
-        return Response.success(sysUserPage);
-    }
+
 }

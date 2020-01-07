@@ -41,7 +41,7 @@ public class CategoryController extends BaseController {
 
     @GetMapping("/list/{parentId}")
     public Result<IPage<Category>> getCategoryByParentId(@PathVariable("parentId") int parentId,
-                                                         @RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
+                                                         @RequestParam("pageNo") int pageNum, @RequestParam("pageSize") int pageSize) {
         return Response.success(categoryService.getCategoryByParentId(parentId, pageNum, pageSize));
     }
 

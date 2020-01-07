@@ -2,6 +2,7 @@ package cn.liuyiyou.shop.base.mapper;
 
 import cn.liuyiyou.shop.base.entity.Banner;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.springframework.stereotype.Repository;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author liuyiyou.cn
  * @since 2018-11-12
  */
+@Repository
 public interface BannerMapper extends BaseMapper<Banner> {
 
 }

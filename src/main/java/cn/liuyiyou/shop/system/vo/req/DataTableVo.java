@@ -21,7 +21,7 @@ public class DataTableVo {
 
     @ApiModelProperty(value = "页码", required = true)
     @NotNull(message = "页码不能为空")
-    private Integer pageNum;
+    private Integer pageNo;
 
     @ApiModelProperty(value = "每页显示条数", required = true)
     @NotNull(message = "每页条数不能为空")
@@ -39,6 +39,6 @@ public class DataTableVo {
     @JsonIgnore
     @JSONField(serialize = false)
     public Integer getIndex() {
-        return (pageNum - 1) * pageSize;
+        return (pageNo - 1) * pageSize;
     }
 }
